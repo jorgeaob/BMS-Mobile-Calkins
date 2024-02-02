@@ -11,7 +11,7 @@ using System.Text;
 
 namespace BMSMobile.Droid
 {
-    [Activity(Label = "BMS Mobile", Icon ="@drawable/BMSLogo", Theme ="@style/SplashTheme", MainLauncher = true, NoHistory = true)]
+    [Activity(Label = "BMS Mobile Calkins", Icon ="@drawable/BMSLogo", Theme ="@style/SplashTheme", MainLauncher = true, NoHistory = true)]
     public class SplashActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)

@@ -124,7 +124,7 @@
         </ContentPage.Content>
     </ContentPage>
 
-    <ContentPage Title="Pallets">
+    <ContentPage Title="Pallets" IconImageSource="Pallet.png">
 
             <ContentPage.Content>
             <Grid Padding="15,15" Margin="-5,10,10,0">

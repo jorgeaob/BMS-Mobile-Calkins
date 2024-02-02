@@ -16,7 +16,7 @@
 
     <TabbedPage.Children>
 
-        <ContentPage Title="Producto" Icon="PRODUCT2.png" Padding="0,0,0,0" x:Name="ProductoPage">
+        <ContentPage Title="Producto" IconImageSource="Producto.png" Padding="0,0,0,0" x:Name="ProductoPage">
             <ContentPage.Content>
                 <Grid>
                     <Image Aspect="AspectFill" Source="bg.jpg"></Image>

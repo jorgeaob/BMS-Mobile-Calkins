@@ -23,7 +23,7 @@
         <ToolbarItem x:Name="btnGuardar" Priority="1" IconImageSource="save.png" Command="{Binding GuardarCommand}"></ToolbarItem>
     </TabbedPage.ToolbarItems>
 
-    <ContentPage Title="Surtido" Padding="0,0,0,0">
+    <ContentPage Title="Surtido" Padding="0,0,0,0" IconImageSource="Surtir.png">
 
         <ContentPage.Content>
             <StackLayout>
