@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             android:TabbedPage.ToolbarPlacement="Bottom"
+             xmlns:behaviors="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack" 
+             BarBackgroundColor="Navy"
+             BarTextColor="White"
+             SelectedTabColor="Black"
+             UnselectedTabColor="WhiteSmoke"            
+            x:Class="BMSMobile.Views.NuevoLoteView"
+            x:Name="PaginaPage">
+
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem x:Name="btnLimpiar" Priority="0" IconImageSource="Clean.png" Command="{Binding LimpiarCommand}"></ToolbarItem>
+        <ToolbarItem x:Name="btnGuardar" Priority="1" IconImageSource="save.png" Command="{Binding GuardarCommand}"></ToolbarItem>
+    </TabbedPage.ToolbarItems>
+
+    <TabbedPage.Children>
+       
+        <ContentPage Title="Producto" Icon="PRODUCT2.png" Padding="0,0,0,0" x:Name="ProductoPage">
+            <ContentPage.Content>
+                <Grid>
+                    <Image Aspect="AspectFill" Source="bg.jpg"></Image>
+                    <BoxView Opacity="0.8" Color="WhiteSmoke"></BoxView>
+
+                    <Grid>
+                        <Grid Padding="20,20" Margin="0,5,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20*"/>
+                                <ColumnDefinition Width="30*"/>
+                                <ColumnDefinition Width="25*"/>
+                                <ColumnDefinition Width="25*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="0" Text="Producto" FontSize="Small" Font="Bold" VerticalOptions="Center" HorizontalOptions="End" TextColor="Black"/>
+                            <Entry Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="txtCodProd" TextColor="Black" Text="{Binding CodProd}">
+                                <Entry.Behaviors>
+                                    <behaviors:EventToCommandBehavior
+                                Command="{Binding txtCodProdCompleted}"
+                                EventName="Completed"/>
+                                    <behaviors:EventToCommandBehavior
+                            Command="{Binding ProdTextChangedCommand}"
+                            EventName="TextChanged"/>
+                                </Entry.Behaviors>
+                            </Entry>
+
+                            <ListView Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2" HasUnevenRows="True" ItemsSource="{Binding ListaFiltro}" VerticalOptions="FillAndExpand"
+                          HorizontalOptions="FillAndExpand" IsVisible="{Binding BuscarVisible}" HeightRequest="2000">
+
+                                <ListView.Behaviors>
+                                    <behaviors:EventToCommandBehavior
+                            Command="{Binding ItemTappedCommand}"
+                            EventName="ItemTapped"
+                            EventArgsPropertyPath="Item"/>
+                                </ListView.Behaviors>
+                                <ListView.ItemTemplate>
+
+                                    <DataTemplate>
+                                        <ViewCell Height="50">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding cod_prod}" FontAttributes="Bold" TextColor="Black"
+                                               HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
+                                                <Label Text="{Binding descripcion_completa}" FontAttributes="Bold" TextColor="Black"
+                                               HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand"/>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+
+                            <!--<ImageButton Grid.Row="0" Grid.Column="3" Source="barcode.png" x:Name="btnScanner" WidthRequest="25" HeightRequest="25" BackgroundColor="Transparent"/>-->
+
+                            <Entry Grid.Row="3" Grid.ColumnSpan="4" x:Name="txtDescProd" VerticalOptions="FillAndExpand" HorizontalOptions="Fill" VerticalTextAlignment="Center"
+                                   TextColor="Black" IsEnabled="False" Text="{Binding Descripcion}"/>
+
+                            <Label Grid.Row="4" Grid.Column="0" Text="Cantidad" FontSize="Small" Font="Bold" VerticalOptions="Center"  HorizontalOptions="End" TextColor="Black" />
+                            <Entry Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" x:Name="txtCantidad" TextColor="Black" VerticalOptions="Center" Keyboard="Numeric" Text="{Binding Cantidad}" IsEnabled="True" />
+
+                            <Label Grid.Row="5" Grid.Column="0" Text="Caducidad" FontSize="Small" Font="Bold" VerticalOptions="Center" HorizontalOptions="End" TextColor="Black"/>
+                            <DatePicker Grid.Row="5" Grid.Column="1" x:Name="dpCaducidad"  Date="{Binding FechaCad}" MinimumDate="{Binding PropertyMinimumDate}" Format="dd/MM/yyyy" TextColor="Black" Grid.ColumnSpan="3"/>
+
+                            <Label Grid.Row="6" Grid.Column="0" Text="Lote Fab." FontSize="Small" Font="Bold" VerticalOptions="Center" HorizontalOptions="End" TextColor="Black"/>
+                            <Entry Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" x:Name="txtLote" TextColor="Black" Text="{Binding LoteFab}"/>
+                            
+                            <Label Grid.Row="7" Grid.Column="0" Text="Loc." FontSize="Small" Font="Bold" VerticalOptions="Center" HorizontalOptions="End" TextColor="Black"/>
+                            <Entry Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3" x:Name="txtLoc" TextColor="Black" Text="{Binding Localizacion}"/>
+                            
+                            <Label Grid.Row="8" Grid.Column="0" Text="Lote Recep." FontSize="Micro" Font="Bold" VerticalOptions="Center" HorizontalOptions="End" TextColor="Black"/>
+                            <Entry Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3" x:Name="txtLoteRec" TextColor="Black" Text="{Binding LoteRecep}" />
+                            
+                            <Label Grid.Row="9" Grid.Column="0" Text="Tipo" FontSize="Small" Font="Bold" VerticalOptions="Center" HorizontalOptions="End" TextColor="Black"/>
+                            <Picker Grid.Row="9" Grid.Column="1" x:Name="pTipo" Title="Seleccione un tipo"
+                                    ItemsSource="{Binding ListaTipo}" ItemDisplayBinding="{Binding Nombre}"
+                                    SelectedIndex="{Binding pTipoIndex}"
+                                    TextColor="Black" VerticalOptions="Center" Grid.ColumnSpan="3" IsEnabled="True"/>
+
+                        </Grid>
+                    </Grid>
+
+                </Grid>
+            </ContentPage.Content>
+
+        </ContentPage>
+
+    </TabbedPage.Children>
+</TabbedPage>

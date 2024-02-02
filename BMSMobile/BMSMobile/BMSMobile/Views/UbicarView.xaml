@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             android:TabbedPage.ToolbarPlacement="Bottom"
+             xmlns:behaviors="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
+             BarBackgroundColor="Navy"
+             BarTextColor="White"
+             SelectedTabColor="Black"
+             UnselectedTabColor="WhiteSmoke"            
+             x:Class="BMSMobile.Views.UbicarView"
+            Title="Ubicar"
+             x:Name="PaginaPage">
+
+
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem x:Name="btnLimpiar" Priority="0" IconImageSource="Clean.png" Command="{Binding LimpiarCommand}"></ToolbarItem>
+        <ToolbarItem x:Name="btnGuardar" Priority="1" IconImageSource="save.png" Command="{Binding GuardarCommand}"></ToolbarItem>
+    </TabbedPage.ToolbarItems>
+
+    <ContentPage Title="Datos" Padding="0,0,0,0" IconImageSource="Entrada.png">
+
+        <ContentPage.Content>
+            <StackLayout>
+
+                <Grid Padding="15,15" Margin="-5,10,10,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="30*"/>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="20*"/>
+                    </Grid.ColumnDefinitions>
+
+
+
+                    <Label Text="Tipo Documento" VerticalOptions="Center" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1"  HorizontalTextAlignment="End" FontAttributes="Bold"/>
+                    <Picker x:Name="TipoDocumentoPicker" VerticalOptions="Center" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding ListaDocs}" 
+                            ItemDisplayBinding="{Binding Nombre}"  SelectedIndex="{Binding pDocIndex}" />
+
+                    <Label Text="Documento" VerticalOptions="Center" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1"  HorizontalTextAlignment="End" FontAttributes="Bold"/>
+                    <Entry x:Name="txtDocumento" VerticalOptions="Center" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding TxtDocumento}" IsEnabled="{Binding txtDocEnabled}">
+                        <Entry.Behaviors>
+                            <behaviors:EventToCommandBehavior
+                            Command="{Binding txtDocumentoCompleted}"
+                            EventName="Completed"/>
+                            <behaviors:EventToCommandBehavior
+                            Command="{Binding TxtOCChanged}"
+                            EventName="TextChanged"/>
+
+                        </Entry.Behaviors>
+                    </Entry>
+
+                    <Label Text="Área" VerticalOptions="Center" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" HorizontalTextAlignment="End"  FontAttributes="Bold"/>
+                    <Picker x:Name="AreaPicker" VerticalOptions="Center" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding ListaAreas}" 
+                            ItemDisplayBinding="{Binding Nombre}"  SelectedIndex="{Binding pAreaIndex}">
+                        <Picker.Behaviors>
+                            <behaviors:EventToCommandBehavior
+                                        Command="{Binding pAreaChanged}"
+                                        EventName="SelectedIndexChanged"/>
+                        </Picker.Behaviors>
+                    </Picker>
+
+
+                    <Label Text="Rack" VerticalOptions="Center" Grid.Row="3" Grid.Column="0" HorizontalTextAlignment="End"  FontAttributes="Bold"/>
+                    <Label Text="{Binding Source={x:Reference nudRack}, Path=Value}" VerticalOptions="Center" Grid.Row="3" Grid.Column="1" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
+                    <Stepper x:Name="nudRack" VerticalOptions="Center" Grid.Row="3" Grid.Column="1" HorizontalOptions="End" Scale=".8" Minimum="0" Maximum="100" Value="{Binding nudRackValue}">
+                        <Stepper.Behaviors>
+                            <behaviors:EventToCommandBehavior
+                                        Command="{Binding nudRackChanged}"
+                                        EventName="ValueChanged"/>
+                        </Stepper.Behaviors>
+                    </Stepper>
+                    <Picker x:Name="pDisponible" VerticalOptions="Center" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding ListaDisponible}" 
+                            ItemDisplayBinding="{Binding Nombre}"  SelectedIndex="{Binding pDispIndex}"/>
+
+                   
+
+                </Grid>
+                <ScrollView Orientation="Vertical">
+                    <ListView HasUnevenRows="True" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                  ItemsSource="{Binding ListaLotes}" x:Name="listaProductos" >
+                        <ListView.Header>
+                            <Grid BackgroundColor="AntiqueWhite" Margin="15,2,15,2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60*"/>
+                                    <ColumnDefinition Width="40*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Column="0" Text="Folio" FontSize="Medium" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center"/>
+                                <Label Grid.Column="1" Text="Cant. Pendiente" FontSize="Medium" TextColor="Black" FontAttributes="Bold" HorizontalOptions="End"/>
+                            </Grid>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell Height="150">
+                                    <Grid Padding="10" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="60*"/>
+                                            <ColumnDefinition Width="40*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0" Text="{Binding folio}" TextColor="Black" FontSize="Small" HorizontalOptions="CenterAndExpand"
+                                   VerticalOptions="Center"/>
+                                        <Label Grid.Column="1" Text="{Binding cant_pendiente}" TextColor="Black" FontSize="Small" HorizontalOptions="End"
+                                   VerticalOptions="Center"/>
+
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollView>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+
+    <ContentPage Title="Pallets">
+
+            <ContentPage.Content>
+            <Grid Padding="15,15" Margin="-5,10,10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40*"/>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="30*"/>
+                </Grid.ColumnDefinitions>
+
+                <Entry Text="{Binding TxtDesc}" VerticalOptions="Center" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" IsReadOnly="True" HorizontalTextAlignment="Start" />
+                <Label Text="{Binding Source={x:Reference nudCantidad}, Path=Value}" VerticalOptions="Center" Grid.Row="0" Grid.Column="2" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
+                <Stepper x:Name="nudCantidad" VerticalOptions="Center" Grid.Row="0" Grid.Column="2" HorizontalOptions="End" Scale=".7" IsEnabled="False" Value="{Binding nudCantidad}" Minimum="1" Maximum="1000"/>
+
+                <Label Text="{Binding lblPallet}" VerticalOptions="Center" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" HorizontalTextAlignment="End" FontAttributes="Bold"/>
+                <Entry Text="{Binding TxtPallet}" VerticalOptions="Center" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="{Binding txtPalletEnabled}" 
+                       HorizontalTextAlignment="Start" x:Name="txtPallet">
+                    <Entry.Behaviors>
+                        <behaviors:EventToCommandBehavior
+                            Command="{Binding txtPalletCompleted}"
+                            EventName="Completed"/>
+                    </Entry.Behaviors>
+                </Entry>
+
+                <Label Text="{Binding lblNomLoc}" VerticalOptions="Center" Grid.Row="2" Grid.Column="0" HorizontalTextAlignment="End" Grid.ColumnSpan="1" FontAttributes="Bold"/>
+                <Label Text="{Binding LblLocalizacion}" VerticalOptions="Center" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
+
+                <Label Text="Cantidad" VerticalOptions="Center" Grid.Row="3" Grid.ColumnSpan="1" Grid.Column="0" HorizontalTextAlignment="End" FontAttributes="Bold" IsVisible="{Binding CantPickingVisible}"/>
+                <Entry Text="{Binding nudCantPicking}" VerticalOptions="Center" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Keyboard="Numeric" IsVisible="{Binding CantPickingVisible}"
+                       HorizontalTextAlignment="Start">
+                    <Entry.Behaviors>
+                        <behaviors:EventToCommandBehavior
+                            Command="{Binding CantPickingCompleted}"
+                            EventName="Completed"/>
+                    </Entry.Behaviors>
+                </Entry>
+                <!--<Label Text="{Binding Source={x:Reference nudCantidadPicking}, Path=Value}" VerticalOptions="Center" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1"
+                       HorizontalTextAlignment="End" FontAttributes="Bold"/>
+                <Stepper x:Name="nudCantidadPicking" VerticalOptions="Center" Grid.Row="3" Grid.Column="2" HorizontalOptions="Start" Scale=".7" Value="{Binding nudCantPicking}" Minimum="1" Maximum="100"/>-->
+
+
+            </Grid>
+            </ContentPage.Content>
+        </ContentPage>
+
+
+
+</TabbedPage>

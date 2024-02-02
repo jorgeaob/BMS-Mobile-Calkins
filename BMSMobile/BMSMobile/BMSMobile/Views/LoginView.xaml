@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"             
+             x:Class="BMSMobile.Views.LoginView"
+             xmlns:local ="clr-namespace:BMSMobile.Utilities"
+             xmlns:behaviors="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack" 
+             Visual="Material">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Priority="0" Text="Conexión" IconImageSource="Configuracion.png" Command="{Binding ConfigCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <Grid BackgroundColor="#FEFCFF">
+        <Grid Padding="25">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>                
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="25*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
+                <Image Source="BMSLogo.png" BackgroundColor="Transparent" HeightRequest="200" WidthRequest="200" Margin="0,30,0,20" HorizontalOptions="Center"/>
+            </StackLayout>
+
+            <Image Grid.Row="1" Grid.Column="0" Source="Account.png" HeightRequest="35" WidthRequest="35" HorizontalOptions="End" VerticalOptions="Center" Margin="0,20,0,20"/>
+            <Entry Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Placeholder="Usuario" VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="FillAndExpand" Text="{Binding User}" BackgroundColor="{Binding colorUser.MissingColor}">
+
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior
+                        Command="{Binding CompletedUserCommand}"
+                        EventName="Completed"/>
+                </Entry.Behaviors>
+
+                <Entry.Triggers>
+                    <DataTrigger TargetType="Entry"
+                                 Binding="{Binding EntryUser.Focused}"
+                                 Value="True">
+                        
+                        <DataTrigger.EnterActions>
+                            <local:FocusTriggerAction Focused="True"/>
+                        </DataTrigger.EnterActions>
+
+                        <DataTrigger.ExitActions>
+                            <local:FocusTriggerAction Focused="False"/>
+                        </DataTrigger.ExitActions>
+
+                    </DataTrigger>
+                </Entry.Triggers>
+            </Entry>
+
+            <Image Grid.Row="2" Grid.Column="0" Source="Password.png" HeightRequest="35" WidthRequest="35" HorizontalOptions="End" VerticalOptions="Center" Margin="0,20,0,20"/>
+            <Entry Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Placeholder="Contraseña" VerticalOptions="Center" IsPassword="True"
+                   HorizontalOptions="FillAndExpand" Text="{Binding Clave}" BackgroundColor="{Binding colorClave.MissingColor}">
+
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior
+                        Command="{Binding CompletedClaveCommand}"
+                        EventName="Completed"/>
+                </Entry.Behaviors>
+                
+                <Entry.Triggers>
+                    <DataTrigger TargetType="Entry"
+                                 Binding="{Binding EntryClave.Focused}"
+                                 Value="True">
+
+                        <DataTrigger.EnterActions>
+                            <local:FocusTriggerAction Focused="True"/>
+                        </DataTrigger.EnterActions>
+
+                        <DataTrigger.ExitActions>
+                            <local:FocusTriggerAction Focused="False"/>
+                        </DataTrigger.ExitActions>
+
+                    </DataTrigger>
+                </Entry.Triggers>
+
+            </Entry>
+
+            <StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4">
+                <Button Text="Ingresar" ImageSource="Login.png" BackgroundColor="MediumBlue" TextColor="White" FontAttributes="Bold" 
+                        CornerRadius="10" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Command="{Binding LoginCommand}"/>
+                <ActivityIndicator BackgroundColor="MidnightBlue" HorizontalOptions="Center" VerticalOptions="Center"
+                                   IsVisible="{Binding activityModel.IsBusy}" IsRunning="{Binding activityModel.IsBusy}" />
+            </StackLayout>
+
+        </Grid>
+    </Grid>
+    
+</ContentPage>

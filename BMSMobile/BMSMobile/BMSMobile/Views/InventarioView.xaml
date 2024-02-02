@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="BMSMobile.Views.InventarioView"      
+            xmlns:custom="clr-namespace:BMSMobile.Custom"
+            xmlns:converters="clr-namespace:BMSMobile.Converters"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core" 
+            xmlns:behaviors="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack" 
+            xmlns:local ="clr-namespace:BMSMobile.Utilities"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            android:TabbedPage.BarSelectedItemColor="Red"
+            BarBackgroundColor="MediumBlue"
+            Title="Conteo físico de productos"
+            Visual="Material">
+
+    <TabbedPage.Resources>
+        <converters:IndexColorConverter x:Key="IndexToColorConverterGrid"
+                                        EvenColor="#d1ebed"
+                                        OddColor="Transparent"/>
+        <converters:DecimalConverter x:Key="decimalConverter"/>
+    </TabbedPage.Resources>
+
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem Priority="0" IconImageSource="Limpiar.png" Command="{Binding LimpiarCommand}"/>
+    </TabbedPage.ToolbarItems>
+
+    <ContentPage Title="Captura" IconImageSource="Captura.png" BackgroundColor="#FEFCFF">
+        <Grid>
+            <Grid Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="25*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>                    
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>                                
+                    <RowDefinition Height="Auto"/>                                
+                    <RowDefinition Height="Auto"/>                                
+                    <RowDefinition Height="Auto"/>                                
+                </Grid.RowDefinitions>
+
+                <Entry Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Placeholder="Folio" PlaceholderColor="Black"
+                       BackgroundColor="{Binding colorModel.MissingColor}" Text="{Binding InvModel.folio}">
+                    <Entry.Behaviors>
+                        <behaviors:EventToCommandBehavior
+                            Command="{Binding CompletedFolioCommand}"
+                            EventName="Completed"/>
+                    </Entry.Behaviors>
+                </Entry>
+
+                <StackLayout Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                    <CheckBox HorizontalOptions="End" VerticalOptions="Center" HeightRequest="30" WidthRequest="30" Margin="10,0,0,0" IsChecked="{Binding chkProdAdic}" />
+                    <Label Text="PA" FontSize="20" FontAttributes="Bold" TextColor="Black"
+                       VerticalOptions="Center" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"/>
+                </StackLayout>               
+                               
+                <Entry Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Placeholder="Producto" PlaceholderColor="Black"
+                       IsEnabled="{Binding EnableControls}" Text="{Binding Producto.cod_prod}" BackgroundColor="{Binding colorProdEntry.MissingColor}"
+                       Margin="0,15,0,0">
+                    <Entry.Behaviors>
+                        <behaviors:EventToCommandBehavior
+                            Command="{Binding ProdCompletedCommand}"
+                            EventName="Completed"/>
+                        <behaviors:EventToCommandBehavior
+                            Command="{Binding ProdTextChangedCommand}"
+                            EventName="TextChanged"/>
+                    </Entry.Behaviors>
+                    
+                    <Entry.Triggers>
+                        <DataTrigger TargetType="Entry"
+                                     Binding="{Binding EntryCodProd.Focused}"
+                                     Value="True">
+                            <DataTrigger.EnterActions>
+                                <local:FocusTriggerAction Focused="True"/>
+                            </DataTrigger.EnterActions>
+
+                            <DataTrigger.ExitActions>
+                                <local:FocusTriggerAction Focused="False"/>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </Entry.Triggers>
+                </Entry>
+                <ListView Grid.Row="3" Grid.ColumnSpan="4" HasUnevenRows="True" ItemsSource="{Binding ListaFiltro}" VerticalOptions="FillAndExpand"
+                          HorizontalOptions="FillAndExpand" IsVisible="{Binding BuscarVisible}" HeightRequest="2000">
+
+                    <ListView.Behaviors>
+                        <behaviors:EventToCommandBehavior
+                            Command="{Binding ItemTappedCommand}"
+                            EventName="ItemTapped"
+                            EventArgsPropertyPath="Item"/>
+                    </ListView.Behaviors>
+                    <ListView.ItemTemplate>
+                    
+                    <DataTemplate>
+                            <ViewCell Height="50">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding cod_prod}" FontAttributes="Bold" TextColor="Black"
+                                               HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
+                                    <Label Text="{Binding descripcion_completa}" FontAttributes="Bold" TextColor="Black"
+                                               HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                
+                <!--<ImageButton Grid.Row="2" Grid.Column="2" Source="Buscar.png" BackgroundColor="Transparent"
+                             HeightRequest="45" WidthRequest="45" HorizontalOptions="Center" IsEnabled="{Binding EnableControls}"
+                             Command="{Binding BuscarProdCommand}"/>--> 
+                <ImageButton Grid.Row="2" Grid.Column="3" Source="Escanear.png" BackgroundColor="Transparent"
+                             HeightRequest="45" WidthRequest="45" HorizontalOptions="Center" IsEnabled="{Binding EnableControls}"
+                             Command="{Binding ScannerProductoCommand}"/>
+
+                <Entry Grid.Row="4" Grid.ColumnSpan="4" Margin="0,0,0,0" IsReadOnly="True" BackgroundColor="#F8F8FF"
+                       Text="{Binding Producto.descripcion_completa}"/>
+
+                <Entry Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Placeholder="Fecha" PlaceholderColor="Black"
+                       IsReadOnly="True" Margin="0,0,0,15" BackgroundColor="#F8F8FF" Text="{Binding Producto.fecha, StringFormat='{0:dd/MM/yyyy HH:mm}'}"/>
+
+                <ImageButton Grid.Row="5" Grid.Column="3" Source="Guardar.png" BackgroundColor="Transparent"
+                             HorizontalOptions="CenterAndExpand" Margin="0,0,0,15" HeightRequest="50" WidthRequest="50"
+                             IsEnabled="{Binding EnableControls}" Command="{Binding AddProdCommand}"/>
+
+                <Label Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Producto.NombreUC}"
+                       TextColor="Black" FontSize="18" HorizontalOptions="Center"/>
+
+                <Label Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding Producto.NombreUA}"
+                       TextColor="Black" FontSize="18" HorizontalOptions="Center"/>
+                
+                <custom:SelectableEntry Grid.Row="7" Grid.Column="0" BackgroundColor="#F8F8FF" Keyboard="Numeric" x:Name="txtCantUC" Visual="Material"
+                                        HeightRequest="60" IsEnabled="{Binding EnableControls}" 
+                                        Text="{Binding Source={x:Reference _stepperUC}, Path=Value, Converter={StaticResource decimalConverter}}" >                   
+                </custom:SelectableEntry>
+                <Stepper Grid.Row="7" Grid.Column="1" IsEnabled="{Binding EnableControls}"
+                         Increment="1" Maximum="9999" x:Name="_stepperUC" Value="{Binding Producto.unidades_compra}">
+                    <Stepper.Behaviors>
+                        <behaviors:EventToCommandBehavior
+                            Command="{Binding UCValueChangedCommand}"
+                            EventName="ValueChanged"/>
+                    </Stepper.Behaviors>
+                    
+                </Stepper>
+
+                <custom:SelectableEntry Grid.Row="7" Grid.Column="2" BackgroundColor="#F8F8FF" Keyboard="Numeric" x:Name="txtCantUA" Visual="Material"
+                                        HeightRequest="60" IsEnabled="{Binding EnableControls}" 
+                                        Text="{Binding Source={x:Reference _stepperUA}, Path=Value, Converter={StaticResource decimalConverter}}">
+                </custom:SelectableEntry>
+                <Stepper Grid.Row="7" Grid.Column="3" IsEnabled="{Binding EnableControls}"
+                         Increment="1" Maximum="9999" x:Name="_stepperUA" Value="{Binding Producto.unidades_alternativas}"/>
+
+
+                <Label Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Text="Exist. Unidades"
+                       TextColor="Black" FontSize="18" HorizontalOptions="Center"/>
+
+                <Label Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="2" Text="Exist. Piezas"
+                       TextColor="Black" FontSize="18" HorizontalOptions="Center"/>
+
+                <custom:SelectableEntry Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#F8F8FF" Keyboard="Numeric" Visual="Material"
+                        HeightRequest="60" IsEnabled="{Binding EnableControls}" IsReadOnly="True"
+                        Text="{Binding Producto.exist_unidades_compra, StringFormat='{0:0.00}', Converter={StaticResource decimalConverter}}"/>
+
+
+                <custom:SelectableEntry Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="2" BackgroundColor="#F8F8FF" Keyboard="Numeric" Visual="Material"
+                                        HeightRequest="60" IsEnabled="{Binding EnableControls}" IsReadOnly="True"
+                                        Text="{Binding Producto.exist_unidades_alternativas, StringFormat='{0:0.00}', Converter={StaticResource decimalConverter}}"/>
+
+
+                <Editor Grid.Row="10" Grid.ColumnSpan="4" Placeholder="Notas" PlaceholderColor="Black" HeightRequest="75" Text="{Binding Producto.notas}"
+                        BackgroundColor="#F8F8FF" IsEnabled="{Binding EnableControls}"/>
+
+            </Grid>
+        </Grid>
+    </ContentPage>
+
+    <ContentPage Title="Censo" IconImageSource="Censo.png" BackgroundColor="#FEFCFF">
+        <StackLayout Margin="10">
+            <Label Text="Lista de productos" TextColor="Black" FontAttributes="Bold" FontSize="Title" HorizontalTextAlignment="Center"
+                               Margin="10"/>
+            <CollectionView ItemsSource="{Binding ListProds}" x:Name="CollectionProds">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10" BackgroundColor="{Binding ., Converter={StaticResource IndexToColorConverterGrid}, ConverterParameter={x:Reference CollectionProds}}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>                                
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>                                
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding cod_prod}" FontSize="Medium" FontAttributes="Bold" TextColor="Black"
+                                               HorizontalTextAlignment="Start" HorizontalOptions="Start"/>
+                            <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding descripcion_completa}" FontSize="Medium" FontAttributes="Bold" TextColor="Black"
+                                               HorizontalTextAlignment="Start" HorizontalOptions="FillAndExpand"/>
+
+                            <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">
+                                <Label Text="{Binding AbrevUC}" TextColor="Black" FontSize="16" FontAttributes="Bold"
+                                           HorizontalOptions="End" HorizontalTextAlignment="End"/>
+                                <Label Text="{Binding unidades_compra, StringFormat='{0:0.00}'}" TextColor="Black" FontSize="16"
+                                           HorizontalTextAlignment="Start"/>
+
+                                <Label Text="{Binding AbrevUA}" TextColor="Black" FontSize="16" FontAttributes="Bold"
+                                           HorizontalOptions="End" HorizontalTextAlignment="End"/>
+                                <Label Text="{Binding unidades_alternativas, StringFormat='{0:0.00}'}" TextColor="Black" FontSize="16"
+                                           HorizontalTextAlignment="Start"/>
+                            </StackLayout>
+                            
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage>
+
+    <ContentPage Title="Diferencia" IconImageSource="Diferente.png" BackgroundColor="#FEFCFF">
+        <StackLayout Margin="10">
+            <Label Text="Diferencias de conteos" TextColor="Black" FontAttributes="Bold" FontSize="Title" HorizontalTextAlignment="Center"
+                               Margin="10"/>
+            <CollectionView ItemsSource="{Binding ListDifProds}" x:Name="CollectionDifProds" SelectionMode="Single"
+                            SelectionChangedCommand="{Binding AbrirNotasProductoCommand}" SelectedItem="{Binding DifSelected}">
+               
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10" BackgroundColor="{Binding ., Converter={StaticResource IndexToColorConverterGrid}, ConverterParameter={x:Reference CollectionDifProds}}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding cod_prod}" FontSize="Medium" FontAttributes="Bold" TextColor="Black"
+                                               HorizontalTextAlignment="Start" HorizontalOptions="Start"/>
+                            <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding descripcion_completa}" FontSize="Medium" FontAttributes="Bold" TextColor="Black"
+                                               HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand"/>
+
+                            <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" 
+                                                 HorizontalOptions="FillAndExpand">
+                                <Label Text="{Binding AbrevUC}" TextColor="Black" FontSize="16" FontAttributes="Bold"
+                                           HorizontalOptions="End" HorizontalTextAlignment="End"/>
+                                <Label Text="Conteo = " TextColor="Black" FontSize="16" FontAttributes="Bold"
+                                           HorizontalOptions="End" HorizontalTextAlignment="End"/>
+                                <Label Text="{Binding unidades_compra, StringFormat='{0:0}'}" TextColor="Black" FontSize="16"
+                                           HorizontalTextAlignment="Start"/>
+
+                                <Label Text="Exist = " TextColor="Black" FontSize="16" FontAttributes="Bold"
+                                           HorizontalOptions="End" HorizontalTextAlignment="End"/>
+                                <Label Text="{Binding exist_unidades_compra, StringFormat='{0:0}'}" TextColor="Black" FontSize="16"
+                                           HorizontalTextAlignment="Start"/>
+
+                                <Label Text="Dif = " TextColor="Black" FontSize="16" FontAttributes="Bold"
+                                           HorizontalOptions="End" HorizontalTextAlignment="End"/>
+                                <Label Text="{Binding difUC, StringFormat='{0:0}'}" TextColor="Black" FontSize="16"
+                                           HorizontalTextAlignment="Start"/>
+                            </StackLayout>
+
+                            <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" 
+                                                 HorizontalOptions="FillAndExpand">
+                                <Label Text="{Binding AbrevUA}" TextColor="Black" FontSize="16" FontAttributes="Bold"
+                                           HorizontalOptions="End" HorizontalTextAlignment="End"/>
+                                <Label Text="Conteo = " TextColor="Black" FontSize="16" FontAttributes="Bold"
+                                           HorizontalOptions="End" HorizontalTextAlignment="End"/>
+                                <Label Text="{Binding unidades_alternativas, StringFormat='{0:0}'}" TextColor="Black" FontSize="16"
+                                           HorizontalTextAlignment="Start"/>
+
+                                <Label Text="Exist = " TextColor="Black" FontSize="16" FontAttributes="Bold"
+                                           HorizontalOptions="End" HorizontalTextAlignment="End"/>
+                                <Label Text="{Binding exist_unidades_alternativas, StringFormat='{0:0}'}" TextColor="Black" FontSize="16"
+                                           HorizontalTextAlignment="Start"/>
+
+                                <Label Text="Dif = " TextColor="Black" FontSize="16" FontAttributes="Bold"
+                                           HorizontalOptions="End" HorizontalTextAlignment="End"/>
+                                <Label Text="{Binding difUA, StringFormat='{0:0}'}" TextColor="Black" FontSize="16"
+                                           HorizontalTextAlignment="Start"/>
+                            </StackLayout>
+                            
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage>
+
+</TabbedPage>

@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             android:TabbedPage.ToolbarPlacement="Bottom"
+             xmlns:behaviors="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
+             BarBackgroundColor="Navy"
+             BarTextColor="White"
+             SelectedTabColor="Black"
+             UnselectedTabColor="WhiteSmoke"            
+             x:Class="BMSMobile.Views.SurtidoPickingView"
+            Title="Surtido Picking"
+             x:Name="SurtidoPickingPage">
+
+
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem x:Name="btnLimpiar" Priority="0" IconImageSource="Clean.png" Command="{Binding DeshacerCommand}"></ToolbarItem>
+    </TabbedPage.ToolbarItems>
+
+    <ContentPage Title="Datos" Padding="0,0,0,0" IconImageSource="Entrada.png">
+
+        <ContentPage.Content>
+            <StackLayout>
+                <Grid Padding="15,15" Margin="-5,10,10,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20*"/>
+                        <ColumnDefinition Width="35*"/>
+                        <ColumnDefinition Width="45*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Folio" VerticalOptions="Center" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1"  HorizontalTextAlignment="End" FontAttributes="Bold"/>
+                    <Entry x:Name="txtFolio" VerticalOptions="Center" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1" Text="{Binding TxtFolio}" IsEnabled="{Binding txtFolioEnabled}">
+                        <Entry.Behaviors>
+                            <behaviors:EventToCommandBehavior
+                            Command="{Binding txtFolioCompleted}"
+                            EventName="Completed"/>
+                            <!--<behaviors:EventToCommandBehavior
+                            Command="{Binding TxtOCChanged}"
+                            EventName="TextChanged"/>-->
+
+                        </Entry.Behaviors>
+                    </Entry>
+                    <Picker x:Name="cbTrans" VerticalOptions="Center" Grid.Row="0" Grid.Column="2"  ItemsSource="{Binding ListaTrans}" 
+                            ItemDisplayBinding="{Binding Nombre}" SelectedIndex="{Binding pTransIndex}" IsEnabled="{Binding cbTransEnabled}">
+                        <!--<Picker.Behaviors>
+                            <behaviors:EventToCommandBehavior
+                                        Command="{Binding pTransChanged}"
+                                        EventName="SelectedIndexChanged"/>
+                        </Picker.Behaviors>-->
+                    </Picker>
+                </Grid>
+                    
+                
+                    <ListView HasUnevenRows="True" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                  ItemsSource="{Binding ListaTickets}" x:Name="listaTickets" SelectedItem="{Binding ItemSelected}" >
+
+                    <ListView.Behaviors>
+                        <behaviors:EventToCommandBehavior
+                            Command="{Binding ItemTappedCommand}"
+                            EventName="ItemTapped"
+                            EventArgsPropertyPath="Item"/>
+                    </ListView.Behaviors>
+
+                    <ListView.Header>
+                        <Grid BackgroundColor="AntiqueWhite" Margin="15,2,15,2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20*"/>
+                                <ColumnDefinition Width="20*"/>
+                                <ColumnDefinition Width="40*"/>
+                                <ColumnDefinition Width="20*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0" Text="Ticket" FontSize="Medium" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center"/>
+                            <Label Grid.Column="1" Text="Cont." FontSize="Medium" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center"/>
+                            <Label Grid.Column="2" Text="Cliente" FontSize="Medium" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center"/>
+                            <Label Grid.Column="3" Text="Numdpc" FontSize="Medium" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center"/>
+                        </Grid>
+                    </ListView.Header>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell Height="60">
+                                <Grid Padding="10" >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20*"/>
+                                        <ColumnDefinition Width="20*"/>
+                                        <ColumnDefinition Width="20*"/>
+                                        <ColumnDefinition Width="20*"/>
+                                        <ColumnDefinition Width="20*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Column="0" Text="{Binding ticket}" TextColor="Black" FontSize="Small" HorizontalOptions="CenterAndExpand"
+                                   VerticalOptions="Center"/>
+                                    <Label Grid.Column="1" Text="{Binding contenedor}" TextColor="Black" FontSize="Small" HorizontalOptions="End"
+                                   VerticalOptions="Center"/>
+                                    <Label Grid.Column="2" Text="{Binding cod_cte}" TextColor="Black" FontSize="Small" HorizontalOptions="CenterAndExpand"
+                                   VerticalOptions="Center"/>
+                                    <Label Grid.Column="3" Text="{Binding razon_social}" TextColor="Black" FontSize="Micro" HorizontalOptions="End"
+                                   VerticalOptions="Center"/>
+                                    <Label Grid.Column="4" Text="{Binding numdpc}" TextColor="Black" FontSize="Small" HorizontalOptions="CenterAndExpand"
+                                   VerticalOptions="Center"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <!--Producto-->
+                
+                <Grid Padding="15,15" Margin="-5,10,10,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15*"/>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="15*"/>
+                        <ColumnDefinition Width="35*"/>
+                        <ColumnDefinition Width="10*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Prod" VerticalOptions="Center" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1"  HorizontalTextAlignment="End" FontAttributes="Bold"/>
+                    <Entry x:Name="txtCodProd" VerticalOptions="Center" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1" Text="{Binding CodProd}" IsEnabled="{Binding txtCodProdEnabled}">
+                        <Entry.Behaviors>
+                            <behaviors:EventToCommandBehavior
+                            Command="{Binding txtCodProdCompleted}"
+                            EventName="Completed"/>
+                            <!--<behaviors:EventToCommandBehavior
+                            Command="{Binding TxtCodProdchanged}"
+                            EventName="TextChanged"/>-->
+                        </Entry.Behaviors>
+                    </Entry>
+                    <Entry x:Name="txtDescripcion" VerticalOptions="Center" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" Text="{Binding Descripcion}" IsEnabled="False"/>
+                    
+
+                    <Label Text="Loc" VerticalOptions="Center" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1"  HorizontalTextAlignment="End" FontAttributes="Bold"/>
+                    <Entry x:Name="txtLoc" VerticalOptions="Center" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Localizacion}" IsEnabled="{Binding TxtLocEnabled}">
+                        <Entry.Behaviors>
+                            <behaviors:EventToCommandBehavior
+                            Command="{Binding txtLocCompleted}"
+                            EventName="Completed"/>
+                        </Entry.Behaviors>
+                    </Entry>
+                    <Label x:Name="lblLocalizaciones" VerticalOptions="Center" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" Text="{Binding Localizaciones}" IsEnabled="False"/>
+
+
+                    <Label x:Name="lblCant" VerticalOptions="Center" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" Text="Cant." FontAttributes="Bold"/>
+                    <Entry x:Name="txtCantidad" VerticalOptions="Center" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Cantidad}" IsEnabled="{Binding txtCantEnabled}" Keyboard="Numeric">
+                        <Entry.Behaviors>
+                            <behaviors:EventToCommandBehavior
+                            Command="{Binding txtCantidadCompleted}"
+                            EventName="Completed"/>
+                        </Entry.Behaviors>
+                    </Entry>
+                    <Picker x:Name="cbTipoPick" VerticalOptions="Center" Grid.Row="2" Grid.Column="3"  ItemsSource="{Binding ListaPick}" 
+                            ItemDisplayBinding="{Binding Nombre}"  SelectedIndex="{Binding pPickIndex}">
+                    </Picker>
+                    <Button Text="L" Grid.Column="4" Grid.ColumnSpan="1" CornerRadius="4" Grid.Row="2" FontSize="Small" Command="{Binding LimpiarCommand}"></Button>
+                </Grid>
+
+                <!--<ScrollView Orientation="Vertical">-->
+                    <ListView HasUnevenRows="True" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                  ItemsSource="{Binding ListaProductos}" x:Name="listaProductos" >
+                        <ListView.Header>
+                            <Grid BackgroundColor="AntiqueWhite" Margin="15,2,15,2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40*"/>
+                                    <ColumnDefinition Width="20*"/>
+                                    <ColumnDefinition Width="20*"/>
+                                    <ColumnDefinition Width="20*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Column="0" Text="Producto" FontSize="Medium" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center"/>
+                                <Label Grid.Column="1" Text="Exist." FontSize="Medium" TextColor="Black" FontAttributes="Bold" HorizontalOptions="End"/>
+                                <Label Grid.Column="2" Text="Cant." FontSize="Medium" TextColor="Black" FontAttributes="Bold" HorizontalOptions="End"/>
+                                <Label Grid.Column="3" Text="Surtido" FontSize="Medium" TextColor="Black" FontAttributes="Bold" HorizontalOptions="End"/>
+                            </Grid>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell Height="40">
+                                    <Grid Padding="10" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="12*"/>
+                                            <ColumnDefinition Width="28*"/>
+                                            <ColumnDefinition Width="20*"/>
+                                            <ColumnDefinition Width="20*"/>
+                                            <ColumnDefinition Width="20*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0" Text="{Binding cod_prod}" TextColor="Black" FontSize="Small" HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                                    <Label Grid.Column="1" Text="{Binding descripcion_completa}" TextColor="Black" FontSize="Small" HorizontalOptions="Start"
+                                   VerticalOptions="Center"/>
+                                        <Label Grid.Column="2" Text="{Binding existencia}" TextColor="Black" FontSize="Small" HorizontalOptions="CenterAndExpand"
+                                   VerticalOptions="Center"/>
+                                        <Label Grid.Column="3" Text="{Binding cantidad}" TextColor="Black" FontSize="Small" HorizontalOptions="End"
+                                   VerticalOptions="Center"/>
+                                        <Label Grid.Column="4" Text="{Binding cantidad_surtida}" TextColor="Black" FontSize="Small" HorizontalOptions="CenterAndExpand"
+                                   VerticalOptions="Center"/>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                <!--</ScrollView>-->
+
+            </StackLayout>
+            
+            
+        </ContentPage.Content>
+    </ContentPage>
+
+
+
+
+</TabbedPage>

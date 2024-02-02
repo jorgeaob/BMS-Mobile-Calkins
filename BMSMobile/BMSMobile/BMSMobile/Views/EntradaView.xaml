@@ -1,0 +1,373 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             android:TabbedPage.ToolbarPlacement="Bottom"
+             xmlns:behaviors="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack" 
+             BarBackgroundColor="Navy"
+             BarTextColor="White"
+             SelectedTabColor="Black"
+             UnselectedTabColor="WhiteSmoke"            
+            x:Class="BMSMobile.Views.EntradaView"
+            x:Name="PaginaPage">
+
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem x:Name="btnLimpiar" Priority="0" IconImageSource="Clean.png" Command="{Binding LimpiarCommand}"></ToolbarItem>
+        <ToolbarItem x:Name="btnGuardar" Priority="1" IconImageSource="save.png" Command="{Binding GuardarCommand}"></ToolbarItem>
+    </TabbedPage.ToolbarItems>
+
+    <TabbedPage.Children>
+        <ContentPage Title="Entrada" Icon="Entrada.png" Padding="0,0,0,0">
+        <ContentPage.Content>
+            <Grid>
+                <Image Aspect="AspectFill" Source="bg.jpg"></Image>
+                <BoxView Opacity="0.8" Color="WhiteSmoke"></BoxView>
+
+                <StackLayout>
+                    <Grid Padding="20,20" Margin="0,10,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="125*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="125*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="1" Text="Entrada de mercancía con orden de compra" FontSize="Medium" Font="Bold" VerticalTextAlignment="Center"/>
+                        <CheckBox Grid.Row="0" Grid.Column="0" x:Name="chEntradaOrden" Color="Navy" IsEnabled="True" IsChecked="{Binding ChkEntradaOC}"
+                                  CheckedChanged="chEntradaOC_CheckedChanged">
+                            <CheckBox.Behaviors>
+                                <behaviors:EventToCommandBehavior
+                                                EventName="CheckedChanged"
+                                                Command="{Binding TipoEntradaOCCheckCommand}"
+                                               />
+                            </CheckBox.Behaviors>
+                        </CheckBox>
+
+                        <Label Grid.Row="0" Grid.Column="3" Text="Entrada de mercancía" FontSize="Medium" Font="Bold" VerticalTextAlignment="Center"/>
+                        <CheckBox Grid.Row="0" Grid.Column="2" x:Name="chEntrada" Color="Navy" IsEnabled="True" IsChecked="{Binding ChkEntrada}"
+                                  CheckedChanged="chEntrada_CheckedChanged">
+                            <CheckBox.Behaviors>
+                                <behaviors:EventToCommandBehavior
+                                                EventName="CheckedChanged"
+                                                Command="{Binding TipoEntradaCheckCommand}"
+                                                />
+                            </CheckBox.Behaviors>
+                        </CheckBox>
+                        
+                    </Grid>
+
+                    <!--CheckedChanged-->
+                    <Grid Padding="20,20" Margin="0,10,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25*"/>
+                            <ColumnDefinition Width="25*"/>
+                            <ColumnDefinition Width="25*"/>
+                            <ColumnDefinition Width="25*"/>
+                        </Grid.ColumnDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Orden Compra" FontSize="Small" Font="Bold" VerticalOptions="End" IsVisible="{Binding Source={x:Reference chEntradaOrden}, Path=IsChecked}" />
+                            <Entry Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" x:Name="txtOrdenCompra" IsVisible="{Binding Source={x:Reference chEntradaOrden}, Path=IsChecked}">
+                                <Entry.Behaviors>
+                                    <behaviors:EventToCommandBehavior
+                            Command="{Binding CompletedOCCommand}"
+                            EventName="Completed"/>
+                                    <behaviors:EventToCommandBehavior
+                            Command="{Binding TxtOCChanged}"
+                            EventName="TextChanged"/>
+
+                                </Entry.Behaviors>
+                            </Entry>
+
+                            <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="Proveedor" FontSize="Small" Font="Bold" VerticalOptions="End" />
+                            <Entry Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" x:Name="txtProveedor" IsEnabled="{Binding Source={x:Reference chEntrada}, Path=IsChecked}" Text="{Binding Proveedor}">
+                                <Entry.Behaviors>
+                                    <behaviors:EventToCommandBehavior
+                            Command="{Binding CompletedProveedorCommand}"
+                            EventName="Completed"/>
+                                    <behaviors:EventToCommandBehavior
+                            Command="{Binding ProveedorTextChangedCommand}"
+                            EventName="TextChanged"/>
+                                </Entry.Behaviors>
+
+                            </Entry>
+
+                            <ListView Grid.Row="4" Grid.RowSpan="2" Grid.ColumnSpan="4" HasUnevenRows="True" ItemsSource="{Binding ListaProveedores}" VerticalOptions="FillAndExpand"
+                          HorizontalOptions="FillAndExpand" IsVisible="{Binding BuscarVisible}" HeightRequest="2000">
+
+                                <ListView.Behaviors>
+                                    <behaviors:EventToCommandBehavior
+                            Command="{Binding ProveedorTappedCommand}"
+                            EventName="ItemTapped"
+                            EventArgsPropertyPath="Item"/>
+                                </ListView.Behaviors>
+                                <ListView.ItemTemplate>
+
+                                    <DataTemplate>
+                                        <ViewCell Height="50">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding cod_prv}" Padding="2" FontAttributes="Bold" TextColor="Black"
+                                               HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
+                                                <Label Text="{Binding razon_social}" FontAttributes="Bold" TextColor="Black"
+                                               HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand"/>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+
+                            <!--<ImageButton Grid.Row="3" Grid.Column="3" x:Name="btnBuscarProveedor" Source="search.png" 
+                                     WidthRequest="50" HeightRequest="50" BackgroundColor="Transparent" IsEnabled="False"/>-->
+                        <Entry Grid.Row="5" Grid.ColumnSpan="4" x:Name="txtRazonSocial" IsEnabled="False" Text="{Binding NombreProveedor}"/>
+                    </Grid>
+                </StackLayout>
+
+            </Grid>
+        </ContentPage.Content>
+    </ContentPage>
+
+        <ContentPage Title="Producto" Icon="PRODUCT2.png" Padding="0,0,0,0" x:Name="ProductoPage">
+            <ContentPage.Content>
+                <Grid>
+                    <Image Aspect="AspectFill" Source="bg.jpg"></Image>
+                    <BoxView Opacity="0.8" Color="WhiteSmoke"></BoxView>
+
+                    <Grid>
+                        <Grid Padding="20,20" Margin="0,5,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20*"/>
+                                <ColumnDefinition Width="40*"/>
+                                <ColumnDefinition Width="20*"/>
+                                <ColumnDefinition Width="20*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="0" Text="Producto" FontSize="Small" Font="Bold" VerticalOptions="Center" HorizontalOptions="End" TextColor="Black"/>
+                            <Entry Grid.Row="0" Grid.Column="1" x:Name="txtCodProd" TextColor="Black">
+                                <Entry.Behaviors>
+                                    <behaviors:EventToCommandBehavior
+                                Command="{Binding txtCodProdCompleted}"
+                                EventName="Completed"/>
+                                    <behaviors:EventToCommandBehavior
+                            Command="{Binding ProdTextChangedCommand}"
+                            EventName="TextChanged"/>
+                                </Entry.Behaviors>
+                            </Entry>
+
+                            <ListView Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2" HasUnevenRows="True" ItemsSource="{Binding ListaFiltro}" VerticalOptions="FillAndExpand"
+                          HorizontalOptions="FillAndExpand" IsVisible="{Binding BuscarVisible}" HeightRequest="2000">
+
+                                <ListView.Behaviors>
+                                    <behaviors:EventToCommandBehavior
+                            Command="{Binding ItemTappedCommand}"
+                            EventName="ItemTapped"
+                            EventArgsPropertyPath="Item"/>
+                                </ListView.Behaviors>
+                                <ListView.ItemTemplate>
+
+                                    <DataTemplate>
+                                        <ViewCell Height="50">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding cod_prod}" FontAttributes="Bold" TextColor="Black"
+                                               HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
+                                                <Label Text="{Binding descripcion_completa}" FontAttributes="Bold" TextColor="Black"
+                                               HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand"/>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            
+                            <!--<ImageButton Grid.Row="0" Grid.Column="3" Source="barcode.png" x:Name="btnScanner" WidthRequest="25" HeightRequest="25" BackgroundColor="Transparent"/>-->
+
+                            <Entry Grid.Row="3" Grid.ColumnSpan="4" x:Name="txtDescProd" VerticalOptions="FillAndExpand" HorizontalOptions="Fill" VerticalTextAlignment="Center"
+                                   TextColor="Black" IsEnabled="False" Text="{Binding NombreProducto}"/>
+
+                            <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="1" Text="Unidad" FontSize="Small" Font="Bold" VerticalOptions="Center" HorizontalOptions="End" TextColor="Black"/>
+                        
+                            <Picker Grid.Row="4" Grid.Column="1" x:Name="pUnidad" Title="Seleccione una unidad"
+                                    ItemsSource="{Binding ListaUnidades}" ItemDisplayBinding="{Binding Abreviatura}" SelectedItem="{Binding UnidadSelected}"
+                                    SelectedIndex="{Binding pUnidadIndex}"
+                                    TextColor="Black" VerticalOptions="Center" Grid.ColumnSpan="1" IsEnabled="{Binding HabilitaPallet}"/>
+
+                            <Label Grid.Row="4" Grid.Column="2" Text="Cantidad" FontSize="Small" Font="Bold" VerticalOptions="Center" TextColor="Black" />
+                            <Entry Grid.Row="4" Grid.Column="3" x:Name="txtCantidad" TextColor="Black" VerticalOptions="Center" Text="{Binding Cantidad}" IsEnabled="{Binding HabilitaPallet}" />
+
+                            <Label Grid.Row="5" Grid.Column="0" Text="Caducidad" FontSize="Small" Font="Bold" VerticalOptions="Center" HorizontalOptions="End" TextColor="Black"/>
+                            <DatePicker Grid.Row="5" Grid.Column="1" x:Name="dpCaducidad" MinimumDate="{Binding PropertyMinimumDate}" Format="dd/MM/yyyy" TextColor="Black"/>
+                            <CheckBox Grid.Row="5" Grid.Column="3" x:Name="chPallet" Color="Navy" VerticalOptions="Center" HorizontalOptions="End" >
+                                <CheckBox.Behaviors>
+                                    <behaviors:EventToCommandBehavior
+                            Command="{Binding chkPalletChanged}"
+                            EventName="CheckedChanged"/>
+                                </CheckBox.Behaviors>
+                            </CheckBox>
+                            <Label Grid.Row="5" Grid.Column="2" Text="Pallet" FontSize="Small" Font="Bold" VerticalOptions="Center" HorizontalOptions="StartAndExpand" TextColor="Black"/>
+
+                            <Label Grid.Row="6" Grid.Column="0" Text="Lote Fab." FontSize="Small" Font="Bold" VerticalOptions="Center" HorizontalOptions="End" TextColor="Black"/>
+                            <Entry Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" x:Name="txtLote" TextColor="Black" IsEnabled="{Binding Source={x:Reference chPallet}, Path=IsChecked}"/>
+
+                            <Label Grid.Row="7" Grid.Column="0" Text="Notas" FontSize="Small" Font="Bold" VerticalOptions="Center" HorizontalOptions="End" TextColor="Black"/>
+                            <Editor Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3" HeightRequest="100" x:Name="txtNotasProducto" TextColor="Black"/>
+
+                            <ImageButton Grid.Row="8" Grid.Column="3" Source="ok.png" WidthRequest="50" HeightRequest="50" BackgroundColor="Transparent" 
+                                         VerticalOptions="Center" HorizontalOptions="End" x:Name="btnAgregar" Command="{Binding AgregarProducto}" IsEnabled="True">
+                            
+                            </ImageButton>
+                            <Label Grid.Row="8" Grid.Column="0" Text="Pallets" FontSize="Small" Font="Bold" VerticalOptions="Center" HorizontalTextAlignment="End" TextColor="Black"/>
+                            <Label Grid.Row="8" Grid.Column="1" Text="{Binding Source={x:Reference nudPallets}, Path=Value}" HorizontalTextAlignment="Center"
+                   VerticalOptions="CenterAndExpand" />
+                            <Stepper x:Name="nudPallets" Minimum="1" Maximum="1000" Grid.Row="8" Grid.Column="2" HorizontalOptions="Start" IsEnabled="{Binding Source={x:Reference chPallet}, Path=IsChecked}"></Stepper>
+                        </Grid>
+                    </Grid>
+
+                </Grid>
+            </ContentPage.Content>
+
+        </ContentPage>
+
+        <ContentPage Title="Productos" Icon="Censo.png" Padding="0,0,0,0" >
+      
+                <Grid Padding="10,10">
+                    <Image Aspect="AspectFill" Source="bg.jpg"></Image>
+                    <BoxView Opacity="0.8" Color="white"></BoxView>
+                    <ListView HorizontalOptions="FillAndExpand" RowHeight="100"
+                        ItemsSource="{Binding Entrada.entradaDetalles}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                <!--<ViewCell.ContextActions>
+                                    --><!--<MenuItem x:Name="btnDelete" Command="{Binding BindingContext.EliminarCommand,Source={x:Reference EntradaPage}}"  CommandParameter="{Binding .}" Text="Delete" IconImageSource="Cancelar.png"/>
+                                    <MenuItem x:Name="btnDeleteDebug" Command="{Binding BindingContext.DebugCommand, Source={x:Reference EntradaPage}}" CommandParameter="{Binding .}" Text="Debug" />--><!--
+                                </ViewCell.ContextActions>-->
+                                <SwipeView>
+                                        <SwipeView.RightItems>
+                                            <SwipeItems>
+                                            <SwipeItem Text="Eliminar"
+                                                   BackgroundColor="PaleVioletRed"
+                                                   Command="{Binding Source={x:Reference PaginaPage}, Path=BindingContext.DeleteCommand}"
+                                                   CommandParameter="{Binding .}"/>
+                                        </SwipeItems>
+                                         </SwipeView.RightItems>
+                                            <StackLayout Margin="1">
+                                            <Grid Margin="1" >
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="25*"/>
+                                                    <RowDefinition Height="25*"/>
+                                                    <RowDefinition Height="25*"/>
+                                                    <RowDefinition Height="25*"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="30*"/>
+                                                    <ColumnDefinition Width="40*"/>
+                                                    <ColumnDefinition Width="30*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Frame CornerRadius="10" BackgroundColor="#005cb9" Opacity="0.2" 
+                                               Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="4">
+                                                </Frame>
+
+                                                <Label Margin="1" Text="{Binding cod_prod, StringFormat='Producto: {0}'}" Grid.Column="0" Grid.Row="0" FontSize="Small"/>
+                                                <Label Text="{Binding descripcion}" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" HorizontalTextAlignment="Start" FontSize="Small"/>
+                                                <Label Margin="1" Text="{Binding cantidad, StringFormat='Cant: {0:#,##0.00}'}" Grid.Column="0" Grid.Row="1" FontSize="Small" HorizontalOptions="Start" HorizontalTextAlignment="Start"/>
+                                                <Label Text="{Binding abreviatura_unidad}" Grid.Column="1"  Grid.Row="1" HorizontalOptions="Start" HorizontalTextAlignment="Start" FontSize="Small"/>
+
+                                                <Label Text="Pallet" Grid.Row="1" Grid.Column="1" Margin="0,0,20,0"  HorizontalTextAlignment="End" VerticalOptions="Start"/>
+                                                <StackLayout Grid.Row="1" Grid.Column="2" Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Start" >
+                                                    <CheckBox Scale=".7" IsChecked="{Binding pallet}" IsEnabled="False" Color="Black"/>
+                                                </StackLayout>
+
+                                                <Label Margin="1" Text="{Binding lote_fab, StringFormat='Lote: {0}'}" Grid.Column="0" VerticalOptions="Start" HorizontalTextAlignment="Start" Grid.Row="2" FontSize="Small"/>
+                                                <Label Text="{Binding _fecha_caducidad, StringFormat='Caducidad: {0}'}" Grid.Column="2" Grid.Row="2" VerticalOptions="Start" FontSize="Micro" HorizontalTextAlignment="End"/>
+                                                <Label Margin="1" Text="{Binding notas, StringFormat='Notas: {0}'}" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" HorizontalTextAlignment="Start" FontSize="Micro"/>
+
+
+                                            </Grid>
+                                        </StackLayout>
+                                    </SwipeView>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                </Grid>
+
+        </ContentPage>
+
+        <ContentPage Title="Totales" Icon="Inventario.png" Padding="0,0,0,0"  x:Name="totalesPage">
+        <ContentPage.Content>
+            <Grid>
+                <Image Aspect="AspectFill" Source="bg.jpg"></Image>
+                <BoxView Opacity="0.8" Color="WhiteSmoke"></BoxView>
+
+                <Grid>
+                    <Grid Padding="20,20" Margin="5,5,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" Text="Unidades" FontSize="Small" Font="Bold" VerticalOptions="Center"/>
+                        <Entry Grid.Row="0" Grid.Column="1" x:Name="txtUnidades" IsEnabled="False" HorizontalTextAlignment="End" Text="{Binding UC}"/>
+                        
+                        <Label Grid.Row="0" Grid.Column="2" Text="Peso" FontSize="Small" Font="Bold" VerticalOptions="Center"/>
+                        <Entry Grid.Row="0" Grid.Column="3" x:Name="txtPeso" IsEnabled="False" HorizontalTextAlignment="End" Text="{Binding PE}"/>
+
+                        <Label Grid.Row="1" Grid.Column="0" Text="Piezas" FontSize="Small" Font="Bold" VerticalOptions="Center"/>
+                        <Entry Grid.Row="1" Grid.Column="1" x:Name="txtPiezas" IsEnabled="False" HorizontalTextAlignment="End" Text="{Binding UA}"/>
+                        
+                        <Label Grid.Row="1" Grid.Column="2" Text="Volumen" FontSize="Small" Font="Bold" VerticalOptions="Center"/>
+                        <Entry Grid.Row="1" Grid.Column="3" x:Name="txtVolumen" IsEnabled="False" HorizontalTextAlignment="End" Text="{Binding VO}"/>
+
+                        <Label Grid.Row="2" Grid.Column="0" Text="Pallets" FontSize="Small" Font="Bold" VerticalOptions="Center"/>
+                        <Entry Grid.Row="2" Grid.Column="1" x:Name="txtPallets" IsEnabled="False" HorizontalTextAlignment="End" Text="{Binding PL}"/>
+                    </Grid>
+
+                    <StackLayout Padding="50,50" Margin="0,170,0,0">
+                        <Label Text="Notas" FontSize="Small" Font="Bold" VerticalOptions="Center"/>
+                        <Editor HeightRequest="150" x:Name="txtNotas" Text="{Binding Entrada.Notas}"/>
+                    </StackLayout>
+                </Grid>
+
+            </Grid>
+        </ContentPage.Content>
+    </ContentPage>
+    </TabbedPage.Children>
+</TabbedPage>

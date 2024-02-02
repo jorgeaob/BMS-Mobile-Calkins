@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="BMSMobile.Views.ActualizarUbicacionView"
+            xmlns:custom="clr-namespace:BMSMobile.Custom"
+            xmlns:converters="clr-namespace:BMSMobile.Converters"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            xmlns:behaviors="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
+            xmlns:local ="clr-namespace:BMSMobile.Utilities"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            android:TabbedPage.BarSelectedItemColor="White"
+            BarBackgroundColor="Navy"
+            Title="Actualizar Ubicación"
+            Visual="Material">
+
+    <TabbedPage.Resources>
+        <converters:IndexColorConverter x:Key="IndexToColorConverterGrid"
+                                        EvenColor="#d1ebed"
+                                        OddColor="Transparent"/>
+        <converters:DecimalConverter x:Key="decimalConverter"/>
+    </TabbedPage.Resources>
+
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem Priority="0" IconImageSource="Limpiar.png" Command="{Binding LimpiarCommand}"/>
+        <ToolbarItem Priority="1" IconImageSource="Guardar.png" Command="{Binding GuardarCommand}"/>
+    </TabbedPage.ToolbarItems>
+
+    <ContentPage BackgroundColor="#FEFCFF">
+        <Grid>
+            <Grid Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="25*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                
+                <Entry Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Placeholder="Localización" PlaceholderColor="Black"
+                       BackgroundColor="{Binding colorModel.MissingColor}" Text="{Binding Localizacion}" IsEnabled="True">
+                    <Entry.Behaviors>
+                        <behaviors:EventToCommandBehavior
+                            Command="{Binding CompletedLocCommand}"
+                            EventName="Completed"/>
+                        <behaviors:EventToCommandBehavior
+                            Command="{Binding TxtLocChanged}"
+                            EventName="TextChanged"/>
+                    </Entry.Behaviors>
+
+                </Entry>
+
+                <Entry Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Placeholder="Pallet" PlaceholderColor="Black"
+                       BackgroundColor="{Binding colorModel.MissingColor}" Text="{Binding Pallet}" IsEnabled="True">
+                    <Entry.Behaviors>
+                        <behaviors:EventToCommandBehavior
+                            Command="{Binding CompletedPalletCommand}"
+                            EventName="Completed"/>
+                    </Entry.Behaviors>
+                </Entry>
+
+                <Entry Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Placeholder="Producto" PlaceholderColor="Black"
+                       BackgroundColor="{Binding colorModel.MissingColor}" Text="{Binding CodProd}" IsEnabled="False">
+                </Entry>
+
+                <Label Grid.Row="1" Grid.Column="2" Text="Cant." FontSize="Small" Font="Bold" VerticalOptions="Center" HorizontalTextAlignment="Start" TextColor="Black"/>
+                <Label Grid.Row="1" Grid.Column="2" Text="{Binding Source={x:Reference nudCantidad}, Path=Value}" HorizontalTextAlignment="End"
+                   VerticalOptions="CenterAndExpand" />
+                <Stepper x:Name="nudCantidad" Minimum="1" Maximum="9999" Grid.Row="1" Value="{Binding Cantidad}" Grid.Column="3" HorizontalOptions="End" IsEnabled="False"></Stepper>
+
+                <Label Grid.Row="2" Grid.Column="0" Text="Descripción" FontSize="Small" Font="Bold" VerticalOptions="Center" HorizontalOptions="End" TextColor="Black"/>
+                <Editor Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" HeightRequest="100" x:Name="txtDescripcion" TextColor="Black" Text="{Binding Descripcion}" IsEnabled="False"/>
+
+                <Label Grid.Row="3" Grid.Column="0" Text="Fecha Cad." FontSize="Small" Font="Bold" VerticalOptions="Center" HorizontalOptions="End" TextColor="Black"/>
+                <DatePicker Grid.Row="3" Grid.Column="1" x:Name="dpFechaCad" Grid.ColumnSpan="3" MinimumDate="{Binding MiniumDate}" Format="dd/MM/yyyy" TextColor="Black" Date="{Binding FechaCad}" IsEnabled="{Binding Modificando}"/>
+
+
+                <Label Grid.Row="4" Grid.Column="0" Text="Lote Fab." FontSize="Small" Font="Bold" VerticalOptions="Center" HorizontalOptions="End" TextColor="Black"/>
+                <Entry Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" TextColor="Black"
+                       BackgroundColor="{Binding colorModel.MissingColor}" Text="{Binding LoteFab}" IsEnabled="{Binding Modificando}">
+                </Entry>
+                
+                <Label Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Text="Ubicar Mercancía" FontSize="Small" Font="Bold" VerticalOptions="Center" HorizontalOptions="End" TextColor="Black"/>
+                <CheckBox Grid.Row="5" Grid.Column="2" x:Name="chPallet" Color="Navy" VerticalOptions="Center" HorizontalOptions="End" IsChecked="{Binding ChkUbicar}" >
+                </CheckBox>
+
+            </Grid>
+        </Grid>
+    </ContentPage>
+
+
+
+
+</TabbedPage>

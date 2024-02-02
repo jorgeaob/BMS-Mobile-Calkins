@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            x:Class="BMSMobile.Views.EntradasSalidasLoc"
+            mc:Ignorable="d"
+            xmlns:behaviors="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"            
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            BarBackgroundColor="Navy"
+            BarTextColor="White"
+            android:TabbedPage.BarSelectedItemColor="Red"          
+            xmlns:custom="clr-namespace:BMSMobile.Custom" 
+            xmlns:converters="clr-namespace:BMSMobile.Converters"
+            Title="Recepción transferencia">
+
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem x:Name="btnLimpiar" Priority="0" Icon="Clean.png" Command="{Binding LimpiarCommand}"/>
+        <ToolbarItem x:Name="btnActualizar" Priority="1" Icon="Actualizar.png" Command="{Binding ActualizarCommand}"/>
+    </TabbedPage.ToolbarItems>
+
+    <ContentPage Title="Consulta" IconImageSource="Captura.png" BackgroundColor="#FEFCFF">
+
+        <StackLayout>
+          
+            <Grid Margin="20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="75*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+
+                    <Label Grid.Row="0" Grid.Column="0" Text="Localización" FontSize="Small" Font="Bold" VerticalOptions="Center" HorizontalOptions="End" TextColor="Black"/>
+                    <Entry Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1" Placeholder="" PlaceholderColor="Black"
+                       BackgroundColor="{Binding colorModel.MissingColor}" Text="{Binding Localizacion}" IsEnabled="True">
+                        <Entry.Behaviors>
+                            <behaviors:EventToCommandBehavior
+                            Command="{Binding CompletedLocCommand}"
+                            EventName="Completed"/>
+                            <behaviors:EventToCommandBehavior
+                            Command="{Binding TxtLocChanged}"
+                            EventName="TextChanged"/>
+                        </Entry.Behaviors>
+
+                    </Entry>
+
+
+                </Grid>
+
+            <ListView HasUnevenRows="True" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                  ItemsSource="{Binding Lista}" x:Name="listaLocalizaciones" >
+                <ListView.Header>
+                    <Grid BackgroundColor="LightBlue">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25*"/>
+                            <ColumnDefinition Width="15*"/>
+                            <ColumnDefinition Width="15*"/>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="20*"/>
+                            <ColumnDefinition Width="15*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Text="Producto" FontSize="Small" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center"/>
+                        <Label Grid.Column="1" Text="Tipo" FontSize="Small" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center"/>
+                        <Label Grid.Column="2" Text="Cantidad" FontSize="Small" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center"/>
+                        <Label Grid.Column="3" Text="Pallet" FontSize="Small" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center"/>
+                        <Label Grid.Column="4" Text="Fecha" FontSize="Small" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center"/>
+                        <Label Grid.Column="5" Text="Usuario" FontSize="Small" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center"/>
+                    </Grid>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="100">
+                            <Grid Padding="10" >
+                                <!--BackgroundColor="{Binding ., Converter={StaticResource ColorConverter}, ConverterParameter={x:Reference listaProductos}}">-->
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25*"/>
+                                    <ColumnDefinition Width="15*"/>
+                                    <ColumnDefinition Width="15*"/>
+                                    <ColumnDefinition Width="10*"/>
+                                    <ColumnDefinition Width="20*"/>
+                                    <ColumnDefinition Width="15*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Column="0" Text="{Binding cod_prod}" TextColor="Black" FontSize="Small" HorizontalOptions="Start"
+                                   VerticalOptions="Center"/>
+                                <Label Grid.Column="1" Text="{Binding tipo}" TextColor="Black" FontSize="Small" HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                                <Label Grid.Column="2" Text="{Binding cantidad, StringFormat='{0:0.00}'}" TextColor="Black" FontSize="Small" HorizontalOptions="EndAndExpand"
+                                   VerticalOptions="Center"/>
+                                <Label Grid.Column="3" Text="{Binding pallet}" TextColor="Black" FontSize="Small" HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                                <Label Grid.Column="4" Text="{Binding fecha, StringFormat='{0:dd/MM/yyyy}'}" TextColor="Black" FontSize="Micro"
+                                       HorizontalOptions="Start" VerticalOptions="Center"/>
+
+                                <Label Grid.Column="5" Text="{Binding nombre}" TextColor="Black" FontSize="Small" HorizontalOptions="StartAndExpand"
+                                   VerticalOptions="Center"/>
+
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+                    
+        </StackLayout>
+
+    </ContentPage>
+
+
+</TabbedPage>

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BMSMobile.Views.ConexionView"
+             xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:behaviors="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"  
+             Visual="Material">
+
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="0">
+        <Frame WidthRequest="280" HeightRequest="300" Padding="15" HasShadow="True" BackgroundColor="#FEFCFF" BorderColor="LightGray" CornerRadius="5">
+
+            <Grid>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="25*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Grid.Row="0" Grid.ColumnSpan="4" Source="BMSConexion.png" BackgroundColor="Transparent" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="100" WidthRequest="250"/>
+
+                    <Image Grid.Row="1" Grid.Column="0" Source="www.png" HorizontalOptions="End"/>
+                    <Entry Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Placeholder="Cadena de conexión" Text="{Binding cadena}"
+                           BackgroundColor="{Binding colorModel.MissingColor}">
+                        <Entry.Behaviors>
+                            <behaviors:EventToCommandBehavior
+                                Command="{Binding CompletedCadenaCommand}"
+                                EventName="Completed"/>
+                        </Entry.Behaviors>
+                    </Entry>
+
+                    <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="Guardar conexión" BackgroundColor="MediumBlue" 
+                            BorderColor="Transparent" CornerRadius="10" TextColor="White" FontAttributes="Bold"
+                            Command="{Binding GuardarCommand}"/>
+                    <Button Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Text="Probar conexión" BackgroundColor="MediumBlue" 
+                            BorderColor="Transparent" CornerRadius="10" TextColor="White" FontAttributes="Bold"
+                            Command="{Binding ProbarCommand}"/>
+
+                    <StackLayout Grid.Row="3" Grid.ColumnSpan="4">
+                        <ActivityIndicator BackgroundColor="MidnightBlue" IsVisible="{Binding activityModel.IsBusy}" IsRunning="{Binding activityModel.IsBusy}" />
+                    </StackLayout>
+                    
+                </Grid>
+            </Grid>
+            
+        </Frame>
+    </StackLayout>
+    
+</popup:PopupPage>

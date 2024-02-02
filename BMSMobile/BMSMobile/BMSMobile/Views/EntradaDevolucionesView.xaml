@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            x:Class="BMSMobile.Views.EntradaDevolucionesView"
+            mc:Ignorable="d"
+            xmlns:behaviors="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"            
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            BarBackgroundColor="Navy"
+            BarTextColor="White"
+            android:TabbedPage.BarSelectedItemColor="Red"          
+            xmlns:custom="clr-namespace:BMSMobile.Custom" 
+            xmlns:converters="clr-namespace:BMSMobile.Converters"
+            Title="Recepción transferencia">
+
+    <TabbedPage.Resources>
+        <!--<converters:IndexColorConverter x:Key="ColorConverter"
+                                            EvenColor="#d1ebed"
+                                            OddColor="Transparent"/>
+        <converters:DecimalConverter x:Key="DecimalConverter"/>-->
+    </TabbedPage.Resources>
+
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem x:Name="btnLimpiar" Priority="0" Icon="Clean.png" Command="{Binding LimpiarCommand}"/>
+        <ToolbarItem x:Name="btnGuardar" Priority="1" Icon="save.png" Command="{Binding GuardarCommand}"/>
+    </TabbedPage.ToolbarItems>
+
+    <ContentPage Title="Transferencia" Icon="Transfer.png">
+        <ContentPage.Content>
+            <Grid>
+                <Image Aspect="AspectFill" Source="bg.jpg"/>
+                <BoxView Opacity="0.8" Color="WhiteSmoke"/>
+                <ScrollView Orientation="Vertical">
+                    <Grid Padding="20">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20*"/>
+                            <ColumnDefinition Width="30*"/>
+                            <ColumnDefinition Width="25*"/>
+                            <ColumnDefinition Width="25*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Text="Ref." FontSize="Small" HorizontalOptions="End" FontAttributes="Bold" TextColor="Black" VerticalOptions="CenterAndExpand"/>
+                        <Picker Grid.Row="0" Grid.Column="1" x:Name="pReferencia" Title="Referencia"
+                                    ItemsSource="{Binding ListaTransRef}" ItemDisplayBinding="{Binding Nombre}"
+                                    SelectedIndex="{Binding pRefIndex}"
+                                    TextColor="Black" VerticalOptions="Center" Grid.ColumnSpan="2" IsEnabled="True"/>
+                        <Frame Grid.Row="0" Grid.ColumnSpan="1" Grid.Column="3" Padding="0" CornerRadius="5" HorizontalOptions="FillAndExpand">
+                            <custom:SelectableEntry x:Name="txtTransferencia" Text="{Binding Folio}" TextColor="Black" FontSize="Small" 
+                                   VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
+                                <custom:SelectableEntry.Behaviors>
+                                    <behaviors:EventToCommandBehavior
+                                        Command="{Binding FolioCompletedCommand}"
+                                        EventName="Completed"/>
+                                    <behaviors:EventToCommandBehavior
+                                        Command="{Binding FolioTextChangedCommand}"
+                                        EventName="TextChanged"/>
+                                </custom:SelectableEntry.Behaviors>
+                            </custom:SelectableEntry>
+                        </Frame>
+
+                        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Text="Cliente" FontSize="Small" FontAttributes="Bold" VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="End" TextColor="Black"/>
+                        <Frame Grid.Row="1" Grid.ColumnSpan="1" Grid.Column="1" Padding="0" CornerRadius="5" HorizontalOptions="FillAndExpand">
+                            <Entry x:Name="txtCodCte" Text="{Binding Recepcion.cod_cte}" IsReadOnly="True"
+                               HorizontalOptions="FillAndExpand" TextColor="Black" FontSize="Small"/>
+                            <!--VerticalOptions="CenterAndExpand"-->
+                        </Frame>
+                        <Frame Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="2" Padding="0" CornerRadius="5" HorizontalOptions="FillAndExpand">
+                            <Entry x:Name="txtNombreCte" Text="{Binding Recepcion.razon_social}" IsReadOnly="True"
+                               HorizontalOptions="FillAndExpand" TextColor="Black" FontSize="Small"/>
+                            <!--VerticalOptions="CenterAndExpand"-->
+                        </Frame>
+
+                        <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" Text="Razón" FontSize="Small" FontAttributes="Bold" VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="End" TextColor="Black"/>
+                        <Picker Grid.Row="2" Grid.Column="1" x:Name="pRazon" Title="Seleccione Razón"
+                                    ItemsSource="{Binding ListaRazones}" ItemDisplayBinding="{Binding nombre}"
+                                    SelectedIndex="{Binding pRazonesIndex}"
+                                    TextColor="Black" VerticalOptions="Center" Grid.ColumnSpan="3" IsEnabled="True"/>
+
+                        <Line Grid.Row="3" Grid.ColumnSpan="4" BackgroundColor="Navy" StrokeThickness="2" HeightRequest="2" HorizontalOptions="FillAndExpand" Margin="0,20,0,20"/>
+
+
+                        <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="1" Text="Producto" FontSize="Small" FontAttributes="Bold"
+                                  VerticalOptions="CenterAndExpand" HorizontalOptions="End" TextColor="Black"/>
+                        <Frame Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Padding="0" CornerRadius="5" HorizontalOptions="FillAndExpand">
+                            <custom:SelectableEntry x:Name="txtCodProd" Text="{Binding Cod_prod}" FontSize="Small" Keyboard="Default" VerticalOptions="Center"
+                                   HorizontalOptions="FillAndExpand" TextColor="Black">
+                                <custom:SelectableEntry.Behaviors>
+                                    <behaviors:EventToCommandBehavior
+                                        Command="{Binding ProductoCompletedCommand}"
+                                        EventName="Completed"/>
+                                    <behaviors:EventToCommandBehavior
+                                        Command="{Binding ProdTextChangedCommand}"
+                                        EventName="TextChanged"/>
+                                </custom:SelectableEntry.Behaviors>
+                            </custom:SelectableEntry>
+                        </Frame>
+
+                        <!--<ImageButton Grid.Row="4" Grid.Column="3" Source="Buscar.png" x:Name="btnScanner" HeightRequest="50" WidthRequest="50"
+                                         BackgroundColor="Transparent" CornerRadius="5" BorderColor="Transparent" Command="{Binding EscanerCommand}"/>-->
+
+                        <Frame Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" Padding="0" CornerRadius="5" HorizontalOptions="FillAndExpand">
+                            <Entry  x:Name="txtDescripcion" Text="{Binding ProductoTransf.descripcion_completa}" FontSize="Small" IsReadOnly="True" TextColor="Black" 
+                                VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"/>
+                        </Frame>
+
+                        <Label Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="1" Text="Unidad" FontSize="Small" FontAttributes="Bold" TextColor="Black"
+                           VerticalOptions="CenterAndExpand" HorizontalOptions="End"/>
+                        <Frame Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Padding="0" CornerRadius="5" HorizontalOptions="FillAndExpand">
+                            <Entry x:Name="txtUnidadProd" Text="{Binding ProductoTransf.NombreUnidad}" FontSize="Small" TextColor="Black" IsReadOnly="True"/>
+                        </Frame>
+
+                        <Label Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="1" Text="Cantidad" FontSize="Small" FontAttributes="Bold" TextColor="Black"
+                                   VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" />
+                        <Frame Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2" Padding="0" CornerRadius="5" HorizontalOptions="FillAndExpand">
+                            <custom:SelectableEntry x:Name="txtCantProd" Text="{Binding CantTransferir}" FontSize="Small" TextColor="Black" Keyboard="Numeric"/>
+                        </Frame>
+
+                        <Label Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="1" Text="Fecha Cad." FontSize="Small" FontAttributes="Bold" TextColor="Black"
+                                   VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
+                        <DatePicker Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" x:Name="dpCaducidad" MinimumDate="{Binding PropertyMinimumDate}" 
+                                    Format="dd/MM/yyyy" TextColor="Black" Date="{Binding ProductoTransf.fecha_caducidad}"/>
+
+                        <Picker Grid.Row="8" Grid.Column="3" x:Name="pUnidades" Title="Unidad"
+                                    ItemsSource="{Binding ListaUnidades}" ItemDisplayBinding="{Binding Nombre}"
+                                    SelectedIndex="{Binding pTipoEntradaIndex}"
+                                    TextColor="Black" VerticalOptions="Center" Grid.ColumnSpan="2" IsEnabled="True">
+                            <Picker.Behaviors>
+                                <behaviors:EventToCommandBehavior
+                                    Command="{Binding pUnidadesChanged}"
+                                    EventName="SelectedIndexChanged"/>
+                            </Picker.Behaviors>
+                        </Picker>
+
+                        <Label Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="1" Text="Lote Fab." FontSize="Small" FontAttributes="Bold" TextColor="Black"
+                                   VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
+                        <Frame Grid.Row="9" Grid.ColumnSpan="3" Grid.Column="1" Padding="0" CornerRadius="5" HorizontalOptions="FillAndExpand">
+                            <Entry x:Name="txtLoteFab" Text="{Binding ProductoTransf.lote_fabricacion}"
+                               HorizontalOptions="FillAndExpand" TextColor="Black" FontSize="Small"/>
+                        </Frame>
+
+                        <!--<Label Grid.Row="10" Grid.Column="0" Text="Pallets" FontSize="Small" Font="Bold" VerticalOptions="Center" HorizontalTextAlignment="End" 
+                               TextColor="Black" IsVisible="{Binding PalletsVisible}"/>
+                        <Label Grid.Row="10" Grid.Column="1" Text="{Binding Source={x:Reference nudPallets}, Path=Value}" HorizontalTextAlignment="Start"
+                   VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Medium" Padding="5,0,0,0" IsVisible="{Binding PalletsVisible}"/>
+                        <Stepper x:Name="nudPallets" Minimum="1" Maximum="100" Grid.Row="10" Grid.Column="1" HorizontalOptions="End" Scale=".7" Value="{Binding ProductoTransf.pallets}" IsVisible="{Binding PalletsVisible}">
+                            <Stepper.Behaviors>
+                                <behaviors:EventToCommandBehavior  
+                                    Command="{Binding nudPalletsChanged}"
+                                     EventName="ValueChanged"/>
+                            </Stepper.Behaviors>
+                        </Stepper>-->
+
+                        <CheckBox Grid.Row="10" Grid.Column="1" x:Name="chAgregar" Color="Navy" VerticalOptions="Center" Scale="1" HorizontalOptions="End" IsChecked="{Binding ProductoTransf.agregar_lote}">
+                            <CheckBox.Behaviors>
+                                <behaviors:EventToCommandBehavior
+                            Command="{Binding chkAgregarChanged}"
+                            EventName="CheckedChanged"/>
+                            </CheckBox.Behaviors>
+                        </CheckBox>
+                        <Label Grid.Row="10" Grid.Column="0" Text="Agregar Lote" FontSize="Micro" Font="Bold" VerticalOptions="Center" HorizontalOptions="End"
+                               TextColor="Black"/>
+
+
+                        <Label Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="1" Text="Notas" FontSize="Small" FontAttributes="Bold" TextColor="Black"
+                                   VerticalOptions="CenterAndExpand" HorizontalOptions="End"/>
+                        <Frame Grid.Row="12" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="4" Padding="0" CornerRadius="5" HorizontalOptions="FillAndExpand">
+                            <Editor x:Name="txtNotasProducto" Text="{Binding ProductoTransf.comentario_venta}" Keyboard="Default" FontSize="Small" HeightRequest="100"
+                                    TextColor="Black" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                        </Frame>
+
+                        <ImageButton Grid.Row="14" Grid.Column="3" x:Name="btnAgregar" Source="ok.png" WidthRequest="50" HeightRequest="50" 
+                                         BackgroundColor="Transparent" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+                                         CornerRadius="5" BorderColor="Transparent" Command="{Binding AgregarProductoCommand}"/>
+                    </Grid>
+                </ScrollView>
+            </Grid>
+
+        </ContentPage.Content>
+    </ContentPage>
+
+    <ContentPage Title="Productos" Icon="PRODUCTS.png" Padding="10">
+        <ListView HasUnevenRows="True" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                  ItemsSource="{Binding ListaProds}" x:Name="listaProductos" >
+            <ListView.Header>
+                <Grid BackgroundColor="LightBlue">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*"/>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="25*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0" Text="Producto" FontSize="Large" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center"/>
+                    <Label Grid.Column="1" Text="Unidad" FontSize="Large" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center"/>
+                    <Label Grid.Column="2" Text="Cantidad" FontSize="Large" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center"/>
+                </Grid>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell Height="150">
+                        <Grid Padding="10" >
+                            <!--BackgroundColor="{Binding ., Converter={StaticResource ColorConverter}, ConverterParameter={x:Reference listaProductos}}">-->
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20*"/>
+                                <ColumnDefinition Width="30*"/>
+                                <ColumnDefinition Width="25*"/>
+                                <ColumnDefinition Width="25*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0" Text="{Binding cod_prod}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                            <Label Grid.Column="1" Text="{Binding descripcion_completa}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+
+                            <Label Grid.Column="2" Text="{Binding abreviatura_unidad}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                            <Label Grid.Column="3" Text="{Binding cantidad_ingresar}" TextColor="Black" FontSize="Medium" HorizontalOptions="End"
+                                   VerticalOptions="Center"/>
+
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage>
+
+    <ContentPage Title="Totales" Icon="Sigma.png">
+        <ContentPage.Content>
+            <Grid>
+                <Image Aspect="AspectFill" Source="bg.jpg"></Image>
+                <BoxView Opacity="0.8" Color="WhiteSmoke"></BoxView>
+
+                <Grid>
+                    <Grid Padding="20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25*"/>
+                            <ColumnDefinition Width="25*"/>
+                            <ColumnDefinition Width="25*"/>
+                            <ColumnDefinition Width="25*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"  Text="Cantidad" FontSize="Medium" FontAttributes="Bold" TextColor="Black"
+                               VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
+                        <Frame Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Padding="0" CornerRadius="5" HorizontalOptions="FillAndExpand">
+                            <Entry x:Name="txtCantidad" Text="{Binding Totales.cantidadTotal}" IsReadOnly="True" TextColor="Black" FontSize="Medium"
+                               VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
+                        </Frame>
+
+                        <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Text="Peso" FontSize="Medium" FontAttributes="Bold" TextColor="Black"
+                               VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
+                        <Frame Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Padding="0" CornerRadius="5" HorizontalOptions="FillAndExpand">
+                            <Entry x:Name="txtPeso" Text="{Binding Totales.pesoTotal}" IsReadOnly="True" TextColor="Black" FontSize="Medium"
+                               VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
+                        </Frame>
+
+                        <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="Volumen" FontSize="Medium" FontAttributes="Bold" TextColor="Black"
+                               VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
+
+                        <Frame Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Padding="0" CornerRadius="5" HorizontalOptions="FillAndExpand">
+                            <Entry x:Name="txtVolumen" Text="{Binding Totales.volumenTotal}" IsReadOnly="True" TextColor="Black" FontSize="Medium"
+                               VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
+                        </Frame>
+
+                        <Label Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Text="Costo" FontSize="Medium" FontAttributes="Bold" TextColor="Black"
+                               VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
+
+                        <Frame Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Padding="0" CornerRadius="5" HorizontalOptions="FillAndExpand">
+                            <Entry x:Name="txtCosto" Text="{Binding Totales.costoTotal}" IsReadOnly="True" TextColor="Black" FontSize="Medium"
+                               VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
+                        </Frame>
+
+                        <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Text="Notas" FontSize="Medium" FontAttributes="Bold" TextColor="Black"
+                               VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
+
+                        <Frame Grid.Row="5" Grid.RowSpan="2" Grid.ColumnSpan="4" Padding="0" CornerRadius="5" HorizontalOptions="FillAndExpand">
+                            <Editor x:Name="txtNotas" Text="{Binding NotasGeneral}" TextColor="Black" FontSize="Medium"
+                                VerticalOptions="Center" HorizontalOptions="FillAndExpand" HeightRequest="100"/>
+                        </Frame>
+
+
+                    </Grid>
+                </Grid>
+            </Grid>
+        </ContentPage.Content>
+    </ContentPage>
+
+</TabbedPage>

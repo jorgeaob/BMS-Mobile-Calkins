@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BMSMobile.Views.MenuViewFlyout"
+             Title="Flyout"
+             Visual="Material">
+
+    <StackLayout>
+        <ListView x:Name="MenuItemsListView" SeparatorVisibility="None" HasUnevenRows="true" ItemsSource="{Binding MenuItems}">
+            
+            <ListView.Header>
+                <Grid BackgroundColor="#FEFCFF">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackLayout Grid.Row="1" Padding="0,20,0,20" VerticalOptions="Center" HorizontalOptions="Center">
+                        <Image Source="BMSYSTEMS.png" Aspect="AspectFill" HeightRequest="200" VerticalOptions="Center"
+                               HorizontalOptions="CenterAndExpand"/>
+                    </StackLayout>
+
+                </Grid>
+            </ListView.Header>
+            
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand" Orientation="Horizontal" Spacing="10">
+                            <Image Source="{Binding Icon}" HeightRequest="50" WidthRequest="50" VerticalOptions="Center"/>
+                            <Label VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" Text="{Binding Title}" 
+                                FontSize="24" TextColor="Black"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+        <Button Text="Cerrar Sesión" TextColor="White" Font="Bold" FontSize="Medium" Margin="10" CornerRadius="10"
+                BackgroundColor="#1565C0" ImageSource="Logout.png" ContentLayout="Left,10" HorizontalOptions="Center" Command="{Binding LogoutCommand}"/>
+        
+    </StackLayout>
+
+</ContentPage>

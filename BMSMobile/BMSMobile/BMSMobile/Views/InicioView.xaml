@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BMSMobile.Views.InicioView"
+             xmlns:behaviors="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"             
+             Visual="Material">
+    <Grid BackgroundColor="#FEFCFF">
+        <Grid Margin="20,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="25*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Image Grid.Row="0" Grid.Column="0" Source="BMSLogo.png" VerticalOptions="Start" HeightRequest="100" WidthRequest="100"/>
+            <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Text="BIENVENIDO" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                   FontSize="36" FontAttributes="Bold" TextColor="Black"/>
+
+            <Entry Grid.Row="2" Grid.ColumnSpan="4" Placeholder="Usuario sesión" PlaceholderColor="Black" Margin="0,20,0,20" IsReadOnly="True"
+                   Text="{Binding UserSession}" HorizontalTextAlignment="Center" FontSize="Medium" FontAttributes="Bold" TextColor="Black"
+                   BackgroundColor="#F8F8FF"/>
+
+            <Line Grid.Row="3" Grid.ColumnSpan="4" BackgroundColor="LightSlateGray" HeightRequest="3"/>
+
+            <Label Grid.Row="4" Grid.ColumnSpan="4" Text="Seleccione establecimiento" FontSize="18" FontAttributes="Bold" TextColor="Black" 
+                   VerticalOptions="End" Margin="0,15,0,0"/>
+            <Picker Grid.Row="5" Grid.ColumnSpan="4" TextColor="Black" Title="Establecimientos" TitleColor="Black"
+                    ItemsSource="{Binding ListaEstabs}" ItemDisplayBinding="{Binding Nombre}" SelectedItem="{Binding EstabSelect}" BackgroundColor="#F8F8FF" x:Name="cbEstab">
+                <Picker.Behaviors>
+                    <behaviors:EventToCommandBehavior
+                        Command="{Binding SelectedIndexChangedCommand}"
+                        EventName="SelectedIndexChanged"/>
+                </Picker.Behaviors>
+            </Picker> 
+
+        </Grid>
+    </Grid>
+</ContentPage>

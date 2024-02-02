@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             android:TabbedPage.ToolbarPlacement="Bottom"
+             xmlns:behaviors="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack" 
+             BarBackgroundColor="Navy"
+             BarTextColor="White"
+             SelectedTabColor="Black"
+             UnselectedTabColor="WhiteSmoke"            
+            x:Class="BMSMobile.Views.RetirarMercanciaView"
+            x:Name="RetirarMercanciaPage">
+
+    <TabbedPage.Children>
+
+        <ContentPage Title="Producto" Icon="PRODUCT2.png" Padding="0,0,0,0" x:Name="ProductoPage">
+            <ContentPage.Content>
+                <Grid>
+                    <Image Aspect="AspectFill" Source="bg.jpg"></Image>
+                    <BoxView Opacity="0.8" Color="WhiteSmoke"></BoxView>
+
+                    <Grid>
+                        <Grid Padding="20,20" Margin="0,5,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20*"/>
+                                <ColumnDefinition Width="30*"/>
+                                <ColumnDefinition Width="25*"/>
+                                <ColumnDefinition Width="25*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="0" Text="Loc." FontSize="Small" Font="Bold" VerticalOptions="Center" HorizontalOptions="End" TextColor="Black"/>
+                            <Entry Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="txtLoc" TextColor="Black" Text="{Binding Localizacion}">
+                                <Entry.Behaviors>
+                                    <behaviors:EventToCommandBehavior
+                                Command="{Binding txtLocCompleted}"
+                                EventName="Completed"/>
+                                    <behaviors:EventToCommandBehavior
+                            Command="{Binding txtLocTextChanged}"
+                            EventName="TextChanged"/>
+                                </Entry.Behaviors>
+                            </Entry>
+
+                            <Label Grid.Row="1" Grid.Column="0" Text="Producto" FontSize="Small" Font="Bold" VerticalOptions="Center" HorizontalOptions="End" TextColor="Black"/>
+                            <Entry Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" x:Name="txtCodProd" TextColor="Black" Text="{Binding CodProd}" IsEnabled="{Binding HabilitaCodProd}">
+                                <Entry.Behaviors>
+                                    <behaviors:EventToCommandBehavior
+                                Command="{Binding txtCodProdCompleted}"
+                                EventName="Completed"/>
+                                    <behaviors:EventToCommandBehavior
+                            Command="{Binding ProdTextChangedCommand}"
+                            EventName="TextChanged"/>
+                                </Entry.Behaviors>
+                            </Entry>
+
+                            <Label Grid.Row="1" Grid.Column="2" Text="Cant." FontSize="Small" Font="Bold" VerticalOptions="Center"  HorizontalOptions="End" TextColor="Black" />
+                            <Entry Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="1" x:Name="txtCantidad" TextColor="Black" VerticalOptions="Center" Keyboard="Numeric" 
+                            Text="{Binding Cantidad}" IsEnabled="True" />
+
+                            
+                            <ListView Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="2" HasUnevenRows="True" ItemsSource="{Binding ListaFiltro}" VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand" IsVisible="{Binding BuscarVisible}" HeightRequest="2000">
+
+                                <ListView.Behaviors>
+                                    <behaviors:EventToCommandBehavior
+                            Command="{Binding ItemTappedCommand}"
+                            EventName="ItemTapped"
+                            EventArgsPropertyPath="Item"/>
+                                </ListView.Behaviors>
+                                <ListView.ItemTemplate>
+
+                                    <DataTemplate>
+                                        <ViewCell Height="50">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding cod_prod}" FontAttributes="Bold" TextColor="Black"
+                                               HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
+                                                <Label Text="{Binding descripcion_completa}" FontAttributes="Bold" TextColor="Black"
+                                               HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand"/>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+
+
+                            <Entry Grid.Row="3" Grid.ColumnSpan="4" x:Name="txtDescProd" HorizontalOptions="Fill" VerticalTextAlignment="Center"
+                                   TextColor="Black" IsEnabled="False" Text="{Binding Descripcion}"/>
+
+                            <Button Text="Eliminar" Grid.Column="0" Grid.ColumnSpan="2" CornerRadius="4" Grid.Row="4" FontSize="Small" Command="{Binding EliminarCommand}"></Button>
+                            <Button Text="Deshacer" Grid.Column="2" Grid.ColumnSpan="2" CornerRadius="4" Grid.Row="4" FontSize="Small" Command="{Binding LimpiarCommand}"></Button>
+
+                       
+                        </Grid>
+                    </Grid>
+
+                </Grid>
+            </ContentPage.Content>
+
+        </ContentPage>
+
+    </TabbedPage.Children>
+</TabbedPage>
