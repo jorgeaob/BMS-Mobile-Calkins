@@ -13,7 +13,7 @@ namespace BMSMobileWS.Models
         public string usuario { get; set; }
         public bool registrado { get; set; }
 
-        public List<MobileBMS_DetalleConteo_Result> ProductosConteo { get; set; }
+        public List<CalkinsWS_DetalleConteo_Result> ProductosConteo { get; set; }
     }   
     
     public class GuardarConteoModel

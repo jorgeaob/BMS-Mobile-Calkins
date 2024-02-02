@@ -1,66 +1,797 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="BMS2015ModelStoreContainer" CdmEntityContainer="BMS2015Entities">
-    <FunctionImportMapping FunctionImportName="MobileBMS_Login" FunctionName="BMS2015Model.Store.MobileBMS_Login">
+    <FunctionImportMapping FunctionImportName="CalkinsWS_OrdenCompra" FunctionName="BMS2015Model.Store.CalkinsWS_OrdenCompra">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="BMS2015Model.MobileBMS_Login_Result">
-          <ScalarProperty Name="usuario" ColumnName="usuario" />
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="status" ColumnName="status" />
-          <ScalarProperty Name="cod_estab" ColumnName="cod_estab" />
-          <ScalarProperty Name="vendedor_default_ventas" ColumnName="vendedor_default_ventas" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="MobileBMS_EstabsUsuario" FunctionName="BMS2015Model.Store.MobileBMS_EstabsUsuario">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="BMS2015Model.MobileBMS_EstabsUsuario_Result">
-          <ScalarProperty Name="cod_estab" ColumnName="cod_estab" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="cliente_venta_publico" ColumnName="cliente_venta_publico" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="MobileBMS_DetalleConteo" FunctionName="BMS2015Model.Store.MobileBMS_DetalleConteo">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="BMS2015Model.MobileBMS_DetalleConteo_Result">
+        <ComplexTypeMapping TypeName="BMS2015Model.CalkinsWS_OrdenCompra_Result">
           <ScalarProperty Name="folio" ColumnName="folio" />
-          <ScalarProperty Name="cod_prod" ColumnName="cod_prod" />
+          <ScalarProperty Name="Transaccion" ColumnName="Transaccion" />
           <ScalarProperty Name="fecha" ColumnName="fecha" />
-          <ScalarProperty Name="usuario" ColumnName="usuario" />
-          <ScalarProperty Name="unidades_compra" ColumnName="unidades_compra" />
-          <ScalarProperty Name="unidades_alternativas" ColumnName="unidades_alternativas" />
-          <ScalarProperty Name="exist_unidades_compra" ColumnName="exist_unidades_compra" />
-          <ScalarProperty Name="exist_unidades_alternativas" ColumnName="exist_unidades_alternativas" />
-          <ScalarProperty Name="programacion" ColumnName="programacion" />
+          <ScalarProperty Name="descuento_porcentual" ColumnName="descuento_porcentual" />
+          <ScalarProperty Name="importe_descuento" ColumnName="importe_descuento" />
+          <ScalarProperty Name="importe" ColumnName="importe" />
+          <ScalarProperty Name="iva" ColumnName="iva" />
+          <ScalarProperty Name="ieps" ColumnName="ieps" />
+          <ScalarProperty Name="costo" ColumnName="costo" />
+          <ScalarProperty Name="unidades" ColumnName="unidades" />
+          <ScalarProperty Name="piezas" ColumnName="piezas" />
+          <ScalarProperty Name="peso" ColumnName="peso" />
+          <ScalarProperty Name="volumen" ColumnName="volumen" />
+          <ScalarProperty Name="fecha_expiracion" ColumnName="fecha_expiracion" />
+          <ScalarProperty Name="back_order" ColumnName="back_order" />
+          <ScalarProperty Name="recoge_mercancia" ColumnName="recoge_mercancia" />
+          <ScalarProperty Name="cond_pago" ColumnName="cond_pago" />
+          <ScalarProperty Name="cod_estab" ColumnName="cod_estab" />
+          <ScalarProperty Name="numdpc" ColumnName="numdpc" />
+          <ScalarProperty Name="pedido_proveedor" ColumnName="pedido_proveedor" />
+          <ScalarProperty Name="plazo" ColumnName="plazo" />
+          <ScalarProperty Name="status_surtido" ColumnName="status_surtido" />
+          <ScalarProperty Name="notas" ColumnName="notas" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="razon_social" ColumnName="razon_social" />
+          <ScalarProperty Name="cod_prv" ColumnName="cod_prv" />
+          <ScalarProperty Name="comprador" ColumnName="comprador" />
+          <ScalarProperty Name="pedimento" ColumnName="pedimento" />
+          <ScalarProperty Name="razon_compra" ColumnName="razon_compra" />
+          <ScalarProperty Name="nacionalidad" ColumnName="nacionalidad" />
+          <ScalarProperty Name="mensaje" ColumnName="mensaje" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CalkinsWS_OrdenCompraDetalle" FunctionName="BMS2015Model.Store.CalkinsWS_OrdenCompraDetalle">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMS2015Model.CalkinsWS_OrdenCompraDetalle_Result">
           <ScalarProperty Name="descripcion_completa" ColumnName="descripcion_completa" />
-          <ScalarProperty Name="NombreUC" ColumnName="NombreUC" />
-          <ScalarProperty Name="NombreUA" ColumnName="NombreUA" />
-          <ScalarProperty Name="forma_expresar_inventario" ColumnName="forma_expresar_inventario" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="folio" ColumnName="folio" />
+          <ScalarProperty Name="transaccion" ColumnName="transaccion" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="cod_prod" ColumnName="cod_prod" />
+          <ScalarProperty Name="unidad" ColumnName="unidad" />
+          <ScalarProperty Name="cantidad_pedida" ColumnName="cantidad_pedida" />
+          <ScalarProperty Name="cantidad_autorizada" ColumnName="cantidad_autorizada" />
+          <ScalarProperty Name="cantidad_surtida" ColumnName="cantidad_surtida" />
+          <ScalarProperty Name="precio_lista" ColumnName="precio_lista" />
+          <ScalarProperty Name="descuento_porcentual" ColumnName="descuento_porcentual" />
+          <ScalarProperty Name="importe_descuento" ColumnName="importe_descuento" />
+          <ScalarProperty Name="importe" ColumnName="importe" />
+          <ScalarProperty Name="costo" ColumnName="costo" />
+          <ScalarProperty Name="iva" ColumnName="iva" />
+          <ScalarProperty Name="ieps" ColumnName="ieps" />
+          <ScalarProperty Name="peso" ColumnName="peso" />
+          <ScalarProperty Name="volumen" ColumnName="volumen" />
+          <ScalarProperty Name="back_order" ColumnName="back_order" />
+          <ScalarProperty Name="cod_prv" ColumnName="cod_prv" />
+          <ScalarProperty Name="cod_estab" ColumnName="cod_estab" />
+          <ScalarProperty Name="comprador" ColumnName="comprador" />
+          <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="contenido" ColumnName="contenido" />
-          <ScalarProperty Name="AbrevUC" ColumnName="AbrevUC" />
-          <ScalarProperty Name="AbrevUA" ColumnName="AbrevUA" />
+          <ScalarProperty Name="pvs" ColumnName="pvs" />
+          <ScalarProperty Name="caducidad_recepcion" ColumnName="caducidad_recepcion" />
+          <ScalarProperty Name="caducidad_venta" ColumnName="caducidad_venta" />
+          <ScalarProperty Name="existencia" ColumnName="existencia" />
+          <ScalarProperty Name="abreviatura_unidad" ColumnName="abreviatura_unidad" />
+          <ScalarProperty Name="cod_prod_proveedor" ColumnName="cod_prod_proveedor" />
           <ScalarProperty Name="codigo_barras_unidad" ColumnName="codigo_barras_unidad" />
           <ScalarProperty Name="codigo_barras_pieza" ColumnName="codigo_barras_pieza" />
+          <ScalarProperty Name="caducidad_orden_compra" ColumnName="caducidad_orden_compra" />
+          <ScalarProperty Name="UsaFichaTecProd" ColumnName="UsaFichaTecProd" />
+          <ScalarProperty Name="control_etiqueta" ColumnName="control_etiqueta" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CalkinsWS_ProductoEntrada" FunctionName="BMS2015Model.Store.CalkinsWS_ProductoEntrada">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMS2015Model.CalkinsWS_ProductoEntrada_Result">
+          <ScalarProperty Name="cod_prod" ColumnName="cod_prod" />
+          <ScalarProperty Name="descripcion_completa" ColumnName="descripcion_completa" />
+          <ScalarProperty Name="volumen" ColumnName="volumen" />
+          <ScalarProperty Name="peso_total" ColumnName="peso_total" />
+          <ScalarProperty Name="caducidad_fabricacion" ColumnName="caducidad_fabricacion" />
+          <ScalarProperty Name="contenido" ColumnName="contenido" />
+          <ScalarProperty Name="cod_estab" ColumnName="cod_estab" />
+          <ScalarProperty Name="caducidad_recepcion" ColumnName="caducidad_recepcion" />
+          <ScalarProperty Name="caducidad_venta" ColumnName="caducidad_venta" />
+          <ScalarProperty Name="presentacion" ColumnName="presentacion" />
+          <ScalarProperty Name="unidad_compra" ColumnName="unidad_compra" />
+          <ScalarProperty Name="StatusProd" ColumnName="StatusProd" />
+          <ScalarProperty Name="StatusProdEstab" ColumnName="StatusProdEstab" />
+          <ScalarProperty Name="StatusProdPrv" ColumnName="StatusProdPrv" />
+          <ScalarProperty Name="pallet_prod" ColumnName="pallet_prod" />
+          <ScalarProperty Name="cama" ColumnName="cama" />
+          <ScalarProperty Name="altura" ColumnName="altura" />
+          <ScalarProperty Name="abrevUC" ColumnName="abrevUC" />
+          <ScalarProperty Name="abrevUA" ColumnName="abrevUA" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CalkinsWS_ValidarProdEntrada" FunctionName="BMS2015Model.Store.CalkinsWS_ValidarProdEntrada" />
+    <FunctionImportMapping FunctionImportName="CalkinsWS_GenerarFolio" FunctionName="BMS2015Model.Store.CalkinsWS_GenerarFolio" />
+    <FunctionImportMapping FunctionImportName="CalkinsWS_GuardarDetalleEntrada" FunctionName="BMS2015Model.Store.CalkinsWS_GuardarDetalleEntrada" />
+    <FunctionImportMapping FunctionImportName="CalkinsWS_GuardarEntrada" FunctionName="BMS2015Model.Store.CalkinsWS_GuardarEntrada" />
+    <EntitySetMapping Name="proveedores">
+      <EntityTypeMapping TypeName="BMS2015Model.proveedore">
+        <MappingFragment StoreEntitySet="proveedores">
+          <ScalarProperty Name="geolocalizacion" ColumnName="geolocalizacion" />
+          <ScalarProperty Name="exige_orden_compra_anticipos" ColumnName="exige_orden_compra_anticipos" />
+          <ScalarProperty Name="dias_atencion_oc" ColumnName="dias_atencion_oc" />
+          <ScalarProperty Name="usuario_ultima_modificacion" ColumnName="usuario_ultima_modificacion" />
+          <ScalarProperty Name="tipo_documento_venta" ColumnName="tipo_documento_venta" />
+          <ScalarProperty Name="aseguradora" ColumnName="aseguradora" />
+          <ScalarProperty Name="afianzadora" ColumnName="afianzadora" />
+          <ScalarProperty Name="paqueteria" ColumnName="paqueteria" />
+          <ScalarProperty Name="tolerancia_limite_credito" ColumnName="tolerancia_limite_credito" />
+          <ScalarProperty Name="limite_credito" ColumnName="limite_credito" />
+          <ScalarProperty Name="comprador" ColumnName="comprador" />
+          <ScalarProperty Name="te" ColumnName="te" />
+          <ScalarProperty Name="envio_directo_cliente" ColumnName="envio_directo_cliente" />
+          <ScalarProperty Name="cod_cte" ColumnName="cod_cte" />
+          <ScalarProperty Name="condicion_pago" ColumnName="condicion_pago" />
+          <ScalarProperty Name="comitente" ColumnName="comitente" />
+          <ScalarProperty Name="nacionalidad" ColumnName="nacionalidad" />
+          <ScalarProperty Name="iva_incluido_precio" ColumnName="iva_incluido_precio" />
+          <ScalarProperty Name="notas" ColumnName="notas" />
+          <ScalarProperty Name="evaluacion_proveedor" ColumnName="evaluacion_proveedor" />
+          <ScalarProperty Name="clave_valor_pagar" ColumnName="clave_valor_pagar" />
+          <ScalarProperty Name="coordenada_y" ColumnName="coordenada_y" />
+          <ScalarProperty Name="coordenada_x" ColumnName="coordenada_x" />
+          <ScalarProperty Name="mapa" ColumnName="mapa" />
+          <ScalarProperty Name="orientacion" ColumnName="orientacion" />
+          <ScalarProperty Name="entre_calles" ColumnName="entre_calles" />
+          <ScalarProperty Name="curp" ColumnName="curp" />
+          <ScalarProperty Name="giro_proveedor" ColumnName="giro_proveedor" />
+          <ScalarProperty Name="condicion_plazo" ColumnName="condicion_plazo" />
+          <ScalarProperty Name="proveedor_linea_fletera" ColumnName="proveedor_linea_fletera" />
+          <ScalarProperty Name="ultima_modificacion" ColumnName="ultima_modificacion" />
+          <ScalarProperty Name="e_mail" ColumnName="e_mail" />
+          <ScalarProperty Name="status_proveedor" ColumnName="status_proveedor" />
+          <ScalarProperty Name="pago_estricto" ColumnName="pago_estricto" />
+          <ScalarProperty Name="formato_factura" ColumnName="formato_factura" />
+          <ScalarProperty Name="linea_fletera" ColumnName="linea_fletera" />
+          <ScalarProperty Name="cod_estab" ColumnName="cod_estab" />
+          <ScalarProperty Name="poblacion" ColumnName="poblacion" />
+          <ScalarProperty Name="municipio" ColumnName="municipio" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="pais" ColumnName="pais" />
+          <ScalarProperty Name="fecha_alta" ColumnName="fecha_alta" />
+          <ScalarProperty Name="moneda" ColumnName="moneda" />
+          <ScalarProperty Name="pagina_web" ColumnName="pagina_web" />
+          <ScalarProperty Name="autorizacion_ordenes_compra" ColumnName="autorizacion_ordenes_compra" />
+          <ScalarProperty Name="back_order" ColumnName="back_order" />
+          <ScalarProperty Name="retencion_pago" ColumnName="retencion_pago" />
+          <ScalarProperty Name="abono_en_cuenta" ColumnName="abono_en_cuenta" />
+          <ScalarProperty Name="tolerancia_pago" ColumnName="tolerancia_pago" />
+          <ScalarProperty Name="plazo" ColumnName="plazo" />
+          <ScalarProperty Name="manejo_devoluciones" ColumnName="manejo_devoluciones" />
+          <ScalarProperty Name="codigo_nuestro_proveedor" ColumnName="codigo_nuestro_proveedor" />
+          <ScalarProperty Name="tipo_minimo" ColumnName="tipo_minimo" />
+          <ScalarProperty Name="pedido_minimo" ColumnName="pedido_minimo" />
+          <ScalarProperty Name="reembolso_flete" ColumnName="reembolso_flete" />
+          <ScalarProperty Name="pago_flete" ColumnName="pago_flete" />
+          <ScalarProperty Name="productos_catalogados" ColumnName="productos_catalogados" />
+          <ScalarProperty Name="flexibilidad_precio" ColumnName="flexibilidad_precio" />
+          <ScalarProperty Name="clave_iva" ColumnName="clave_iva" />
+          <ScalarProperty Name="rfc" ColumnName="rfc" />
+          <ScalarProperty Name="fax" ColumnName="fax" />
+          <ScalarProperty Name="tel2" ColumnName="tel2" />
+          <ScalarProperty Name="tel1" ColumnName="tel1" />
+          <ScalarProperty Name="pobmunedo" ColumnName="pobmunedo" />
+          <ScalarProperty Name="delegacion" ColumnName="delegacion" />
+          <ScalarProperty Name="cod_postal" ColumnName="cod_postal" />
+          <ScalarProperty Name="colonia" ColumnName="colonia" />
+          <ScalarProperty Name="num_interior" ColumnName="num_interior" />
+          <ScalarProperty Name="num_exterior" ColumnName="num_exterior" />
+          <ScalarProperty Name="calle" ColumnName="calle" />
+          <ScalarProperty Name="nom_comercial" ColumnName="nom_comercial" />
+          <ScalarProperty Name="ap_materno" ColumnName="ap_materno" />
+          <ScalarProperty Name="ap_paterno" ColumnName="ap_paterno" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="clasificacion_fiscal" ColumnName="clasificacion_fiscal" />
+          <ScalarProperty Name="razon_social" ColumnName="razon_social" />
+          <ScalarProperty Name="tipo_proveedor" ColumnName="tipo_proveedor" />
+          <ScalarProperty Name="tipo_cuenta_pagar" ColumnName="tipo_cuenta_pagar" />
+          <ScalarProperty Name="cod_prv" ColumnName="cod_prv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CalkinsWS_DetalleRecepcionTransferencia" FunctionName="BMS2015Model.Store.CalkinsWS_DetalleRecepcionTransferencia">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMS2015Model.CalkinsWS_DetalleRecepcionTransferencia_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="folio" ColumnName="folio" />
+          <ScalarProperty Name="transaccion" ColumnName="transaccion" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="cod_prod" ColumnName="cod_prod" />
+          <ScalarProperty Name="descripcion_completa" ColumnName="descripcion_completa" />
+          <ScalarProperty Name="unidad" ColumnName="unidad" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="precio_lista" ColumnName="precio_lista" />
+          <ScalarProperty Name="importe" ColumnName="importe" />
+          <ScalarProperty Name="iva" ColumnName="iva" />
+          <ScalarProperty Name="ieps" ColumnName="ieps" />
+          <ScalarProperty Name="costo" ColumnName="costo" />
+          <ScalarProperty Name="utilidad_bruta" ColumnName="utilidad_bruta" />
+          <ScalarProperty Name="peso" ColumnName="peso" />
+          <ScalarProperty Name="volumen" ColumnName="volumen" />
+          <ScalarProperty Name="cod_estab" ColumnName="cod_estab" />
+          <ScalarProperty Name="abreviatura_unidad" ColumnName="abreviatura_unidad" />
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="codigo_unidad" ColumnName="codigo_unidad" />
+          <ScalarProperty Name="NombreUnidad" ColumnName="NombreUnidad" />
+          <ScalarProperty Name="UsaFichaTecProd" ColumnName="UsaFichaTecProd" />
+          <ScalarProperty Name="inventario_identificado" ColumnName="inventario_identificado" />
+          <ScalarProperty Name="control_etiqueta" ColumnName="control_etiqueta" />
+          <ScalarProperty Name="nom_talla" ColumnName="nom_talla" />
+          <ScalarProperty Name="comentario_venta" ColumnName="comentario_venta" />
+          <ScalarProperty Name="codigo_barras_unidad" ColumnName="codigo_barras_unidad" />
+          <ScalarProperty Name="codigo_barras_pieza" ColumnName="codigo_barras_pieza" />
+          <ScalarProperty Name="contenido" ColumnName="contenido" />
+          <ScalarProperty Name="costo_promedio" ColumnName="costo_promedio" />
+          <ScalarProperty Name="tipo_precio_venta" ColumnName="tipo_precio_venta" />
+          <ScalarProperty Name="cama" ColumnName="cama" />
+          <ScalarProperty Name="altura" ColumnName="altura" />
+          <ScalarProperty Name="caducidad_fabricacion" ColumnName="caducidad_fabricacion" />
+          <ScalarProperty Name="familia" ColumnName="familia" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CalkinsWS_InfoTransferencia" FunctionName="BMS2015Model.Store.CalkinsWS_InfoTransferencia">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMS2015Model.CalkinsWS_InfoTransferencia_Result">
+          <ScalarProperty Name="folio" ColumnName="folio" />
+          <ScalarProperty Name="transaccion" ColumnName="transaccion" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="cod_estab" ColumnName="cod_estab" />
+          <ScalarProperty Name="NombreEstab" ColumnName="NombreEstab" />
+          <ScalarProperty Name="cod_estab_alterno" ColumnName="cod_estab_alterno" />
+          <ScalarProperty Name="NombreEstabAlterno" ColumnName="NombreEstabAlterno" />
+          <ScalarProperty Name="importe" ColumnName="importe" />
+          <ScalarProperty Name="iva" ColumnName="iva" />
+          <ScalarProperty Name="ieps" ColumnName="ieps" />
+          <ScalarProperty Name="piezas" ColumnName="piezas" />
+          <ScalarProperty Name="peso" ColumnName="peso" />
+          <ScalarProperty Name="volumen" ColumnName="volumen" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="surtido" ColumnName="surtido" />
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="status_recepcion" ColumnName="status_recepcion" />
+          <ScalarProperty Name="costo" ColumnName="costo" />
+          <ScalarProperty Name="unidades" ColumnName="unidades" />
+          <ScalarProperty Name="razon_aod_inventario" ColumnName="razon_aod_inventario" />
+          <ScalarProperty Name="clave_afectacion_inventario" ColumnName="clave_afectacion_inventario" />
           <ScalarProperty Name="notas" ColumnName="notas" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="MobileBMS_InfoConteo" FunctionName="BMS2015Model.Store.MobileBMS_InfoConteo">
+    <FunctionImportMapping FunctionImportName="CalkinsWS_ProductosSurtidos" FunctionName="BMS2015Model.Store.CalkinsWS_ProductosSurtidos">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="BMS2015Model.MobileBMS_InfoConteo_Result">
-          <ScalarProperty Name="folio" ColumnName="folio" />
-          <ScalarProperty Name="fecha" ColumnName="fecha" />
-          <ScalarProperty Name="cod_estab" ColumnName="cod_estab" />
-          <ScalarProperty Name="usuario" ColumnName="usuario" />
-          <ScalarProperty Name="registrado" ColumnName="registrado" />
+        <ComplexTypeMapping TypeName="BMS2015Model.CalkinsWS_ProductosSurtidos_Result">
+          <ScalarProperty Name="cod_prod" ColumnName="cod_prod" />
+          <ScalarProperty Name="unidad" ColumnName="unidad" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="encontrado" ColumnName="encontrado" />
+          <ScalarProperty Name="comentario_venta" ColumnName="comentario_venta" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="MobileBMS_GuardarConteo" FunctionName="BMS2015Model.Store.MobileBMS_GuardarConteo" />
-    <FunctionImportMapping FunctionImportName="MobileBMS_BuscarProductos" FunctionName="BMS2015Model.Store.MobileBMS_BuscarProductos">
+    <FunctionImportMapping FunctionImportName="CalkinsWS_GuadarRecepcionTransferencia" FunctionName="BMS2015Model.Store.CalkinsWS_GuadarRecepcionTransferencia" />
+    <FunctionImportMapping FunctionImportName="CalkinsWS_GuardarDetalleRecepcion" FunctionName="BMS2015Model.Store.CalkinsWS_GuardarDetalleRecepcion" />
+    <EntitySetMapping Name="razones_devoluciones_clientes">
+      <EntityTypeMapping TypeName="BMS2015Model.razones_devoluciones_clientes">
+        <MappingFragment StoreEntitySet="razones_devoluciones_clientes">
+          <ScalarProperty Name="razon_credito_clientes" ColumnName="razon_credito_clientes" />
+          <ScalarProperty Name="exige_notas" ColumnName="exige_notas" />
+          <ScalarProperty Name="cod_prod_cargo" ColumnName="cod_prod_cargo" />
+          <ScalarProperty Name="cargo" ColumnName="cargo" />
+          <ScalarProperty Name="afecta_comision_ventas" ColumnName="afecta_comision_ventas" />
+          <ScalarProperty Name="causante_devoluciones_clientes" ColumnName="causante_devoluciones_clientes" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="abreviatura" ColumnName="abreviatura" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="razon_devoluciones_clientes" ColumnName="razon_devoluciones_clientes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CalkinsWS_DetalleEntradaDevolucion" FunctionName="BMS2015Model.Store.CalkinsWS_DetalleEntradaDevolucion">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="BMS2015Model.MobileBMS_BuscarProductos_Result">
+        <ComplexTypeMapping TypeName="BMS2015Model.CalkinsWS_DetalleEntradaDevolucion_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="folio" ColumnName="folio" />
+          <ScalarProperty Name="transaccion" ColumnName="transaccion" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="cod_prod" ColumnName="cod_prod" />
+          <ScalarProperty Name="descripcion_completa" ColumnName="descripcion_completa" />
+          <ScalarProperty Name="unidad" ColumnName="unidad" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="precio_lista" ColumnName="precio_lista" />
+          <ScalarProperty Name="importe" ColumnName="importe" />
+          <ScalarProperty Name="iva" ColumnName="iva" />
+          <ScalarProperty Name="ieps" ColumnName="ieps" />
+          <ScalarProperty Name="costo" ColumnName="costo" />
+          <ScalarProperty Name="utilidad_bruta" ColumnName="utilidad_bruta" />
+          <ScalarProperty Name="peso" ColumnName="peso" />
+          <ScalarProperty Name="volumen" ColumnName="volumen" />
+          <ScalarProperty Name="cod_estab" ColumnName="cod_estab" />
+          <ScalarProperty Name="abreviatura_unidad" ColumnName="abreviatura_unidad" />
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="codigo_unidad" ColumnName="codigo_unidad" />
+          <ScalarProperty Name="NombreUnidad" ColumnName="NombreUnidad" />
+          <ScalarProperty Name="UsaFichaTecProd" ColumnName="UsaFichaTecProd" />
+          <ScalarProperty Name="inventario_identificado" ColumnName="inventario_identificado" />
+          <ScalarProperty Name="control_etiqueta" ColumnName="control_etiqueta" />
+          <ScalarProperty Name="nom_talla" ColumnName="nom_talla" />
+          <ScalarProperty Name="comentario_venta" ColumnName="comentario_venta" />
+          <ScalarProperty Name="codigo_barras_unidad" ColumnName="codigo_barras_unidad" />
+          <ScalarProperty Name="codigo_barras_pieza" ColumnName="codigo_barras_pieza" />
+          <ScalarProperty Name="contenido" ColumnName="contenido" />
+          <ScalarProperty Name="costo_promedio" ColumnName="costo_promedio" />
+          <ScalarProperty Name="tipo_precio_venta" ColumnName="tipo_precio_venta" />
+          <ScalarProperty Name="cama" ColumnName="cama" />
+          <ScalarProperty Name="altura" ColumnName="altura" />
+          <ScalarProperty Name="caducidad_fabricacion" ColumnName="caducidad_fabricacion" />
+          <ScalarProperty Name="familia" ColumnName="familia" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CalkinsWS_EntradaDEvolucion" FunctionName="BMS2015Model.Store.CalkinsWS_EntradaDEvolucion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMS2015Model.CalkinsWS_EntradaDEvolucion_Result">
+          <ScalarProperty Name="folio" ColumnName="folio" />
+          <ScalarProperty Name="transaccion" ColumnName="transaccion" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="cod_estab" ColumnName="cod_estab" />
+          <ScalarProperty Name="NombreEstab" ColumnName="NombreEstab" />
+          <ScalarProperty Name="cod_estab_alterno" ColumnName="cod_estab_alterno" />
+          <ScalarProperty Name="NombreEstabAlterno" ColumnName="NombreEstabAlterno" />
+          <ScalarProperty Name="importe" ColumnName="importe" />
+          <ScalarProperty Name="iva" ColumnName="iva" />
+          <ScalarProperty Name="ieps" ColumnName="ieps" />
+          <ScalarProperty Name="piezas" ColumnName="piezas" />
+          <ScalarProperty Name="peso" ColumnName="peso" />
+          <ScalarProperty Name="volumen" ColumnName="volumen" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="surtido" ColumnName="surtido" />
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="status_recepcion" ColumnName="status_recepcion" />
+          <ScalarProperty Name="costo" ColumnName="costo" />
+          <ScalarProperty Name="unidades" ColumnName="unidades" />
+          <ScalarProperty Name="razon_aod_inventario" ColumnName="razon_aod_inventario" />
+          <ScalarProperty Name="clave_afectacion_inventario" ColumnName="clave_afectacion_inventario" />
+          <ScalarProperty Name="notas" ColumnName="notas" />
+          <ScalarProperty Name="cod_cte" ColumnName="cod_cte" />
+          <ScalarProperty Name="razon_social" ColumnName="razon_social" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CalkinsWS_GuardarDetalleEntradaDevolucion" FunctionName="BMS2015Model.Store.CalkinsWS_GuardarDetalleEntradaDevolucion" />
+    <FunctionImportMapping FunctionImportName="CalkinsWS_GuardarEntradaDevolucion" FunctionName="BMS2015Model.Store.CalkinsWS_GuardarEntradaDevolucion" />
+    <FunctionImportMapping FunctionImportName="CalkinsWS_ConsultaPallet" FunctionName="BMS2015Model.Store.CalkinsWS_ConsultaPallet">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMS2015Model.CalkinsWS_ConsultaPallet_Result">
+          <ScalarProperty Name="cod_prod" ColumnName="cod_prod" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="localizacion" ColumnName="localizacion" />
+          <ScalarProperty Name="folio" ColumnName="folio" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="fecha_caducidad" ColumnName="fecha_caducidad" />
+          <ScalarProperty Name="folio_referencia" ColumnName="folio_referencia" />
+          <ScalarProperty Name="lote_fabricacion" ColumnName="lote_fabricacion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CalkinsWS_GuardarPallet" FunctionName="BMS2015Model.Store.CalkinsWS_GuardarPallet" />
+    <FunctionImportMapping FunctionImportName="CalkinsWS_EntradasSalidasLoc" FunctionName="BMS2015Model.Store.CalkinsWS_EntradasSalidasLoc">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMS2015Model.CalkinsWS_EntradasSalidasLoc_Result">
+          <ScalarProperty Name="cod_prod" ColumnName="cod_prod" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="pallet" ColumnName="pallet" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="localizacion" ColumnName="localizacion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CalkinsWS_NuevoLote" FunctionName="BMS2015Model.Store.CalkinsWS_NuevoLote" />
+    <FunctionImportMapping FunctionImportName="CalkinsWS_RetirarMercanciaLoc" FunctionName="BMS2015Model.Store.CalkinsWS_RetirarMercanciaLoc">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMS2015Model.CalkinsWS_RetirarMercanciaLoc_Result">
+          <ScalarProperty Name="cod_prod" ColumnName="cod_prod" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="lote_recepcion" ColumnName="lote_recepcion" />
+          <ScalarProperty Name="folio_referencia" ColumnName="folio_referencia" />
+          <ScalarProperty Name="localizacion" ColumnName="localizacion" />
+          <ScalarProperty Name="multiples_productos" ColumnName="multiples_productos" />
+          <ScalarProperty Name="pick_slot" ColumnName="pick_slot" />
+          <ScalarProperty Name="productos" ColumnName="productos" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CalkinsWS_RetirarMercanciaProd" FunctionName="BMS2015Model.Store.CalkinsWS_RetirarMercanciaProd">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMS2015Model.CalkinsWS_RetirarMercanciaProd_Result">
+          <ScalarProperty Name="cod_prod" ColumnName="cod_prod" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="lote_recepcion" ColumnName="lote_recepcion" />
+          <ScalarProperty Name="folio_referencia" ColumnName="folio_referencia" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CalkinsWS_ModificaInventarioLoc" FunctionName="BMS2015Model.Store.CalkinsWS_ModificaInventarioLoc" />
+    <FunctionImportMapping FunctionImportName="CalkinsWS_ActualizarUbicacionLoc" FunctionName="BMS2015Model.Store.CalkinsWS_ActualizarUbicacionLoc">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMS2015Model.CalkinsWS_ActualizarUbicacionLoc_Result">
+          <ScalarProperty Name="cod_estab" ColumnName="cod_estab" />
+          <ScalarProperty Name="pick_slot" ColumnName="pick_slot" />
+          <ScalarProperty Name="disponible" ColumnName="disponible" />
+          <ScalarProperty Name="cod_prod" ColumnName="cod_prod" />
+          <ScalarProperty Name="lote" ColumnName="lote" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CalkinsWS_ActualizarUbicacionLote" FunctionName="BMS2015Model.Store.CalkinsWS_ActualizarUbicacionLote">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMS2015Model.CalkinsWS_ActualizarUbicacionLote_Result">
+          <ScalarProperty Name="cod_prod" ColumnName="cod_prod" />
+          <ScalarProperty Name="cod_estab" ColumnName="cod_estab" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="unidad" ColumnName="unidad" />
+          <ScalarProperty Name="fecha_caducidad" ColumnName="fecha_caducidad" />
+          <ScalarProperty Name="lote_fabricacion" ColumnName="lote_fabricacion" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CalkinsWS_ActualizarUbicacionGuardar" FunctionName="BMS2015Model.Store.CalkinsWS_ActualizarUbicacionGuardar" />
+    <FunctionImportMapping FunctionImportName="CalkinsWS_UbicarDocumento" FunctionName="BMS2015Model.Store.CalkinsWS_UbicarDocumento">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMS2015Model.CalkinsWS_UbicarDocumento_Result">
+          <ScalarProperty Name="folio" ColumnName="folio" />
+          <ScalarProperty Name="cod_estab" ColumnName="cod_estab" />
+          <ScalarProperty Name="cod_prod" ColumnName="cod_prod" />
+          <ScalarProperty Name="unidad" ColumnName="unidad" />
+          <ScalarProperty Name="abreviatura_unidad" ColumnName="abreviatura_unidad" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="folio_referencia" ColumnName="folio_referencia" />
+          <ScalarProperty Name="transaccion_referencia" ColumnName="transaccion_referencia" />
+          <ScalarProperty Name="fecha_caducidad" ColumnName="fecha_caducidad" />
+          <ScalarProperty Name="lote_fabricacion" ColumnName="lote_fabricacion" />
+          <ScalarProperty Name="localizacion" ColumnName="localizacion" />
+          <ScalarProperty Name="localizacion_intercambio" ColumnName="localizacion_intercambio" />
+          <ScalarProperty Name="ubicado" ColumnName="ubicado" />
+          <ScalarProperty Name="prodxpall" ColumnName="prodxpall" />
+          <ScalarProperty Name="picking" ColumnName="picking" />
+          <ScalarProperty Name="cant_ubicada" ColumnName="cant_ubicada" />
+          <ScalarProperty Name="cant_pendiente" ColumnName="cant_pendiente" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CalkinsWS_UbicarBusqueda" FunctionName="BMS2015Model.Store.CalkinsWS_UbicarBusqueda">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMS2015Model.CalkinsWS_UbicarBusqueda_Result">
+          <ScalarProperty Name="folio" ColumnName="folio" />
+          <ScalarProperty Name="cod_estab" ColumnName="cod_estab" />
+          <ScalarProperty Name="cod_prod" ColumnName="cod_prod" />
+          <ScalarProperty Name="unidad" ColumnName="unidad" />
+          <ScalarProperty Name="abreviatura_unidad" ColumnName="abreviatura_unidad" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="folio_referencia" ColumnName="folio_referencia" />
+          <ScalarProperty Name="transaccion_referencia" ColumnName="transaccion_referencia" />
+          <ScalarProperty Name="fecha_caducidad" ColumnName="fecha_caducidad" />
+          <ScalarProperty Name="lote_fabricacion" ColumnName="lote_fabricacion" />
+          <ScalarProperty Name="localizacion" ColumnName="localizacion" />
+          <ScalarProperty Name="localizacion_intercambio" ColumnName="localizacion_intercambio" />
+          <ScalarProperty Name="ubicado" ColumnName="ubicado" />
+          <ScalarProperty Name="prodxpall" ColumnName="prodxpall" />
+          <ScalarProperty Name="picking" ColumnName="picking" />
+          <ScalarProperty Name="cant_ubicada" ColumnName="cant_ubicada" />
+          <ScalarProperty Name="cant_pendiente" ColumnName="cant_pendiente" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CalkinsWS_UbicarLocalizacion" FunctionName="BMS2015Model.Store.CalkinsWS_UbicarLocalizacion" />
+    <FunctionImportMapping FunctionImportName="CalkinsWS_UbicarGuardar" FunctionName="BMS2015Model.Store.CalkinsWS_UbicarGuardar" />
+    <FunctionImportMapping FunctionImportName="CalkinsWS_Ubicar_Guardar" FunctionName="BMS2015Model.Store.CalkinsWS_Ubicar_Guardar" />
+    <EntitySetMapping Name="establecimientos">
+      <EntityTypeMapping TypeName="BMS2015Model.establecimiento">
+        <MappingFragment StoreEntitySet="establecimientos">
+          <ScalarProperty Name="Surtido_Picking" ColumnName="Surtido_Picking" />
+          <ScalarProperty Name="Colonia_codigo" ColumnName="Colonia_codigo" />
+          <ScalarProperty Name="geolocalizacion" ColumnName="geolocalizacion" />
+          <ScalarProperty Name="horas_diferencia_servidor" ColumnName="horas_diferencia_servidor" />
+          <ScalarProperty Name="ruta_pdf_proveedores" ColumnName="ruta_pdf_proveedores" />
+          <ScalarProperty Name="curp" ColumnName="curp" />
+          <ScalarProperty Name="ruta_xml_proveedores" ColumnName="ruta_xml_proveedores" />
+          <ScalarProperty Name="ultima_modificacion" ColumnName="ultima_modificacion" />
+          <ScalarProperty Name="usuario_ultima_modificacion" ColumnName="usuario_ultima_modificacion" />
+          <ScalarProperty Name="regimen_fiscal" ColumnName="regimen_fiscal" />
+          <ScalarProperty Name="abreviatura" ColumnName="abreviatura" />
+          <ScalarProperty Name="grupo_establecimiento" ColumnName="grupo_establecimiento" />
+          <ScalarProperty Name="ruta_lector_huella" ColumnName="ruta_lector_huella" />
+          <ScalarProperty Name="codigo_gln" ColumnName="codigo_gln" />
+          <ScalarProperty Name="cfd_contraseña_llave_privada" ColumnName="cfd_contraseña_llave_privada" />
+          <ScalarProperty Name="cfd_archivos_xml" ColumnName="cfd_archivos_xml" />
+          <ScalarProperty Name="cfd_certificado_digital" ColumnName="cfd_certificado_digital" />
+          <ScalarProperty Name="cfd_llave_privada" ColumnName="cfd_llave_privada" />
+          <ScalarProperty Name="pagare_embarques" ColumnName="pagare_embarques" />
+          <ScalarProperty Name="anticipo_cliente_solo_apartados" ColumnName="anticipo_cliente_solo_apartados" />
+          <ScalarProperty Name="afecta_nd_ordenes_carga" ColumnName="afecta_nd_ordenes_carga" />
+          <ScalarProperty Name="valor_transferencias" ColumnName="valor_transferencias" />
+          <ScalarProperty Name="comentario_ventas_renglon_aparte" ColumnName="comentario_ventas_renglon_aparte" />
+          <ScalarProperty Name="capacidad_pallets" ColumnName="capacidad_pallets" />
+          <ScalarProperty Name="volumen" ColumnName="volumen" />
+          <ScalarProperty Name="orden" ColumnName="orden" />
+          <ScalarProperty Name="manejo_recibo_valores" ColumnName="manejo_recibo_valores" />
+          <ScalarProperty Name="manejo_ubicacion_sugerida" ColumnName="manejo_ubicacion_sugerida" />
+          <ScalarProperty Name="transaccion_clasificador_producto_localizaciones" ColumnName="transaccion_clasificador_producto_localizaciones" />
+          <ScalarProperty Name="turnos_ventas_mostrador" ColumnName="turnos_ventas_mostrador" />
+          <ScalarProperty Name="inventario_precios_busqueda_pos" ColumnName="inventario_precios_busqueda_pos" />
+          <ScalarProperty Name="lista_precio_publico_sugerido" ColumnName="lista_precio_publico_sugerido" />
+          <ScalarProperty Name="minimo_multiplo_pos" ColumnName="minimo_multiplo_pos" />
+          <ScalarProperty Name="mapa" ColumnName="mapa" />
+          <ScalarProperty Name="salidas_globales" ColumnName="salidas_globales" />
+          <ScalarProperty Name="ticket_ordenado" ColumnName="ticket_ordenado" />
+          <ScalarProperty Name="verifica_margen_pos" ColumnName="verifica_margen_pos" />
+          <ScalarProperty Name="aplica_condiciones_compra" ColumnName="aplica_condiciones_compra" />
+          <ScalarProperty Name="afecta_inventario_pos" ColumnName="afecta_inventario_pos" />
+          <ScalarProperty Name="tipo_precio_pos" ColumnName="tipo_precio_pos" />
+          <ScalarProperty Name="razon_social" ColumnName="razon_social" />
+          <ScalarProperty Name="variacion_costo_promedio" ColumnName="variacion_costo_promedio" />
+          <ScalarProperty Name="comentario_ventas" ColumnName="comentario_ventas" />
+          <ScalarProperty Name="leyenda_ticket" ColumnName="leyenda_ticket" />
+          <ScalarProperty Name="pagos_multiples_clientes" ColumnName="pagos_multiples_clientes" />
+          <ScalarProperty Name="notas_tickets" ColumnName="notas_tickets" />
+          <ScalarProperty Name="fecha_recepcion_informacion" ColumnName="fecha_recepcion_informacion" />
+          <ScalarProperty Name="fecha_envio_informacion" ColumnName="fecha_envio_informacion" />
+          <ScalarProperty Name="modo_operacion" ColumnName="modo_operacion" />
+          <ScalarProperty Name="mostrar_credito_disponible" ColumnName="mostrar_credito_disponible" />
+          <ScalarProperty Name="afectacion_automatica_inventario_tickets" ColumnName="afectacion_automatica_inventario_tickets" />
+          <ScalarProperty Name="id_afectacion_inventario_tickets" ColumnName="id_afectacion_inventario_tickets" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="modo_online_pos" ColumnName="modo_online_pos" />
+          <ScalarProperty Name="surtido_express" ColumnName="surtido_express" />
+          <ScalarProperty Name="incluir_negados_salidas" ColumnName="incluir_negados_salidas" />
+          <ScalarProperty Name="fotografia_productos_pos" ColumnName="fotografia_productos_pos" />
+          <ScalarProperty Name="costo_mensual_almacenaje" ColumnName="costo_mensual_almacenaje" />
+          <ScalarProperty Name="costo_financiero" ColumnName="costo_financiero" />
+          <ScalarProperty Name="proveedor_gastos_embarque" ColumnName="proveedor_gastos_embarque" />
+          <ScalarProperty Name="fecha_inicio_BMS" ColumnName="fecha_inicio_BMS" />
+          <ScalarProperty Name="BMS" ColumnName="BMS" />
+          <ScalarProperty Name="autorizacion_pedido" ColumnName="autorizacion_pedido" />
+          <ScalarProperty Name="aplica_cv_felab" ColumnName="aplica_cv_felab" />
+          <ScalarProperty Name="plazo_expiracion" ColumnName="plazo_expiracion" />
+          <ScalarProperty Name="msc_libre" ColumnName="msc_libre" />
+          <ScalarProperty Name="flexibilidad_precio_cajas" ColumnName="flexibilidad_precio_cajas" />
+          <ScalarProperty Name="exige_existencia_total" ColumnName="exige_existencia_total" />
+          <ScalarProperty Name="margen_minimo" ColumnName="margen_minimo" />
+          <ScalarProperty Name="cliente_venta_publico" ColumnName="cliente_venta_publico" />
+          <ScalarProperty Name="permite_descvta" ColumnName="permite_descvta" />
+          <ScalarProperty Name="aplica_grupo_facturacion" ColumnName="aplica_grupo_facturacion" />
+          <ScalarProperty Name="aplica_condiciones_financieras" ColumnName="aplica_condiciones_financieras" />
+          <ScalarProperty Name="aplica_condiciones_venta" ColumnName="aplica_condiciones_venta" />
+          <ScalarProperty Name="metodo_pvs" ColumnName="metodo_pvs" />
+          <ScalarProperty Name="back_order" ColumnName="back_order" />
+          <ScalarProperty Name="clave_iva" ColumnName="clave_iva" />
+          <ScalarProperty Name="posicion_serie" ColumnName="posicion_serie" />
+          <ScalarProperty Name="serie" ColumnName="serie" />
+          <ScalarProperty Name="coordenada_y" ColumnName="coordenada_y" />
+          <ScalarProperty Name="coordenada_x" ColumnName="coordenada_x" />
+          <ScalarProperty Name="ruta_reparto" ColumnName="ruta_reparto" />
+          <ScalarProperty Name="orden_reparto" ColumnName="orden_reparto" />
+          <ScalarProperty Name="fecha_ultimo_corte" ColumnName="fecha_ultimo_corte" />
+          <ScalarProperty Name="dias_para_cargar" ColumnName="dias_para_cargar" />
+          <ScalarProperty Name="tipo_minimo" ColumnName="tipo_minimo" />
+          <ScalarProperty Name="minimo" ColumnName="minimo" />
+          <ScalarProperty Name="maximo_descuento" ColumnName="maximo_descuento" />
+          <ScalarProperty Name="exige_vendedor" ColumnName="exige_vendedor" />
+          <ScalarProperty Name="sucursal" ColumnName="sucursal" />
+          <ScalarProperty Name="sector" ColumnName="sector" />
+          <ScalarProperty Name="zona" ColumnName="zona" />
+          <ScalarProperty Name="region" ColumnName="region" />
+          <ScalarProperty Name="poblacion" ColumnName="poblacion" />
+          <ScalarProperty Name="municipio" ColumnName="municipio" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="pais" ColumnName="pais" />
+          <ScalarProperty Name="tolerancia_bascula" ColumnName="tolerancia_bascula" />
+          <ScalarProperty Name="tipo_pallet" ColumnName="tipo_pallet" />
+          <ScalarProperty Name="lista_precios" ColumnName="lista_precios" />
+          <ScalarProperty Name="fecha_ultimo_pago" ColumnName="fecha_ultimo_pago" />
+          <ScalarProperty Name="cantidad_pago" ColumnName="cantidad_pago" />
+          <ScalarProperty Name="frecuencia_pago" ColumnName="frecuencia_pago" />
+          <ScalarProperty Name="tipo_arrendamiento" ColumnName="tipo_arrendamiento" />
+          <ScalarProperty Name="numero_cajas" ColumnName="numero_cajas" />
+          <ScalarProperty Name="aire_acondicionado" ColumnName="aire_acondicionado" />
+          <ScalarProperty Name="centro_comercial" ColumnName="centro_comercial" />
+          <ScalarProperty Name="cajones_estacionamiento" ColumnName="cajones_estacionamiento" />
+          <ScalarProperty Name="area_uso" ColumnName="area_uso" />
+          <ScalarProperty Name="area_terreno" ColumnName="area_terreno" />
+          <ScalarProperty Name="rfc" ColumnName="rfc" />
+          <ScalarProperty Name="telefono2" ColumnName="telefono2" />
+          <ScalarProperty Name="telefono1" ColumnName="telefono1" />
+          <ScalarProperty Name="pobmunedo" ColumnName="pobmunedo" />
+          <ScalarProperty Name="cod_postal" ColumnName="cod_postal" />
+          <ScalarProperty Name="colonia" ColumnName="colonia" />
+          <ScalarProperty Name="num_exterior" ColumnName="num_exterior" />
+          <ScalarProperty Name="num_interior" ColumnName="num_interior" />
+          <ScalarProperty Name="calle" ColumnName="calle" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="tipo_establecimiento" ColumnName="tipo_establecimiento" />
+          <ScalarProperty Name="cod_estab" ColumnName="cod_estab" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CalkinsWS_Ubicar_Localizacion" FunctionName="BMS2015Model.Store.CalkinsWS_Ubicar_Localizacion" />
+    <FunctionImportMapping FunctionImportName="CalkinsWS_Surtido" FunctionName="BMS2015Model.Store.CalkinsWS_Surtido">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMS2015Model.CalkinsWS_Surtido_Result">
+          <ScalarProperty Name="folio_surtido" ColumnName="folio_surtido" />
+          <ScalarProperty Name="transaccion_surtido" ColumnName="transaccion_surtido" />
+          <ScalarProperty Name="cod_prod" ColumnName="cod_prod" />
+          <ScalarProperty Name="id_origen" ColumnName="id_origen" />
+          <ScalarProperty Name="cantidad_surtida" ColumnName="cantidad_surtida" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="ticket" ColumnName="ticket" />
+          <ScalarProperty Name="localizacion" ColumnName="localizacion" />
+          <ScalarProperty Name="folio" ColumnName="folio" />
+          <ScalarProperty Name="transaccion" ColumnName="transaccion" />
+          <ScalarProperty Name="cod_cte" ColumnName="cod_cte" />
+          <ScalarProperty Name="numdpc" ColumnName="numdpc" />
+          <ScalarProperty Name="localizaciones" ColumnName="localizaciones" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="inventario_localizacion">
+      <EntityTypeMapping TypeName="BMS2015Model.inventario_localizacion">
+        <MappingFragment StoreEntitySet="inventario_localizacion">
+          <ScalarProperty Name="lote_recepcion" ColumnName="lote_recepcion" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="piezas_no_disponibles" ColumnName="piezas_no_disponibles" />
+          <ScalarProperty Name="unidades_no_disponibles" ColumnName="unidades_no_disponibles" />
+          <ScalarProperty Name="exist_piezas" ColumnName="exist_piezas" />
+          <ScalarProperty Name="exist_unidades" ColumnName="exist_unidades" />
+          <ScalarProperty Name="lote" ColumnName="lote" />
+          <ScalarProperty Name="cod_prod" ColumnName="cod_prod" />
+          <ScalarProperty Name="cod_estab" ColumnName="cod_estab" />
+          <ScalarProperty Name="localizacion" ColumnName="localizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CalkinsWS_SurtidoGuardar" FunctionName="BMS2015Model.Store.CalkinsWS_SurtidoGuardar" />
+    <EntitySetMapping Name="razones_no_disponible">
+      <EntityTypeMapping TypeName="BMS2015Model.razones_no_disponible">
+        <MappingFragment StoreEntitySet="razones_no_disponible">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="abreviatura" ColumnName="abreviatura" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="razon_nodisponible" ColumnName="razon_nodisponible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="localizaciones">
+      <EntityTypeMapping TypeName="BMS2015Model.localizacione">
+        <MappingFragment StoreEntitySet="localizaciones">
+          <ScalarProperty Name="orden_surtido" ColumnName="orden_surtido" />
+          <ScalarProperty Name="maximo" ColumnName="maximo" />
+          <ScalarProperty Name="minimo" ColumnName="minimo" />
+          <ScalarProperty Name="mercancia_disponible" ColumnName="mercancia_disponible" />
+          <ScalarProperty Name="multiples_productos" ColumnName="multiples_productos" />
+          <ScalarProperty Name="clasificador_producto" ColumnName="clasificador_producto" />
+          <ScalarProperty Name="nivel" ColumnName="nivel" />
+          <ScalarProperty Name="profundidad" ColumnName="profundidad" />
+          <ScalarProperty Name="posicion" ColumnName="posicion" />
+          <ScalarProperty Name="rack" ColumnName="rack" />
+          <ScalarProperty Name="pasillo" ColumnName="pasillo" />
+          <ScalarProperty Name="zona" ColumnName="zona" />
+          <ScalarProperty Name="ultima_modificacion" ColumnName="ultima_modificacion" />
+          <ScalarProperty Name="disponible" ColumnName="disponible" />
+          <ScalarProperty Name="pick_slot" ColumnName="pick_slot" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="cod_estab" ColumnName="cod_estab" />
+          <ScalarProperty Name="localizacion" ColumnName="localizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CalkinsWS_ReubicarProducto" FunctionName="BMS2015Model.Store.CalkinsWS_ReubicarProducto">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMS2015Model.CalkinsWS_ReubicarProducto_Result">
+          <ScalarProperty Name="cod_prod" ColumnName="cod_prod" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="lote" ColumnName="lote" />
+          <ScalarProperty Name="exist_unidades" ColumnName="exist_unidades" />
+          <ScalarProperty Name="exist_piezas" ColumnName="exist_piezas" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="lote_recepcion" ColumnName="lote_recepcion" />
+          <ScalarProperty Name="localizacion" ColumnName="localizacion" />
+          <ScalarProperty Name="cod_estab" ColumnName="cod_estab" />
+          <ScalarProperty Name="multiples_productos" ColumnName="multiples_productos" />
+          <ScalarProperty Name="mercancia_disponible" ColumnName="mercancia_disponible" />
+          <ScalarProperty Name="picking" ColumnName="picking" />
+          <ScalarProperty Name="mercancia_disponible1" ColumnName="mercancia_disponible1" />
+          <ScalarProperty Name="prodxpall" ColumnName="prodxpall" />
+          <ScalarProperty Name="costo" ColumnName="costo" />
+          <ScalarProperty Name="unidad_compra" ColumnName="unidad_compra" />
+          <ScalarProperty Name="volumen" ColumnName="volumen" />
+          <ScalarProperty Name="peso" ColumnName="peso" />
+          <ScalarProperty Name="ieps" ColumnName="ieps" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CalkinsWS_ReubicarLocDisponibles" FunctionName="BMS2015Model.Store.CalkinsWS_ReubicarLocDisponibles" />
+    <EntitySetMapping Name="solicitudes_surtido_pick_slot">
+      <EntityTypeMapping TypeName="BMS2015Model.solicitudes_surtido_pick_slot">
+        <MappingFragment StoreEntitySet="solicitudes_surtido_pick_slot">
+          <ScalarProperty Name="localizacion" ColumnName="localizacion" />
+          <ScalarProperty Name="orden_carga" ColumnName="orden_carga" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="usuario_surtido" ColumnName="usuario_surtido" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="fecha_surtido" ColumnName="fecha_surtido" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="cod_prod" ColumnName="cod_prod" />
+          <ScalarProperty Name="folio" ColumnName="folio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CalkinsWS_ModificaNoDisponible" FunctionName="BMS2015Model.Store.CalkinsWS_ModificaNoDisponible" />
+    <FunctionImportMapping FunctionImportName="CalkinsWS_SurtidoPickingRefrescar" FunctionName="BMS2015Model.Store.CalkinsWS_SurtidoPickingRefrescar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMS2015Model.CalkinsWS_SurtidoPickingRefrescar_Result">
+          <ScalarProperty Name="ticket" ColumnName="ticket" />
+          <ScalarProperty Name="contenedor" ColumnName="contenedor" />
+          <ScalarProperty Name="razon_social" ColumnName="razon_social" />
+          <ScalarProperty Name="cod_cte" ColumnName="cod_cte" />
+          <ScalarProperty Name="numdpc" ColumnName="numdpc" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CalkinsWS_SurtidoPickingProdTicket" FunctionName="BMS2015Model.Store.CalkinsWS_SurtidoPickingProdTicket">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMS2015Model.CalkinsWS_SurtidoPickingProdTicket_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ticket" ColumnName="ticket" />
+          <ScalarProperty Name="cod_prod" ColumnName="cod_prod" />
+          <ScalarProperty Name="descripcion_completa" ColumnName="descripcion_completa" />
+          <ScalarProperty Name="unidad" ColumnName="unidad" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="cantidad_surtida" ColumnName="cantidad_surtida" />
+          <ScalarProperty Name="contenedor" ColumnName="contenedor" />
+          <ScalarProperty Name="existencia" ColumnName="existencia" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CalkinsWS_LocProductoIntegracion" FunctionName="BMS2015Model.Store.CalkinsWS_LocProductoIntegracion" />
+    <FunctionImportMapping FunctionImportName="CalkinsWS_SurtidoPickingGuardar" FunctionName="BMS2015Model.Store.CalkinsWS_SurtidoPickingGuardar" />
+    <FunctionImportMapping FunctionImportName="CalkinsWS_SurtidoPickingValidaLoc" FunctionName="BMS2015Model.Store.CalkinsWS_SurtidoPickingValidaLoc">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMS2015Model.CalkinsWS_SurtidoPickingValidaLoc_Result">
+          <ScalarProperty Name="localizacion" ColumnName="localizacion" />
+          <ScalarProperty Name="cod_prod" ColumnName="cod_prod" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CalkinsWS_SurtidoPicking_Refrescar" FunctionName="BMS2015Model.Store.CalkinsWS_SurtidoPicking_Refrescar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMS2015Model.CalkinsWS_SurtidoPicking_Refrescar_Result">
+          <ScalarProperty Name="ticket" ColumnName="ticket" />
+          <ScalarProperty Name="contenedor" ColumnName="contenedor" />
+          <ScalarProperty Name="razon_social" ColumnName="razon_social" />
+          <ScalarProperty Name="cod_cte" ColumnName="cod_cte" />
+          <ScalarProperty Name="numdpc" ColumnName="numdpc" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CalkinsWS_BuscarProductos" FunctionName="BMS2015Model.Store.CalkinsWS_BuscarProductos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMS2015Model.CalkinsWS_BuscarProductos_Result">
           <ScalarProperty Name="cod_prod" ColumnName="cod_prod" />
           <ScalarProperty Name="descripcion_completa" ColumnName="descripcion_completa" />
           <ScalarProperty Name="contenido" ColumnName="contenido" />
@@ -78,13 +809,71 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="MobileWS_CheckEscanerProd" FunctionName="BMS2015Model.Store.MobileWS_CheckEscanerProd" />
-    <FunctionImportMapping FunctionImportName="MobileBMS_GuardarNotasConteoProd" FunctionName="BMS2015Model.Store.MobileBMS_GuardarNotasConteoProd" />
-    <FunctionImportMapping FunctionImportName="MobileBMS_InventarioProductoFecha" FunctionName="BMS2015Model.Store.MobileBMS_InventarioProductoFecha">
+    <FunctionImportMapping FunctionImportName="CalkinsWS_CheckEscanerProd" FunctionName="BMS2015Model.Store.CalkinsWS_CheckEscanerProd" />
+    <FunctionImportMapping FunctionImportName="CalkinsWS_DetalleConteo" FunctionName="BMS2015Model.Store.CalkinsWS_DetalleConteo">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="BMS2015Model.MobileBMS_InventarioProductoFecha_Result">
+        <ComplexTypeMapping TypeName="BMS2015Model.CalkinsWS_DetalleConteo_Result">
+          <ScalarProperty Name="folio" ColumnName="folio" />
+          <ScalarProperty Name="cod_prod" ColumnName="cod_prod" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="unidades_compra" ColumnName="unidades_compra" />
+          <ScalarProperty Name="unidades_alternativas" ColumnName="unidades_alternativas" />
+          <ScalarProperty Name="exist_unidades_compra" ColumnName="exist_unidades_compra" />
+          <ScalarProperty Name="exist_unidades_alternativas" ColumnName="exist_unidades_alternativas" />
+          <ScalarProperty Name="programacion" ColumnName="programacion" />
+          <ScalarProperty Name="notas" ColumnName="notas" />
+          <ScalarProperty Name="descripcion_completa" ColumnName="descripcion_completa" />
+          <ScalarProperty Name="NombreUC" ColumnName="NombreUC" />
+          <ScalarProperty Name="NombreUA" ColumnName="NombreUA" />
+          <ScalarProperty Name="forma_expresar_inventario" ColumnName="forma_expresar_inventario" />
+          <ScalarProperty Name="contenido" ColumnName="contenido" />
+          <ScalarProperty Name="AbrevUC" ColumnName="AbrevUC" />
+          <ScalarProperty Name="AbrevUA" ColumnName="AbrevUA" />
+          <ScalarProperty Name="codigo_barras_unidad" ColumnName="codigo_barras_unidad" />
+          <ScalarProperty Name="codigo_barras_pieza" ColumnName="codigo_barras_pieza" />
+          <ScalarProperty Name="contado" ColumnName="contado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CalkinsWS_EstabsUsuario" FunctionName="BMS2015Model.Store.CalkinsWS_EstabsUsuario">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMS2015Model.CalkinsWS_EstabsUsuario_Result">
+          <ScalarProperty Name="cod_estab" ColumnName="cod_estab" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="cliente_venta_publico" ColumnName="cliente_venta_publico" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CalkinsWS_GuardarConteo" FunctionName="BMS2015Model.Store.CalkinsWS_GuardarConteo" />
+    <FunctionImportMapping FunctionImportName="CalkinsWS_GuardarNotasConteoProd" FunctionName="BMS2015Model.Store.CalkinsWS_GuardarNotasConteoProd" />
+    <FunctionImportMapping FunctionImportName="CalkinsWS_InfoConteo" FunctionName="BMS2015Model.Store.CalkinsWS_InfoConteo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMS2015Model.CalkinsWS_InfoConteo_Result">
+          <ScalarProperty Name="folio" ColumnName="folio" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="cod_estab" ColumnName="cod_estab" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="registrado" ColumnName="registrado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CalkinsWS_InventarioProductoFecha" FunctionName="BMS2015Model.Store.CalkinsWS_InventarioProductoFecha">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMS2015Model.CalkinsWS_InventarioProductoFecha_Result">
           <ScalarProperty Name="uc" ColumnName="uc" />
           <ScalarProperty Name="ua" ColumnName="ua" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CalkinsWS_Login" FunctionName="BMS2015Model.Store.CalkinsWS_Login">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMS2015Model.CalkinsWS_Login_Result">
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="cod_estab" ColumnName="cod_estab" />
+          <ScalarProperty Name="vendedor_default_ventas" ColumnName="vendedor_default_ventas" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

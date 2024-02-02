@@ -21,7 +21,7 @@ namespace BMSMobileWS.Controllers
             {
                 using(BMS2015Entities db = new BMS2015Entities())
                 {
-                    var user = db.MobileBMS_Login(Usuario, Clave).SingleOrDefault();
+                    var user = db.CalkinsWS_Login(Usuario, Clave).SingleOrDefault();
                     if (user == null)
                         return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Usuario o contraseña erroneos.");
                     else
@@ -42,7 +42,7 @@ namespace BMSMobileWS.Controllers
             {
                 using(BMS2015Entities db = new BMS2015Entities())
                 {
-                    var estab = db.MobileBMS_EstabsUsuario(Usuario).ToList();
+                    var estab = db.CalkinsWS_EstabsUsuario(Usuario).ToList();
                     if (estab.Count() <= 0 || estab == null)
                         return Request.CreateErrorResponse(HttpStatusCode.NotFound, "No se encuentraron establecimientos.");
                     else

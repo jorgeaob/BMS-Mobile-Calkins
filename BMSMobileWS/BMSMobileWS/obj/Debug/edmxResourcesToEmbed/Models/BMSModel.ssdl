@@ -309,12 +309,24 @@
   <Function Name="CalkinsWS_ActualizarUbicacionLote" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Folio" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="CalkinsWS_BuscarProductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Codigo" Type="char" Mode="In" />
+    <Parameter Name="Filtro" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Estab" Type="char" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_CheckEscanerProd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CodigoBarras" Type="varchar" Mode="In" />
+    <Parameter Name="Estab" Type="char" Mode="In" />
+  </Function>
   <Function Name="CalkinsWS_ConsultaPallet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Pallet" Type="varchar" Mode="In" />
     <Parameter Name="Localizacion" Type="varchar" Mode="In" />
     <Parameter Name="EsPallet" Type="bit" Mode="In" />
     <Parameter Name="CodEstab" Type="varchar" Mode="In" />
     <Parameter Name="TraetPallet" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_DetalleConteo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Folio" Type="char" Mode="In" />
   </Function>
   <Function Name="CalkinsWS_DetalleEntradaDevolucion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Folio" Type="char" Mode="In" />
@@ -329,6 +341,9 @@
   </Function>
   <Function Name="CalkinsWS_EntradasSalidasLoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Loc" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_EstabsUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Usuario" Type="char" Mode="In" />
   </Function>
   <Function Name="CalkinsWS_GenerarFolio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Transaccion" Type="varchar" Mode="In" />
@@ -362,6 +377,19 @@
     <Parameter Name="notasGeneral" Type="varchar" Mode="In" />
     <Parameter Name="clave_afectacion_inventario" Type="char" Mode="In" />
     <Parameter Name="Operacion" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_GuardarConteo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Folio" Type="char" Mode="In" />
+    <Parameter Name="CodProd" Type="char" Mode="In" />
+    <Parameter Name="Fecha" Type="datetime" Mode="In" />
+    <Parameter Name="Usuario" Type="char" Mode="In" />
+    <Parameter Name="UC" Type="decimal" Mode="In" />
+    <Parameter Name="UA" Type="decimal" Mode="In" />
+    <Parameter Name="existUC" Type="decimal" Mode="In" />
+    <Parameter Name="existUA" Type="decimal" Mode="In" />
+    <Parameter Name="Programacion" Type="char" Mode="In" />
+    <Parameter Name="Notas" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Contado" Type="bit" Mode="In" />
   </Function>
   <Function Name="CalkinsWS_GuardarDetalleEntrada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="folio" Type="varchar" Mode="In" />
@@ -505,20 +533,37 @@
     <Parameter Name="Operacion" Type="varchar" Mode="In" />
     <Parameter Name="cod_cte" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="CalkinsWS_GuardarNotasConteoProd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Folio" Type="char" Mode="In" />
+    <Parameter Name="CodProd" Type="char" Mode="In" />
+    <Parameter Name="Notas" Type="varchar(max)" Mode="In" />
+  </Function>
   <Function Name="CalkinsWS_GuardarPallet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Pallet" Type="varchar" Mode="In" />
     <Parameter Name="Localizacion" Type="varchar" Mode="In" />
     <Parameter Name="FechaCad" Type="date" Mode="In" />
     <Parameter Name="LoteFab" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="CalkinsWS_InfoConteo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Folio" Type="char" Mode="In" />
+  </Function>
   <Function Name="CalkinsWS_InfoTransferencia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Folio" Type="char" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_InventarioProductoFecha" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="producto" Type="char" Mode="In" />
+    <Parameter Name="estab" Type="char" Mode="In" />
+    <Parameter Name="fecha" Type="datetime" Mode="In" />
   </Function>
   <Function Name="CalkinsWS_LocProductoIntegracion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="cod_cte" Type="varchar" Mode="In" />
     <Parameter Name="numdpc" Type="varchar" Mode="In" />
     <Parameter Name="cod_prod" Type="varchar" Mode="In" />
     <Parameter Name="cod_estab" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Usuario" Type="char" Mode="In" />
+    <Parameter Name="Clave" Type="varchar(max)" Mode="In" />
   </Function>
   <Function Name="CalkinsWS_ModificaInventarioLoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="cod_prod" Type="varchar" Mode="In" />
@@ -708,51 +753,6 @@
     <Parameter Name="EsLote" Type="bit" Mode="In" />
     <Parameter Name="Cant" Type="money" Mode="In" />
     <Parameter Name="Unid" Type="char" Mode="In" />
-  </Function>
-  <Function Name="MobileBMS_BuscarProductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="Codigo" Type="char" Mode="In" />
-    <Parameter Name="Filtro" Type="nvarchar(max)" Mode="In" />
-    <Parameter Name="Estab" Type="char" Mode="In" />
-  </Function>
-  <Function Name="MobileBMS_DetalleConteo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="Folio" Type="char" Mode="In" />
-  </Function>
-  <Function Name="MobileBMS_EstabsUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="Usuario" Type="char" Mode="In" />
-  </Function>
-  <Function Name="MobileBMS_GuardarConteo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="Folio" Type="char" Mode="In" />
-    <Parameter Name="CodProd" Type="char" Mode="In" />
-    <Parameter Name="Fecha" Type="datetime" Mode="In" />
-    <Parameter Name="Usuario" Type="char" Mode="In" />
-    <Parameter Name="UC" Type="decimal" Mode="In" />
-    <Parameter Name="UA" Type="decimal" Mode="In" />
-    <Parameter Name="existUC" Type="decimal" Mode="In" />
-    <Parameter Name="existUA" Type="decimal" Mode="In" />
-    <Parameter Name="Programacion" Type="char" Mode="In" />
-    <Parameter Name="Notas" Type="varchar(max)" Mode="In" />
-    <Parameter Name="Contado" Type="bit" Mode="In" />
-  </Function>
-  <Function Name="MobileBMS_GuardarNotasConteoProd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="Folio" Type="char" Mode="In" />
-    <Parameter Name="CodProd" Type="char" Mode="In" />
-    <Parameter Name="Notas" Type="varchar(max)" Mode="In" />
-  </Function>
-  <Function Name="MobileBMS_InfoConteo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="Folio" Type="char" Mode="In" />
-  </Function>
-  <Function Name="MobileBMS_InventarioProductoFecha" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="producto" Type="char" Mode="In" />
-    <Parameter Name="estab" Type="char" Mode="In" />
-    <Parameter Name="fecha" Type="datetime" Mode="In" />
-  </Function>
-  <Function Name="MobileBMS_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="Usuario" Type="char" Mode="In" />
-    <Parameter Name="Clave" Type="varchar(max)" Mode="In" />
-  </Function>
-  <Function Name="MobileWS_CheckEscanerProd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="CodigoBarras" Type="varchar" Mode="In" />
-    <Parameter Name="Estab" Type="char" Mode="In" />
   </Function>
   <EntityContainer Name="BMS2015ModelStoreContainer">
     <EntitySet Name="establecimientos" EntityType="Self.establecimientos" Schema="dbo" store:Type="Tables" />

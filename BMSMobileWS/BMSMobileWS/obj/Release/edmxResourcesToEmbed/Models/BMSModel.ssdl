@@ -1,17 +1,384 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="BMS2015Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <Function Name="MobileBMS_BuscarProductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+<Schema Namespace="BMS2015Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="establecimientos">
+    <Key>
+      <PropertyRef Name="cod_estab" />
+    </Key>
+    <Property Name="cod_estab" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="tipo_establecimiento" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="nombre" Type="char" MaxLength="40" Nullable="false" />
+    <Property Name="calle" Type="char" MaxLength="100" Nullable="false" />
+    <Property Name="num_interior" Type="char" MaxLength="20" Nullable="false" />
+    <Property Name="num_exterior" Type="char" MaxLength="20" Nullable="false" />
+    <Property Name="colonia" Type="char" MaxLength="100" Nullable="false" />
+    <Property Name="cod_postal" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="pobmunedo" Type="char" MaxLength="40" Nullable="false" />
+    <Property Name="telefono1" Type="char" MaxLength="25" Nullable="false" />
+    <Property Name="telefono2" Type="char" MaxLength="25" Nullable="false" />
+    <Property Name="rfc" Type="char" MaxLength="15" Nullable="false" />
+    <Property Name="area_terreno" Type="int" Nullable="false" />
+    <Property Name="area_uso" Type="int" Nullable="false" />
+    <Property Name="cajones_estacionamiento" Type="int" Nullable="false" />
+    <Property Name="centro_comercial" Type="bit" Nullable="false" />
+    <Property Name="aire_acondicionado" Type="bit" Nullable="false" />
+    <Property Name="numero_cajas" Type="tinyint" Nullable="false" />
+    <Property Name="tipo_arrendamiento" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="frecuencia_pago" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="cantidad_pago" Type="smallmoney" Nullable="false" />
+    <Property Name="fecha_ultimo_pago" Type="smalldatetime" />
+    <Property Name="lista_precios" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="tipo_pallet" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="tolerancia_bascula" Type="decimal" Precision="5" Scale="3" Nullable="false" />
+    <Property Name="pais" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="estado" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="municipio" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="poblacion" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="region" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="zona" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="sector" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="sucursal" Type="bit" Nullable="false" />
+    <Property Name="exige_vendedor" Type="bit" Nullable="false" />
+    <Property Name="maximo_descuento" Type="decimal" Precision="6" Scale="3" Nullable="false" />
+    <Property Name="minimo" Type="int" Nullable="false" />
+    <Property Name="tipo_minimo" Type="char" MaxLength="1" />
+    <Property Name="dias_para_cargar" Type="tinyint" Nullable="false" />
+    <Property Name="fecha_ultimo_corte" Type="datetime" Nullable="false" />
+    <Property Name="orden_reparto" Type="smallint" Nullable="false" />
+    <Property Name="ruta_reparto" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="coordenada_x" Type="smallint" Nullable="false" />
+    <Property Name="coordenada_y" Type="smallint" Nullable="false" />
+    <Property Name="serie" Type="char" MaxLength="4" Nullable="false" />
+    <Property Name="posicion_serie" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="clave_iva" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="back_order" Type="bit" Nullable="false" />
+    <Property Name="metodo_pvs" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="aplica_condiciones_venta" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="aplica_condiciones_financieras" Type="bit" Nullable="false" />
+    <Property Name="aplica_grupo_facturacion" Type="bit" Nullable="false" />
+    <Property Name="permite_descvta" Type="bit" Nullable="false" />
+    <Property Name="cliente_venta_publico" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="margen_minimo" Type="numeric" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="exige_existencia_total" Type="bit" Nullable="false" />
+    <Property Name="flexibilidad_precio_cajas" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="msc_libre" Type="bit" Nullable="false" />
+    <Property Name="plazo_expiracion" Type="tinyint" Nullable="false" />
+    <Property Name="aplica_cv_felab" Type="bit" Nullable="false" />
+    <Property Name="autorizacion_pedido" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="BMS" Type="bit" Nullable="false" />
+    <Property Name="fecha_inicio_BMS" Type="smalldatetime" Nullable="false" />
+    <Property Name="proveedor_gastos_embarque" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="costo_financiero" Type="decimal" Precision="9" Scale="4" Nullable="false" />
+    <Property Name="costo_mensual_almacenaje" Type="money" Nullable="false" />
+    <Property Name="fotografia_productos_pos" Type="bit" Nullable="false" />
+    <Property Name="incluir_negados_salidas" Type="bit" Nullable="false" />
+    <Property Name="surtido_express" Type="bit" Nullable="false" />
+    <Property Name="modo_online_pos" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="status" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="id_afectacion_inventario_tickets" Type="int" Nullable="false" />
+    <Property Name="afectacion_automatica_inventario_tickets" Type="bit" Nullable="false" />
+    <Property Name="mostrar_credito_disponible" Type="bit" Nullable="false" />
+    <Property Name="modo_operacion" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="fecha_envio_informacion" Type="smalldatetime" Nullable="false" />
+    <Property Name="fecha_recepcion_informacion" Type="smalldatetime" Nullable="false" />
+    <Property Name="notas_tickets" Type="bit" Nullable="false" />
+    <Property Name="pagos_multiples_clientes" Type="bit" Nullable="false" />
+    <Property Name="leyenda_ticket" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="comentario_ventas" Type="bit" Nullable="false" />
+    <Property Name="variacion_costo_promedio" Type="tinyint" Nullable="false" />
+    <Property Name="razon_social" Type="char" MaxLength="150" />
+    <Property Name="tipo_precio_pos" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="afecta_inventario_pos" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="aplica_condiciones_compra" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="verifica_margen_pos" Type="bit" Nullable="false" />
+    <Property Name="ticket_ordenado" Type="bit" Nullable="false" />
+    <Property Name="salidas_globales" Type="bit" Nullable="false" />
+    <Property Name="mapa" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="minimo_multiplo_pos" Type="bit" Nullable="false" />
+    <Property Name="lista_precio_publico_sugerido" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="inventario_precios_busqueda_pos" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="turnos_ventas_mostrador" Type="bit" Nullable="false" />
+    <Property Name="transaccion_clasificador_producto_localizaciones" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="manejo_ubicacion_sugerida" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="manejo_recibo_valores" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="orden" Type="smallint" Nullable="false" />
+    <Property Name="volumen" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="capacidad_pallets" Type="int" Nullable="false" />
+    <Property Name="comentario_ventas_renglon_aparte" Type="bit" Nullable="false" />
+    <Property Name="valor_transferencias" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="afecta_nd_ordenes_carga" Type="bit" Nullable="false" />
+    <Property Name="anticipo_cliente_solo_apartados" Type="bit" Nullable="false" />
+    <Property Name="pagare_embarques" Type="bit" Nullable="false" />
+    <Property Name="cfd_llave_privada" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="cfd_certificado_digital" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="cfd_archivos_xml" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="cfd_contraseña_llave_privada" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="codigo_gln" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ruta_lector_huella" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="grupo_establecimiento" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="abreviatura" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="regimen_fiscal" Type="char" MaxLength="20" Nullable="false" />
+    <Property Name="usuario_ultima_modificacion" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="ultima_modificacion" Type="smalldatetime" Nullable="false" />
+    <Property Name="ruta_xml_proveedores" Type="varchar" MaxLength="500" />
+    <Property Name="curp" Type="char" MaxLength="18" Nullable="false" />
+    <Property Name="ruta_pdf_proveedores" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="horas_diferencia_servidor" Type="smallint" />
+    <Property Name="geolocalizacion" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Colonia_codigo" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="Surtido_Picking" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="inventario_localizacion">
+    <Key>
+      <PropertyRef Name="localizacion" />
+      <PropertyRef Name="cod_estab" />
+      <PropertyRef Name="cod_prod" />
+      <PropertyRef Name="lote" />
+    </Key>
+    <Property Name="localizacion" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="cod_estab" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="cod_prod" Type="char" MaxLength="13" Nullable="false" />
+    <Property Name="lote" Type="char" MaxLength="20" Nullable="false" />
+    <Property Name="exist_unidades" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="exist_piezas" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="unidades_no_disponibles" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="piezas_no_disponibles" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="fecha" Type="smalldatetime" Nullable="false" />
+    <Property Name="lote_recepcion" Type="char" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="localizaciones">
+    <Key>
+      <PropertyRef Name="localizacion" />
+      <PropertyRef Name="cod_estab" />
+    </Key>
+    <Property Name="localizacion" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="cod_estab" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="fecha" Type="smalldatetime" Nullable="false" />
+    <Property Name="pick_slot" Type="bit" Nullable="false" />
+    <Property Name="disponible" Type="bit" Nullable="false" />
+    <Property Name="ultima_modificacion" Type="smalldatetime" Nullable="false" />
+    <Property Name="zona" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="pasillo" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="rack" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="posicion" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="profundidad" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="nivel" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="clasificador_producto" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="multiples_productos" Type="bit" Nullable="false" />
+    <Property Name="mercancia_disponible" Type="bit" Nullable="false" />
+    <Property Name="minimo" Type="smallint" Nullable="false" />
+    <Property Name="maximo" Type="smallint" Nullable="false" />
+    <Property Name="orden_surtido" Type="int" />
+  </EntityType>
+  <EntityType Name="proveedores">
+    <Key>
+      <PropertyRef Name="cod_prv" />
+    </Key>
+    <Property Name="cod_prv" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="tipo_cuenta_pagar" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="tipo_proveedor" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="razon_social" Type="char" MaxLength="80" Nullable="false" />
+    <Property Name="clasificacion_fiscal" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="nombre" Type="char" MaxLength="30" Nullable="false" />
+    <Property Name="ap_paterno" Type="char" MaxLength="30" Nullable="false" />
+    <Property Name="ap_materno" Type="char" MaxLength="30" Nullable="false" />
+    <Property Name="nom_comercial" Type="char" MaxLength="30" Nullable="false" />
+    <Property Name="calle" Type="varchar" MaxLength="120" Nullable="false" />
+    <Property Name="num_exterior" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="num_interior" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="colonia" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="cod_postal" Type="char" MaxLength="6" Nullable="false" />
+    <Property Name="delegacion" Type="char" MaxLength="15" Nullable="false" />
+    <Property Name="pobmunedo" Type="char" MaxLength="50" Nullable="false" />
+    <Property Name="tel1" Type="char" MaxLength="25" />
+    <Property Name="tel2" Type="char" MaxLength="25" />
+    <Property Name="fax" Type="char" MaxLength="25" />
+    <Property Name="rfc" Type="char" MaxLength="15" Nullable="false" />
+    <Property Name="clave_iva" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="flexibilidad_precio" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="productos_catalogados" Type="bit" Nullable="false" />
+    <Property Name="pago_flete" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="reembolso_flete" Type="numeric" Precision="5" Scale="1" Nullable="false" />
+    <Property Name="pedido_minimo" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="tipo_minimo" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="codigo_nuestro_proveedor" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="manejo_devoluciones" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="plazo" Type="smallint" Nullable="false" />
+    <Property Name="tolerancia_pago" Type="tinyint" Nullable="false" />
+    <Property Name="abono_en_cuenta" Type="bit" Nullable="false" />
+    <Property Name="retencion_pago" Type="bit" Nullable="false" />
+    <Property Name="back_order" Type="bit" Nullable="false" />
+    <Property Name="autorizacion_ordenes_compra" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="pagina_web" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="moneda" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="fecha_alta" Type="datetime" Nullable="false" />
+    <Property Name="pais" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="estado" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="municipio" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="poblacion" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="cod_estab" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="linea_fletera" Type="bit" Nullable="false" />
+    <Property Name="formato_factura" Type="char" MaxLength="20" />
+    <Property Name="pago_estricto" Type="bit" Nullable="false" />
+    <Property Name="status_proveedor" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="e_mail" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ultima_modificacion" Type="smalldatetime" Nullable="false" />
+    <Property Name="proveedor_linea_fletera" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="condicion_plazo" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="giro_proveedor" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="curp" Type="char" MaxLength="18" Nullable="false" />
+    <Property Name="entre_calles" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="orientacion" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="mapa" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="coordenada_x" Type="smallint" Nullable="false" />
+    <Property Name="coordenada_y" Type="smallint" Nullable="false" />
+    <Property Name="clave_valor_pagar" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="evaluacion_proveedor" Type="tinyint" Nullable="false" />
+    <Property Name="notas" Type="varchar" MaxLength="1000" />
+    <Property Name="iva_incluido_precio" Type="bit" Nullable="false" />
+    <Property Name="nacionalidad" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="comitente" Type="bit" Nullable="false" />
+    <Property Name="condicion_pago" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="cod_cte" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="envio_directo_cliente" Type="bit" Nullable="false" />
+    <Property Name="te" Type="smallint" Nullable="false" />
+    <Property Name="comprador" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="limite_credito" Type="money" Nullable="false" />
+    <Property Name="tolerancia_limite_credito" Type="tinyint" Nullable="false" />
+    <Property Name="paqueteria" Type="bit" Nullable="false" />
+    <Property Name="afianzadora" Type="bit" Nullable="false" />
+    <Property Name="aseguradora" Type="bit" Nullable="false" />
+    <Property Name="tipo_documento_venta" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="usuario_ultima_modificacion" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="dias_atencion_oc" Type="smallint" Nullable="false" />
+    <Property Name="exige_orden_compra_anticipos" Type="bit" Nullable="false" />
+    <Property Name="geolocalizacion" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="razones_devoluciones_clientes">
+    <Key>
+      <PropertyRef Name="razon_devoluciones_clientes" />
+    </Key>
+    <Property Name="razon_devoluciones_clientes" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="abreviatura" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="status" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="causante_devoluciones_clientes" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="afecta_comision_ventas" Type="bit" Nullable="false" />
+    <Property Name="cargo" Type="tinyint" Nullable="false" />
+    <Property Name="cod_prod_cargo" Type="char" MaxLength="13" Nullable="false" />
+    <Property Name="exige_notas" Type="bit" Nullable="false" />
+    <Property Name="razon_credito_clientes" Type="char" MaxLength="5" Nullable="false" />
+  </EntityType>
+  <EntityType Name="razones_no_disponible">
+    <Key>
+      <PropertyRef Name="razon_nodisponible" />
+    </Key>
+    <Property Name="razon_nodisponible" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="nombre" Type="char" MaxLength="30" Nullable="false" />
+    <Property Name="abreviatura" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="status" Type="char" MaxLength="5" Nullable="false" />
+  </EntityType>
+  <EntityType Name="solicitudes_surtido_pick_slot">
+    <Key>
+      <PropertyRef Name="folio" />
+    </Key>
+    <Property Name="folio" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="cod_prod" Type="char" MaxLength="13" Nullable="false" />
+    <Property Name="fecha" Type="smalldatetime" Nullable="false" />
+    <Property Name="fecha_surtido" Type="smalldatetime" />
+    <Property Name="usuario" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="usuario_surtido" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="status" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="orden_carga" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="localizacion" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <Function Name="CalkinsWS_ActualizarUbicacionGuardar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="loc" Type="varchar" Mode="In" />
+    <Parameter Name="cod_prodT" Type="varchar" Mode="In" />
+    <Parameter Name="loteT" Type="varchar" Mode="In" />
+    <Parameter Name="cod_prodR" Type="varchar" Mode="In" />
+    <Parameter Name="loteR" Type="varchar" Mode="In" />
+    <Parameter Name="usr" Type="varchar" Mode="In" />
+    <Parameter Name="ChkUbicar" Type="bit" Mode="In" />
+    <Parameter Name="CodEstab" Type="varchar" Mode="In" />
+    <Parameter Name="Cant" Type="decimal" Mode="In" />
+    <Parameter Name="Pallet" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_ActualizarUbicacionLoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Loc" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_ActualizarUbicacionLote" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Folio" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_BuscarProductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Codigo" Type="char" Mode="In" />
     <Parameter Name="Filtro" Type="nvarchar(max)" Mode="In" />
     <Parameter Name="Estab" Type="char" Mode="In" />
   </Function>
-  <Function Name="MobileBMS_DetalleConteo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+  <Function Name="CalkinsWS_CheckEscanerProd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CodigoBarras" Type="varchar" Mode="In" />
+    <Parameter Name="Estab" Type="char" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_ConsultaPallet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Pallet" Type="varchar" Mode="In" />
+    <Parameter Name="Localizacion" Type="varchar" Mode="In" />
+    <Parameter Name="EsPallet" Type="bit" Mode="In" />
+    <Parameter Name="CodEstab" Type="varchar" Mode="In" />
+    <Parameter Name="TraetPallet" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_DetalleConteo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Folio" Type="char" Mode="In" />
   </Function>
-  <Function Name="MobileBMS_EstabsUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+  <Function Name="CalkinsWS_DetalleEntradaDevolucion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Folio" Type="char" Mode="In" />
+    <Parameter Name="Trans" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_DetalleRecepcionTransferencia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Folio" Type="char" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_EntradaDEvolucion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Folio" Type="char" Mode="In" />
+    <Parameter Name="Trans" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_EntradasSalidasLoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Loc" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_EstabsUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Usuario" Type="char" Mode="In" />
   </Function>
-  <Function Name="MobileBMS_GuardarConteo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+  <Function Name="CalkinsWS_GenerarFolio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Transaccion" Type="varchar" Mode="In" />
+    <Parameter Name="EstabCode" Type="varchar" Mode="In" />
+    <Parameter Name="Actualizar" Type="bit" Mode="In" />
+    <Parameter Name="Folio" Type="varchar" Mode="InOut" />
+    <Parameter Name="MaxReng" Type="int" Mode="InOut" />
+    <Parameter Name="EquipCode" Type="varchar" Mode="In" />
+    <Parameter Name="UnidadPermitida" Type="char" Mode="InOut" />
+  </Function>
+  <Function Name="CalkinsWS_GuadarRecepcionTransferencia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Folio" Type="char" Mode="In" />
+    <Parameter Name="transaccion" Type="varchar" Mode="In" />
+    <Parameter Name="transaccion_origen" Type="varchar" Mode="In" />
+    <Parameter Name="cod_estab" Type="varchar" Mode="In" />
+    <Parameter Name="cod_estab_alterno" Type="char" Mode="In" />
+    <Parameter Name="folio_transferencia" Type="char" Mode="In" />
+    <Parameter Name="importeGeneral" Type="money" Mode="In" />
+    <Parameter Name="ivaGeneral" Type="money" Mode="In" />
+    <Parameter Name="iepsGeneral" Type="money" Mode="In" />
+    <Parameter Name="costoGeneral" Type="money" Mode="In" />
+    <Parameter Name="unidadesGeneral" Type="decimal" Mode="In" />
+    <Parameter Name="piezasGeneral" Type="decimal" Mode="In" />
+    <Parameter Name="pesoGeneral" Type="decimal" Mode="In" />
+    <Parameter Name="volumenGeneral" Type="decimal" Mode="In" />
+    <Parameter Name="usuario" Type="char" Mode="In" />
+    <Parameter Name="razon_aod_inventario" Type="char" Mode="In" />
+    <Parameter Name="folio_referencia" Type="char" Mode="In" />
+    <Parameter Name="orden_embarque" Type="smallint" Mode="In" />
+    <Parameter Name="recoge_mercancia" Type="bit" Mode="In" />
+    <Parameter Name="notasGeneral" Type="varchar" Mode="In" />
+    <Parameter Name="clave_afectacion_inventario" Type="char" Mode="In" />
+    <Parameter Name="Operacion" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_GuardarConteo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Folio" Type="char" Mode="In" />
     <Parameter Name="CodProd" Type="char" Mode="In" />
     <Parameter Name="Fecha" Type="datetime" Mode="In" />
@@ -24,26 +391,376 @@
     <Parameter Name="Notas" Type="varchar(max)" Mode="In" />
     <Parameter Name="Contado" Type="bit" Mode="In" />
   </Function>
-  <Function Name="MobileBMS_GuardarNotasConteoProd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+  <Function Name="CalkinsWS_GuardarDetalleEntrada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="folio" Type="varchar" Mode="In" />
+    <Parameter Name="OC" Type="varchar" Mode="In" />
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="cod_prod" Type="char" Mode="In" />
+    <Parameter Name="cantidad" Type="money" Mode="In" />
+    <Parameter Name="unidad" Type="char" Mode="In" />
+    <Parameter Name="pallet" Type="bit" Mode="In" />
+    <Parameter Name="caducidad" Type="datetime" Mode="In" />
+    <Parameter Name="lote_fab" Type="varchar" Mode="In" />
+    <Parameter Name="notas" Type="varchar(max)" Mode="In" />
+    <Parameter Name="id_origen" Type="bigint" Mode="In" />
+    <Parameter Name="cod_estab" Type="varchar" Mode="In" />
+    <Parameter Name="prv" Type="varchar" Mode="In" />
+    <Parameter Name="Msg" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="CalkinsWS_GuardarDetalleEntradaDevolucion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cod_prod" Type="varchar" Mode="In" />
+    <Parameter Name="unid" Type="varchar" Mode="In" />
+    <Parameter Name="cod_estab" Type="varchar" Mode="In" />
+    <Parameter Name="folioTransferencia" Type="varchar" Mode="In" />
+    <Parameter Name="transaccion" Type="varchar" Mode="In" />
+    <Parameter Name="backorder" Type="bit" Mode="In" />
+    <Parameter Name="afecta_no_disponible" Type="bit" Mode="In" />
+    <Parameter Name="cant" Type="decimal" Mode="InOut" />
+    <Parameter Name="costo_operativo_unitario" Type="money" Mode="In" />
+    <Parameter Name="costo_promedio" Type="money" Mode="InOut" />
+    <Parameter Name="cod_prv" Type="varchar" Mode="In" />
+    <Parameter Name="Cantidad_adicional" Type="decimal" Mode="In" />
+    <Parameter Name="unidad" Type="char" Mode="In" />
+    <Parameter Name="cantidad" Type="decimal" Mode="In" />
+    <Parameter Name="precio_lista" Type="money" Mode="In" />
+    <Parameter Name="tipo_precio_venta" Type="char" Mode="In" />
+    <Parameter Name="importe" Type="money" Mode="In" />
+    <Parameter Name="iva" Type="money" Mode="In" />
+    <Parameter Name="ieps" Type="money" Mode="In" />
+    <Parameter Name="costo" Type="money" Mode="In" />
+    <Parameter Name="peso" Type="decimal" Mode="In" />
+    <Parameter Name="volumen" Type="decimal" Mode="In" />
+    <Parameter Name="id_origen" Type="int" Mode="In" />
+    <Parameter Name="abreviatura_unidad" Type="char" Mode="In" />
+    <Parameter Name="fecha_cad" Type="date" Mode="In" />
+    <Parameter Name="lote_fabricacion" Type="varchar" Mode="In" />
+    <Parameter Name="pallets" Type="int" Mode="In" />
+    <Parameter Name="agregar_lote" Type="bit" Mode="In" />
+    <Parameter Name="msg" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="CalkinsWS_GuardarDetalleRecepcion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cod_prod" Type="varchar" Mode="In" />
+    <Parameter Name="unid" Type="varchar" Mode="In" />
+    <Parameter Name="cod_estab" Type="varchar" Mode="In" />
+    <Parameter Name="folioTransferencia" Type="varchar" Mode="In" />
+    <Parameter Name="transaccion" Type="varchar" Mode="In" />
+    <Parameter Name="backorder" Type="bit" Mode="In" />
+    <Parameter Name="afecta_no_disponible" Type="bit" Mode="In" />
+    <Parameter Name="cant" Type="decimal" Mode="InOut" />
+    <Parameter Name="costo_operativo_unitario" Type="money" Mode="In" />
+    <Parameter Name="costo_promedio" Type="money" Mode="InOut" />
+    <Parameter Name="cod_prv" Type="varchar" Mode="In" />
+    <Parameter Name="Cantidad_adicional" Type="decimal" Mode="In" />
+    <Parameter Name="unidad" Type="char" Mode="In" />
+    <Parameter Name="cantidad" Type="decimal" Mode="In" />
+    <Parameter Name="precio_lista" Type="money" Mode="In" />
+    <Parameter Name="tipo_precio_venta" Type="char" Mode="In" />
+    <Parameter Name="importe" Type="money" Mode="In" />
+    <Parameter Name="iva" Type="money" Mode="In" />
+    <Parameter Name="ieps" Type="money" Mode="In" />
+    <Parameter Name="costo" Type="money" Mode="In" />
+    <Parameter Name="peso" Type="decimal" Mode="In" />
+    <Parameter Name="volumen" Type="decimal" Mode="In" />
+    <Parameter Name="id_origen" Type="int" Mode="In" />
+    <Parameter Name="abreviatura_unidad" Type="char" Mode="In" />
+    <Parameter Name="fecha_cad" Type="date" Mode="In" />
+    <Parameter Name="lote_fabricacion" Type="varchar" Mode="In" />
+    <Parameter Name="pallets" Type="int" Mode="In" />
+    <Parameter Name="agregar_lote" Type="bit" Mode="In" />
+    <Parameter Name="msg" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="CalkinsWS_GuardarDetalleRecepcionTrans" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cod_prod" Type="varchar" Mode="In" />
+    <Parameter Name="unid" Type="varchar" Mode="In" />
+    <Parameter Name="cod_estab" Type="varchar" Mode="In" />
+    <Parameter Name="folioTransferencia" Type="varchar" Mode="In" />
+    <Parameter Name="transaccion" Type="varchar" Mode="In" />
+    <Parameter Name="backorder" Type="bit" Mode="In" />
+    <Parameter Name="afecta_no_disponible" Type="bit" Mode="In" />
+    <Parameter Name="cant" Type="decimal" Mode="InOut" />
+    <Parameter Name="costo_operativo_unitario" Type="money" Mode="In" />
+    <Parameter Name="costo_promedio" Type="money" Mode="InOut" />
+    <Parameter Name="cod_prv" Type="varchar" Mode="In" />
+    <Parameter Name="Cantidad_adicional" Type="decimal" Mode="In" />
+    <Parameter Name="unidad" Type="char" Mode="In" />
+    <Parameter Name="cantidad" Type="decimal" Mode="In" />
+    <Parameter Name="precio_lista" Type="money" Mode="In" />
+    <Parameter Name="tipo_precio_venta" Type="char" Mode="In" />
+    <Parameter Name="importe" Type="money" Mode="In" />
+    <Parameter Name="iva" Type="money" Mode="In" />
+    <Parameter Name="ieps" Type="money" Mode="In" />
+    <Parameter Name="costo" Type="money" Mode="In" />
+    <Parameter Name="peso" Type="decimal" Mode="In" />
+    <Parameter Name="volumen" Type="decimal" Mode="In" />
+    <Parameter Name="id_origen" Type="int" Mode="In" />
+    <Parameter Name="abreviatura_unidad" Type="char" Mode="In" />
+    <Parameter Name="fecha_cad" Type="date" Mode="In" />
+    <Parameter Name="lote_fabricacion" Type="varchar" Mode="In" />
+    <Parameter Name="pallets" Type="int" Mode="In" />
+    <Parameter Name="agregar_lote" Type="bit" Mode="In" />
+    <Parameter Name="msg" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="CalkinsWS_GuardarEntrada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Folio" Type="varchar" Mode="In" />
+    <Parameter Name="Usuario" Type="varchar" Mode="In" />
+    <Parameter Name="Estab" Type="varchar" Mode="In" />
+    <Parameter Name="Notas" Type="varchar(max)" Mode="In" />
+    <Parameter Name="OC" Type="varchar" Mode="In" />
+    <Parameter Name="Prv" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_GuardarEntradaDevolucion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Folio" Type="char" Mode="In" />
+    <Parameter Name="transaccion" Type="varchar" Mode="In" />
+    <Parameter Name="transaccion_origen" Type="varchar" Mode="In" />
+    <Parameter Name="cod_estab" Type="varchar" Mode="In" />
+    <Parameter Name="cod_estab_alterno" Type="char" Mode="In" />
+    <Parameter Name="folio_transferencia" Type="char" Mode="In" />
+    <Parameter Name="importeGeneral" Type="money" Mode="In" />
+    <Parameter Name="ivaGeneral" Type="money" Mode="In" />
+    <Parameter Name="iepsGeneral" Type="money" Mode="In" />
+    <Parameter Name="costoGeneral" Type="money" Mode="In" />
+    <Parameter Name="unidadesGeneral" Type="decimal" Mode="In" />
+    <Parameter Name="piezasGeneral" Type="decimal" Mode="In" />
+    <Parameter Name="pesoGeneral" Type="decimal" Mode="In" />
+    <Parameter Name="volumenGeneral" Type="decimal" Mode="In" />
+    <Parameter Name="usuario" Type="char" Mode="In" />
+    <Parameter Name="razon_aod_inventario" Type="char" Mode="In" />
+    <Parameter Name="folio_referencia" Type="char" Mode="In" />
+    <Parameter Name="orden_embarque" Type="smallint" Mode="In" />
+    <Parameter Name="recoge_mercancia" Type="bit" Mode="In" />
+    <Parameter Name="notasGeneral" Type="varchar" Mode="In" />
+    <Parameter Name="clave_afectacion_inventario" Type="char" Mode="In" />
+    <Parameter Name="Operacion" Type="varchar" Mode="In" />
+    <Parameter Name="cod_cte" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_GuardarNotasConteoProd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Folio" Type="char" Mode="In" />
     <Parameter Name="CodProd" Type="char" Mode="In" />
     <Parameter Name="Notas" Type="varchar(max)" Mode="In" />
   </Function>
-  <Function Name="MobileBMS_InfoConteo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+  <Function Name="CalkinsWS_GuardarPallet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Pallet" Type="varchar" Mode="In" />
+    <Parameter Name="Localizacion" Type="varchar" Mode="In" />
+    <Parameter Name="FechaCad" Type="date" Mode="In" />
+    <Parameter Name="LoteFab" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_InfoConteo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Folio" Type="char" Mode="In" />
   </Function>
-  <Function Name="MobileBMS_InventarioProductoFecha" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+  <Function Name="CalkinsWS_InfoTransferencia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Folio" Type="char" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_InventarioProductoFecha" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="producto" Type="char" Mode="In" />
     <Parameter Name="estab" Type="char" Mode="In" />
     <Parameter Name="fecha" Type="datetime" Mode="In" />
   </Function>
-  <Function Name="MobileBMS_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+  <Function Name="CalkinsWS_LocProductoIntegracion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cod_cte" Type="varchar" Mode="In" />
+    <Parameter Name="numdpc" Type="varchar" Mode="In" />
+    <Parameter Name="cod_prod" Type="varchar" Mode="In" />
+    <Parameter Name="cod_estab" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Usuario" Type="char" Mode="In" />
     <Parameter Name="Clave" Type="varchar(max)" Mode="In" />
   </Function>
-  <Function Name="MobileWS_CheckEscanerProd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="CodigoBarras" Type="varchar" Mode="In" />
-    <Parameter Name="Estab" Type="char" Mode="In" />
+  <Function Name="CalkinsWS_ModificaInventarioLoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cod_prod" Type="varchar" Mode="In" />
+    <Parameter Name="unid" Type="varchar" Mode="In" />
+    <Parameter Name="localizacion" Type="varchar" Mode="In" />
+    <Parameter Name="lote" Type="varchar" Mode="In" />
+    <Parameter Name="cod_estab" Type="varchar" Mode="In" />
+    <Parameter Name="afecta_no_disponible" Type="bit" Mode="In" />
+    <Parameter Name="cant" Type="money" Mode="InOut" />
+    <Parameter Name="guardar" Type="bit" Mode="In" />
+    <Parameter Name="Fecha" Type="datetime" Mode="In" />
+    <Parameter Name="lote_Recepcion" Type="varchar" Mode="In" />
+    <Parameter Name="transaccion" Type="varchar" Mode="In" />
+    <Parameter Name="folio_referencia" Type="varchar" Mode="In" />
+    <Parameter Name="trans_referencia" Type="varchar" Mode="In" />
+    <Parameter Name="usuario" Type="varchar" Mode="In" />
   </Function>
-  <EntityContainer Name="BMS2015ModelStoreContainer" />
+  <Function Name="CalkinsWS_ModificaNoDisponible" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cod_prod" Type="varchar" Mode="In" />
+    <Parameter Name="unidad" Type="varchar" Mode="In" />
+    <Parameter Name="trans" Type="varchar" Mode="In" />
+    <Parameter Name="cant" Type="decimal" Mode="In" />
+    <Parameter Name="cod_estab" Type="varchar" Mode="In" />
+    <Parameter Name="msg" Type="varchar(max)" Mode="InOut" />
+    <Parameter Name="razonND" Type="varchar" Mode="In" />
+    <Parameter Name="usuario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_NuevoLote" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Folio" Type="varchar" Mode="In" />
+    <Parameter Name="Cod_estab" Type="varchar" Mode="In" />
+    <Parameter Name="Cod_prod" Type="varchar" Mode="In" />
+    <Parameter Name="Cantidad" Type="money" Mode="In" />
+    <Parameter Name="Unidad" Type="varchar" Mode="In" />
+    <Parameter Name="Abreviatura_unidad" Type="varchar" Mode="In" />
+    <Parameter Name="Folio_referencia" Type="varchar" Mode="In" />
+    <Parameter Name="Transaccion_referencia" Type="varchar" Mode="In" />
+    <Parameter Name="Fecha_caducidad" Type="datetime" Mode="In" />
+    <Parameter Name="Lote_fabricacion" Type="varchar" Mode="In" />
+    <Parameter Name="Localizacion" Type="varchar" Mode="In" />
+    <Parameter Name="LoteRecep" Type="varchar" Mode="In" />
+    <Parameter Name="Msg" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CalkinsWS_OrdenCompra" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="folio" Type="varchar" Mode="In" />
+    <Parameter Name="transaccion" Type="varchar" Mode="In" />
+    <Parameter Name="estab" Type="varchar" Mode="In" />
+    <Parameter Name="usuario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_OrdenCompraDetalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="folio" Type="varchar" Mode="In" />
+    <Parameter Name="transaccion" Type="varchar" Mode="In" />
+    <Parameter Name="estab" Type="varchar" Mode="In" />
+    <Parameter Name="usuario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_ProductoEntrada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cod_prv" Type="varchar" Mode="In" />
+    <Parameter Name="cod_estab" Type="varchar" Mode="In" />
+    <Parameter Name="cod_prod" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_ProductosSurtidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="folio" Type="char" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_RetirarMercanciaLoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Loc" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_RetirarMercanciaProd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Loc" Type="varchar" Mode="In" />
+    <Parameter Name="CodProd" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_ReubicarLocDisponibles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cod_prod" Type="varchar" Mode="In" />
+    <Parameter Name="cod_estab" Type="varchar" Mode="In" />
+    <Parameter Name="montacargas" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_ReubicarProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="localizacion" Type="varchar" Mode="In" />
+    <Parameter Name="estab" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_Surtido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="index" Type="int" Mode="In" />
+    <Parameter Name="cod_estab" Type="varchar" Mode="In" />
+    <Parameter Name="folio_surtido" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_SurtidoGuardar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="loc" Type="varchar" Mode="In" />
+    <Parameter Name="cod_prod" Type="varchar" Mode="In" />
+    <Parameter Name="ticket" Type="int" Mode="In" />
+    <Parameter Name="folioSurtido" Type="varchar" Mode="In" />
+    <Parameter Name="cant_surtida" Type="money" Mode="In" />
+    <Parameter Name="trans_surtido" Type="varchar" Mode="In" />
+    <Parameter Name="trans" Type="varchar" Mode="In" />
+    <Parameter Name="folio" Type="varchar" Mode="In" />
+    <Parameter Name="cod_estab" Type="varchar" Mode="In" />
+    <Parameter Name="usuario" Type="varchar" Mode="In" />
+    <Parameter Name="documento" Type="varchar" Mode="In" />
+    <Parameter Name="msg" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="CalkinsWS_SurtidoPicking_Refrescar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="folio" Type="varchar" Mode="In" />
+    <Parameter Name="trans" Type="varchar" Mode="In" />
+    <Parameter Name="cod_estab" Type="varchar" Mode="In" />
+    <Parameter Name="msg" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CalkinsWS_SurtidoPickingGuardar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Folio" Type="varchar" Mode="In" />
+    <Parameter Name="Trans" Type="varchar" Mode="In" />
+    <Parameter Name="Ticket" Type="varchar" Mode="In" />
+    <Parameter Name="CodCte" Type="varchar" Mode="In" />
+    <Parameter Name="Numdpc" Type="varchar" Mode="In" />
+    <Parameter Name="Prod" Type="varchar" Mode="In" />
+    <Parameter Name="Unid" Type="varchar" Mode="In" />
+    <Parameter Name="Localizacion" Type="varchar" Mode="In" />
+    <Parameter Name="Cant" Type="decimal" Mode="In" />
+    <Parameter Name="Estab" Type="varchar" Mode="In" />
+    <Parameter Name="Usuario" Type="varchar" Mode="In" />
+    <Parameter Name="Contenedor" Type="varchar" Mode="In" />
+    <Parameter Name="TipoPick" Type="int" Mode="In" />
+    <Parameter Name="Msg" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="CalkinsWS_SurtidoPickingProdTicket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="folio" Type="varchar" Mode="In" />
+    <Parameter Name="trans" Type="varchar" Mode="In" />
+    <Parameter Name="cod_estab" Type="varchar" Mode="In" />
+    <Parameter Name="ticket" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_SurtidoPickingRefrescar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="folio" Type="varchar" Mode="In" />
+    <Parameter Name="trans" Type="varchar" Mode="In" />
+    <Parameter Name="cod_estab" Type="varchar" Mode="In" />
+    <Parameter Name="msg" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CalkinsWS_SurtidoPickingValidaLoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="loc" Type="varchar" Mode="In" />
+    <Parameter Name="estab" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_Ubicar_Guardar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="folio" Type="varchar" Mode="In" />
+    <Parameter Name="Loc" Type="varchar" Mode="In" />
+    <Parameter Name="disponible" Type="bit" Mode="In" />
+    <Parameter Name="picking" Type="bit" Mode="In" />
+    <Parameter Name="cod_estab" Type="varchar" Mode="In" />
+    <Parameter Name="guardo" Type="bit" Mode="InOut" />
+  </Function>
+  <Function Name="CalkinsWS_Ubicar_Localizacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="folio" Type="varchar" Mode="In" />
+    <Parameter Name="cod_prod" Type="varchar" Mode="In" />
+    <Parameter Name="cod_estab" Type="varchar" Mode="In" />
+    <Parameter Name="rack" Type="int" Mode="In" />
+    <Parameter Name="disponible" Type="bit" Mode="In" />
+    <Parameter Name="pickslot" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_UbicarBusqueda" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="folio" Type="varchar" Mode="In" />
+    <Parameter Name="documento" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_UbicarDocumento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="folio" Type="varchar" Mode="In" />
+    <Parameter Name="trans" Type="varchar" Mode="In" />
+    <Parameter Name="cod_estab" Type="varchar" Mode="In" />
+    <Parameter Name="Pallet" Type="bit" Mode="In" />
+    <Parameter Name="Disponible" Type="bit" Mode="In" />
+    <Parameter Name="IndexDoc" Type="int" Mode="In" />
+    <Parameter Name="Picking" Type="bit" Mode="In" />
+    <Parameter Name="Tabla" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_UbicarGuardar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="folio" Type="varchar" Mode="In" />
+    <Parameter Name="Loc" Type="varchar" Mode="In" />
+    <Parameter Name="disponible" Type="bit" Mode="In" />
+    <Parameter Name="picking" Type="bit" Mode="In" />
+    <Parameter Name="cod_estab" Type="varchar" Mode="In" />
+    <Parameter Name="guardo" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_UbicarLocalizacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="folio" Type="varchar" Mode="In" />
+    <Parameter Name="cod_prod" Type="varchar" Mode="In" />
+    <Parameter Name="cod_estab" Type="varchar" Mode="In" />
+    <Parameter Name="rack" Type="int" Mode="In" />
+    <Parameter Name="disponible" Type="bit" Mode="In" />
+    <Parameter Name="pickslot" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="CalkinsWS_ValidarProdEntrada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Prod" Type="char" Mode="In" />
+    <Parameter Name="Estab" Type="char" Mode="In" />
+    <Parameter Name="OC" Type="char" Mode="In" />
+    <Parameter Name="Caducidad" Type="date" Mode="In" />
+    <Parameter Name="EsLote" Type="bit" Mode="In" />
+    <Parameter Name="Cant" Type="money" Mode="In" />
+    <Parameter Name="Unid" Type="char" Mode="In" />
+  </Function>
+  <EntityContainer Name="BMS2015ModelStoreContainer">
+    <EntitySet Name="establecimientos" EntityType="Self.establecimientos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="inventario_localizacion" EntityType="Self.inventario_localizacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="localizaciones" EntityType="Self.localizaciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="proveedores" EntityType="Self.proveedores" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="razones_devoluciones_clientes" EntityType="Self.razones_devoluciones_clientes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="razones_no_disponible" EntityType="Self.razones_no_disponible" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="solicitudes_surtido_pick_slot" EntityType="Self.solicitudes_surtido_pick_slot" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
 </Schema>

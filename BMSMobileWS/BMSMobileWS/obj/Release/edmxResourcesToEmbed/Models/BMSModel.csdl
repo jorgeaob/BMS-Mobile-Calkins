@@ -1,20 +1,416 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="BMS2015Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="BMS2015Entities" annotation:LazyLoadingEnabled="true">
-    <FunctionImport Name="MobileBMS_Login" ReturnType="Collection(BMS2015Model.MobileBMS_Login_Result)">
-      <Parameter Name="Usuario" Mode="In" Type="String" />
-      <Parameter Name="Clave" Mode="In" Type="String" />
+    <FunctionImport Name="CalkinsWS_OrdenCompra" ReturnType="Collection(BMS2015Model.CalkinsWS_OrdenCompra_Result)">
+      <Parameter Name="folio" Mode="In" Type="String" />
+      <Parameter Name="transaccion" Mode="In" Type="String" />
+      <Parameter Name="estab" Mode="In" Type="String" />
+      <Parameter Name="usuario" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="MobileBMS_EstabsUsuario" ReturnType="Collection(BMS2015Model.MobileBMS_EstabsUsuario_Result)">
-      <Parameter Name="Usuario" Mode="In" Type="String" />
+    <FunctionImport Name="CalkinsWS_OrdenCompraDetalle" ReturnType="Collection(BMS2015Model.CalkinsWS_OrdenCompraDetalle_Result)">
+      <Parameter Name="folio" Mode="In" Type="String" />
+      <Parameter Name="transaccion" Mode="In" Type="String" />
+      <Parameter Name="estab" Mode="In" Type="String" />
+      <Parameter Name="usuario" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="MobileBMS_DetalleConteo" ReturnType="Collection(BMS2015Model.MobileBMS_DetalleConteo_Result)">
+    <FunctionImport Name="CalkinsWS_ProductoEntrada" ReturnType="Collection(BMS2015Model.CalkinsWS_ProductoEntrada_Result)">
+      <Parameter Name="cod_prv" Mode="In" Type="String" />
+      <Parameter Name="cod_estab" Mode="In" Type="String" />
+      <Parameter Name="cod_prod" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_ValidarProdEntrada" ReturnType="Collection(String)">
+      <Parameter Name="Prod" Mode="In" Type="String" />
+      <Parameter Name="Estab" Mode="In" Type="String" />
+      <Parameter Name="OC" Mode="In" Type="String" />
+      <Parameter Name="Caducidad" Mode="In" Type="DateTime" />
+      <Parameter Name="EsLote" Mode="In" Type="Boolean" />
+      <Parameter Name="Cant" Mode="In" Type="Decimal" />
+      <Parameter Name="Unid" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_GenerarFolio">
+      <Parameter Name="Transaccion" Mode="In" Type="String" />
+      <Parameter Name="EstabCode" Mode="In" Type="String" />
+      <Parameter Name="Actualizar" Mode="In" Type="Boolean" />
+      <Parameter Name="Folio" Mode="InOut" Type="String" />
+      <Parameter Name="MaxReng" Mode="InOut" Type="Int32" />
+      <Parameter Name="EquipCode" Mode="In" Type="String" />
+      <Parameter Name="UnidadPermitida" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_GuardarDetalleEntrada">
+      <Parameter Name="folio" Mode="In" Type="String" />
+      <Parameter Name="OC" Mode="In" Type="String" />
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="cod_prod" Mode="In" Type="String" />
+      <Parameter Name="cantidad" Mode="In" Type="Decimal" />
+      <Parameter Name="unidad" Mode="In" Type="String" />
+      <Parameter Name="pallet" Mode="In" Type="Boolean" />
+      <Parameter Name="caducidad" Mode="In" Type="DateTime" />
+      <Parameter Name="lote_fab" Mode="In" Type="String" />
+      <Parameter Name="notas" Mode="In" Type="String" />
+      <Parameter Name="id_origen" Mode="In" Type="Int64" />
+      <Parameter Name="cod_estab" Mode="In" Type="String" />
+      <Parameter Name="prv" Mode="In" Type="String" />
+      <Parameter Name="Msg" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_GuardarEntrada">
+      <Parameter Name="Folio" Mode="In" Type="String" />
+      <Parameter Name="Usuario" Mode="In" Type="String" />
+      <Parameter Name="Estab" Mode="In" Type="String" />
+      <Parameter Name="Notas" Mode="In" Type="String" />
+      <Parameter Name="OC" Mode="In" Type="String" />
+      <Parameter Name="Prv" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="proveedores" EntityType="BMS2015Model.proveedore" />
+    <FunctionImport Name="CalkinsWS_DetalleRecepcionTransferencia" ReturnType="Collection(BMS2015Model.CalkinsWS_DetalleRecepcionTransferencia_Result)">
       <Parameter Name="Folio" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="MobileBMS_InfoConteo" ReturnType="Collection(BMS2015Model.MobileBMS_InfoConteo_Result)">
+    <FunctionImport Name="CalkinsWS_InfoTransferencia" ReturnType="Collection(BMS2015Model.CalkinsWS_InfoTransferencia_Result)">
       <Parameter Name="Folio" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="MobileBMS_GuardarConteo">
+    <FunctionImport Name="CalkinsWS_ProductosSurtidos" ReturnType="Collection(BMS2015Model.CalkinsWS_ProductosSurtidos_Result)">
+      <Parameter Name="folio" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_GuadarRecepcionTransferencia">
+      <Parameter Name="Folio" Mode="In" Type="String" />
+      <Parameter Name="transaccion" Mode="In" Type="String" />
+      <Parameter Name="transaccion_origen" Mode="In" Type="String" />
+      <Parameter Name="cod_estab" Mode="In" Type="String" />
+      <Parameter Name="cod_estab_alterno" Mode="In" Type="String" />
+      <Parameter Name="folio_transferencia" Mode="In" Type="String" />
+      <Parameter Name="importeGeneral" Mode="In" Type="Decimal" />
+      <Parameter Name="ivaGeneral" Mode="In" Type="Decimal" />
+      <Parameter Name="iepsGeneral" Mode="In" Type="Decimal" />
+      <Parameter Name="costoGeneral" Mode="In" Type="Decimal" />
+      <Parameter Name="unidadesGeneral" Mode="In" Type="Decimal" />
+      <Parameter Name="piezasGeneral" Mode="In" Type="Decimal" />
+      <Parameter Name="pesoGeneral" Mode="In" Type="Decimal" />
+      <Parameter Name="volumenGeneral" Mode="In" Type="Decimal" />
+      <Parameter Name="usuario" Mode="In" Type="String" />
+      <Parameter Name="razon_aod_inventario" Mode="In" Type="String" />
+      <Parameter Name="folio_referencia" Mode="In" Type="String" />
+      <Parameter Name="orden_embarque" Mode="In" Type="Int16" />
+      <Parameter Name="recoge_mercancia" Mode="In" Type="Boolean" />
+      <Parameter Name="notasGeneral" Mode="In" Type="String" />
+      <Parameter Name="clave_afectacion_inventario" Mode="In" Type="String" />
+      <Parameter Name="Operacion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_GuardarDetalleRecepcion">
+      <Parameter Name="cod_prod" Mode="In" Type="String" />
+      <Parameter Name="unid" Mode="In" Type="String" />
+      <Parameter Name="cod_estab" Mode="In" Type="String" />
+      <Parameter Name="folioTransferencia" Mode="In" Type="String" />
+      <Parameter Name="transaccion" Mode="In" Type="String" />
+      <Parameter Name="backorder" Mode="In" Type="Boolean" />
+      <Parameter Name="afecta_no_disponible" Mode="In" Type="Boolean" />
+      <Parameter Name="cant" Mode="InOut" Type="Decimal" />
+      <Parameter Name="costo_operativo_unitario" Mode="In" Type="Decimal" />
+      <Parameter Name="costo_promedio" Mode="InOut" Type="Decimal" />
+      <Parameter Name="cod_prv" Mode="In" Type="String" />
+      <Parameter Name="Cantidad_adicional" Mode="In" Type="Decimal" />
+      <Parameter Name="unidad" Mode="In" Type="String" />
+      <Parameter Name="cantidad" Mode="In" Type="Decimal" />
+      <Parameter Name="precio_lista" Mode="In" Type="Decimal" />
+      <Parameter Name="tipo_precio_venta" Mode="In" Type="String" />
+      <Parameter Name="importe" Mode="In" Type="Decimal" />
+      <Parameter Name="iva" Mode="In" Type="Decimal" />
+      <Parameter Name="ieps" Mode="In" Type="Decimal" />
+      <Parameter Name="costo" Mode="In" Type="Decimal" />
+      <Parameter Name="peso" Mode="In" Type="Decimal" />
+      <Parameter Name="volumen" Mode="In" Type="Decimal" />
+      <Parameter Name="id_origen" Mode="In" Type="Int32" />
+      <Parameter Name="abreviatura_unidad" Mode="In" Type="String" />
+      <Parameter Name="fecha_cad" Mode="In" Type="DateTime" />
+      <Parameter Name="lote_fabricacion" Mode="In" Type="String" />
+      <Parameter Name="pallets" Mode="In" Type="Int32" />
+      <Parameter Name="agregar_lote" Mode="In" Type="Boolean" />
+      <Parameter Name="msg" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="razones_devoluciones_clientes" EntityType="BMS2015Model.razones_devoluciones_clientes" />
+    <FunctionImport Name="CalkinsWS_DetalleEntradaDevolucion" ReturnType="Collection(BMS2015Model.CalkinsWS_DetalleEntradaDevolucion_Result)">
+      <Parameter Name="Folio" Mode="In" Type="String" />
+      <Parameter Name="Trans" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_EntradaDEvolucion" ReturnType="Collection(BMS2015Model.CalkinsWS_EntradaDEvolucion_Result)">
+      <Parameter Name="Folio" Mode="In" Type="String" />
+      <Parameter Name="Trans" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_GuardarDetalleEntradaDevolucion">
+      <Parameter Name="cod_prod" Mode="In" Type="String" />
+      <Parameter Name="unid" Mode="In" Type="String" />
+      <Parameter Name="cod_estab" Mode="In" Type="String" />
+      <Parameter Name="folioTransferencia" Mode="In" Type="String" />
+      <Parameter Name="transaccion" Mode="In" Type="String" />
+      <Parameter Name="backorder" Mode="In" Type="Boolean" />
+      <Parameter Name="afecta_no_disponible" Mode="In" Type="Boolean" />
+      <Parameter Name="cant" Mode="InOut" Type="Decimal" />
+      <Parameter Name="costo_operativo_unitario" Mode="In" Type="Decimal" />
+      <Parameter Name="costo_promedio" Mode="InOut" Type="Decimal" />
+      <Parameter Name="cod_prv" Mode="In" Type="String" />
+      <Parameter Name="Cantidad_adicional" Mode="In" Type="Decimal" />
+      <Parameter Name="unidad" Mode="In" Type="String" />
+      <Parameter Name="cantidad" Mode="In" Type="Decimal" />
+      <Parameter Name="precio_lista" Mode="In" Type="Decimal" />
+      <Parameter Name="tipo_precio_venta" Mode="In" Type="String" />
+      <Parameter Name="importe" Mode="In" Type="Decimal" />
+      <Parameter Name="iva" Mode="In" Type="Decimal" />
+      <Parameter Name="ieps" Mode="In" Type="Decimal" />
+      <Parameter Name="costo" Mode="In" Type="Decimal" />
+      <Parameter Name="peso" Mode="In" Type="Decimal" />
+      <Parameter Name="volumen" Mode="In" Type="Decimal" />
+      <Parameter Name="id_origen" Mode="In" Type="Int32" />
+      <Parameter Name="abreviatura_unidad" Mode="In" Type="String" />
+      <Parameter Name="fecha_cad" Mode="In" Type="DateTime" />
+      <Parameter Name="lote_fabricacion" Mode="In" Type="String" />
+      <Parameter Name="pallets" Mode="In" Type="Int32" />
+      <Parameter Name="agregar_lote" Mode="In" Type="Boolean" />
+      <Parameter Name="msg" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_GuardarEntradaDevolucion">
+      <Parameter Name="Folio" Mode="In" Type="String" />
+      <Parameter Name="transaccion" Mode="In" Type="String" />
+      <Parameter Name="transaccion_origen" Mode="In" Type="String" />
+      <Parameter Name="cod_estab" Mode="In" Type="String" />
+      <Parameter Name="cod_estab_alterno" Mode="In" Type="String" />
+      <Parameter Name="folio_transferencia" Mode="In" Type="String" />
+      <Parameter Name="importeGeneral" Mode="In" Type="Decimal" />
+      <Parameter Name="ivaGeneral" Mode="In" Type="Decimal" />
+      <Parameter Name="iepsGeneral" Mode="In" Type="Decimal" />
+      <Parameter Name="costoGeneral" Mode="In" Type="Decimal" />
+      <Parameter Name="unidadesGeneral" Mode="In" Type="Decimal" />
+      <Parameter Name="piezasGeneral" Mode="In" Type="Decimal" />
+      <Parameter Name="pesoGeneral" Mode="In" Type="Decimal" />
+      <Parameter Name="volumenGeneral" Mode="In" Type="Decimal" />
+      <Parameter Name="usuario" Mode="In" Type="String" />
+      <Parameter Name="razon_aod_inventario" Mode="In" Type="String" />
+      <Parameter Name="folio_referencia" Mode="In" Type="String" />
+      <Parameter Name="orden_embarque" Mode="In" Type="Int16" />
+      <Parameter Name="recoge_mercancia" Mode="In" Type="Boolean" />
+      <Parameter Name="notasGeneral" Mode="In" Type="String" />
+      <Parameter Name="clave_afectacion_inventario" Mode="In" Type="String" />
+      <Parameter Name="Operacion" Mode="In" Type="String" />
+      <Parameter Name="cod_cte" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_ConsultaPallet" ReturnType="Collection(BMS2015Model.CalkinsWS_ConsultaPallet_Result)">
+      <Parameter Name="Pallet" Mode="In" Type="String" />
+      <Parameter Name="Localizacion" Mode="In" Type="String" />
+      <Parameter Name="EsPallet" Mode="In" Type="Boolean" />
+      <Parameter Name="CodEstab" Mode="In" Type="String" />
+      <Parameter Name="TraetPallet" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_GuardarPallet">
+      <Parameter Name="Pallet" Mode="In" Type="String" />
+      <Parameter Name="Localizacion" Mode="In" Type="String" />
+      <Parameter Name="FechaCad" Mode="In" Type="DateTime" />
+      <Parameter Name="LoteFab" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_EntradasSalidasLoc" ReturnType="Collection(BMS2015Model.CalkinsWS_EntradasSalidasLoc_Result)">
+      <Parameter Name="Loc" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_NuevoLote">
+      <Parameter Name="Folio" Mode="In" Type="String" />
+      <Parameter Name="Cod_estab" Mode="In" Type="String" />
+      <Parameter Name="Cod_prod" Mode="In" Type="String" />
+      <Parameter Name="Cantidad" Mode="In" Type="Decimal" />
+      <Parameter Name="Unidad" Mode="In" Type="String" />
+      <Parameter Name="Abreviatura_unidad" Mode="In" Type="String" />
+      <Parameter Name="Folio_referencia" Mode="In" Type="String" />
+      <Parameter Name="Transaccion_referencia" Mode="In" Type="String" />
+      <Parameter Name="Fecha_caducidad" Mode="In" Type="DateTime" />
+      <Parameter Name="Lote_fabricacion" Mode="In" Type="String" />
+      <Parameter Name="Localizacion" Mode="In" Type="String" />
+      <Parameter Name="LoteRecep" Mode="In" Type="String" />
+      <Parameter Name="Msg" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_RetirarMercanciaLoc" ReturnType="Collection(BMS2015Model.CalkinsWS_RetirarMercanciaLoc_Result)">
+      <Parameter Name="Loc" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_RetirarMercanciaProd" ReturnType="Collection(BMS2015Model.CalkinsWS_RetirarMercanciaProd_Result)">
+      <Parameter Name="Loc" Mode="In" Type="String" />
+      <Parameter Name="CodProd" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_ModificaInventarioLoc">
+      <Parameter Name="cod_prod" Mode="In" Type="String" />
+      <Parameter Name="unid" Mode="In" Type="String" />
+      <Parameter Name="localizacion" Mode="In" Type="String" />
+      <Parameter Name="lote" Mode="In" Type="String" />
+      <Parameter Name="cod_estab" Mode="In" Type="String" />
+      <Parameter Name="afecta_no_disponible" Mode="In" Type="Boolean" />
+      <Parameter Name="cant" Mode="InOut" Type="Decimal" />
+      <Parameter Name="guardar" Mode="In" Type="Boolean" />
+      <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+      <Parameter Name="lote_Recepcion" Mode="In" Type="String" />
+      <Parameter Name="transaccion" Mode="In" Type="String" />
+      <Parameter Name="folio_referencia" Mode="In" Type="String" />
+      <Parameter Name="trans_referencia" Mode="In" Type="String" />
+      <Parameter Name="usuario" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_ActualizarUbicacionLoc" ReturnType="Collection(BMS2015Model.CalkinsWS_ActualizarUbicacionLoc_Result)">
+      <Parameter Name="Loc" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_ActualizarUbicacionLote" ReturnType="Collection(BMS2015Model.CalkinsWS_ActualizarUbicacionLote_Result)">
+      <Parameter Name="Folio" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_ActualizarUbicacionGuardar">
+      <Parameter Name="loc" Mode="In" Type="String" />
+      <Parameter Name="cod_prodT" Mode="In" Type="String" />
+      <Parameter Name="loteT" Mode="In" Type="String" />
+      <Parameter Name="cod_prodR" Mode="In" Type="String" />
+      <Parameter Name="loteR" Mode="In" Type="String" />
+      <Parameter Name="usr" Mode="In" Type="String" />
+      <Parameter Name="ChkUbicar" Mode="In" Type="Boolean" />
+      <Parameter Name="CodEstab" Mode="In" Type="String" />
+      <Parameter Name="Cant" Mode="In" Type="Decimal" />
+      <Parameter Name="Pallet" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_UbicarDocumento" ReturnType="Collection(BMS2015Model.CalkinsWS_UbicarDocumento_Result)">
+      <Parameter Name="folio" Mode="In" Type="String" />
+      <Parameter Name="trans" Mode="In" Type="String" />
+      <Parameter Name="cod_estab" Mode="In" Type="String" />
+      <Parameter Name="Pallet" Mode="In" Type="Boolean" />
+      <Parameter Name="Disponible" Mode="In" Type="Boolean" />
+      <Parameter Name="IndexDoc" Mode="In" Type="Int32" />
+      <Parameter Name="Picking" Mode="In" Type="Boolean" />
+      <Parameter Name="Tabla" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_UbicarBusqueda" ReturnType="Collection(BMS2015Model.CalkinsWS_UbicarBusqueda_Result)">
+      <Parameter Name="folio" Mode="In" Type="String" />
+      <Parameter Name="documento" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_UbicarLocalizacion">
+      <Parameter Name="folio" Mode="In" Type="String" />
+      <Parameter Name="cod_prod" Mode="In" Type="String" />
+      <Parameter Name="cod_estab" Mode="In" Type="String" />
+      <Parameter Name="rack" Mode="In" Type="Int32" />
+      <Parameter Name="disponible" Mode="In" Type="Boolean" />
+      <Parameter Name="pickslot" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_UbicarGuardar">
+      <Parameter Name="folio" Mode="In" Type="String" />
+      <Parameter Name="Loc" Mode="In" Type="String" />
+      <Parameter Name="disponible" Mode="In" Type="Boolean" />
+      <Parameter Name="picking" Mode="In" Type="Boolean" />
+      <Parameter Name="cod_estab" Mode="In" Type="String" />
+      <Parameter Name="guardo" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_Ubicar_Guardar">
+      <Parameter Name="folio" Mode="In" Type="String" />
+      <Parameter Name="Loc" Mode="In" Type="String" />
+      <Parameter Name="disponible" Mode="In" Type="Boolean" />
+      <Parameter Name="picking" Mode="In" Type="Boolean" />
+      <Parameter Name="cod_estab" Mode="In" Type="String" />
+      <Parameter Name="guardo" Mode="InOut" Type="Boolean" />
+    </FunctionImport>
+    <EntitySet Name="establecimientos" EntityType="BMS2015Model.establecimiento" />
+    <FunctionImport Name="CalkinsWS_Ubicar_Localizacion" ReturnType="Collection(String)">
+      <Parameter Name="folio" Mode="In" Type="String" />
+      <Parameter Name="cod_prod" Mode="In" Type="String" />
+      <Parameter Name="cod_estab" Mode="In" Type="String" />
+      <Parameter Name="rack" Mode="In" Type="Int32" />
+      <Parameter Name="disponible" Mode="In" Type="Boolean" />
+      <Parameter Name="pickslot" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_Surtido" ReturnType="Collection(BMS2015Model.CalkinsWS_Surtido_Result)">
+      <Parameter Name="index" Mode="In" Type="Int32" />
+      <Parameter Name="cod_estab" Mode="In" Type="String" />
+      <Parameter Name="folio_surtido" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="inventario_localizacion" EntityType="BMS2015Model.inventario_localizacion" />
+    <FunctionImport Name="CalkinsWS_SurtidoGuardar">
+      <Parameter Name="loc" Mode="In" Type="String" />
+      <Parameter Name="cod_prod" Mode="In" Type="String" />
+      <Parameter Name="ticket" Mode="In" Type="Int32" />
+      <Parameter Name="folioSurtido" Mode="In" Type="String" />
+      <Parameter Name="cant_surtida" Mode="In" Type="Decimal" />
+      <Parameter Name="trans_surtido" Mode="In" Type="String" />
+      <Parameter Name="trans" Mode="In" Type="String" />
+      <Parameter Name="folio" Mode="In" Type="String" />
+      <Parameter Name="cod_estab" Mode="In" Type="String" />
+      <Parameter Name="usuario" Mode="In" Type="String" />
+      <Parameter Name="documento" Mode="In" Type="String" />
+      <Parameter Name="msg" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="razones_no_disponible" EntityType="BMS2015Model.razones_no_disponible" />
+    <EntitySet Name="localizaciones" EntityType="BMS2015Model.localizacione" />
+    <FunctionImport Name="CalkinsWS_ReubicarProducto" ReturnType="Collection(BMS2015Model.CalkinsWS_ReubicarProducto_Result)">
+      <Parameter Name="localizacion" Mode="In" Type="String" />
+      <Parameter Name="estab" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_ReubicarLocDisponibles" ReturnType="Collection(String)">
+      <Parameter Name="cod_prod" Mode="In" Type="String" />
+      <Parameter Name="cod_estab" Mode="In" Type="String" />
+      <Parameter Name="montacargas" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <EntitySet Name="solicitudes_surtido_pick_slot" EntityType="BMS2015Model.solicitudes_surtido_pick_slot" />
+    <FunctionImport Name="CalkinsWS_ModificaNoDisponible">
+      <Parameter Name="cod_prod" Mode="In" Type="String" />
+      <Parameter Name="unidad" Mode="In" Type="String" />
+      <Parameter Name="trans" Mode="In" Type="String" />
+      <Parameter Name="cant" Mode="In" Type="Decimal" />
+      <Parameter Name="cod_estab" Mode="In" Type="String" />
+      <Parameter Name="msg" Mode="InOut" Type="String" />
+      <Parameter Name="razonND" Mode="In" Type="String" />
+      <Parameter Name="usuario" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_SurtidoPickingRefrescar" ReturnType="Collection(BMS2015Model.CalkinsWS_SurtidoPickingRefrescar_Result)">
+      <Parameter Name="folio" Mode="In" Type="String" />
+      <Parameter Name="trans" Mode="In" Type="String" />
+      <Parameter Name="cod_estab" Mode="In" Type="String" />
+      <Parameter Name="msg" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_SurtidoPickingProdTicket" ReturnType="Collection(BMS2015Model.CalkinsWS_SurtidoPickingProdTicket_Result)">
+      <Parameter Name="folio" Mode="In" Type="String" />
+      <Parameter Name="trans" Mode="In" Type="String" />
+      <Parameter Name="cod_estab" Mode="In" Type="String" />
+      <Parameter Name="ticket" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_LocProductoIntegracion" ReturnType="Collection(String)">
+      <Parameter Name="cod_cte" Mode="In" Type="String" />
+      <Parameter Name="numdpc" Mode="In" Type="String" />
+      <Parameter Name="cod_prod" Mode="In" Type="String" />
+      <Parameter Name="cod_estab" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_SurtidoPickingGuardar">
+      <Parameter Name="Folio" Mode="In" Type="String" />
+      <Parameter Name="Trans" Mode="In" Type="String" />
+      <Parameter Name="Ticket" Mode="In" Type="String" />
+      <Parameter Name="CodCte" Mode="In" Type="String" />
+      <Parameter Name="Numdpc" Mode="In" Type="String" />
+      <Parameter Name="Prod" Mode="In" Type="String" />
+      <Parameter Name="Unid" Mode="In" Type="String" />
+      <Parameter Name="Localizacion" Mode="In" Type="String" />
+      <Parameter Name="Cant" Mode="In" Type="Decimal" />
+      <Parameter Name="Estab" Mode="In" Type="String" />
+      <Parameter Name="Usuario" Mode="In" Type="String" />
+      <Parameter Name="Contenedor" Mode="In" Type="String" />
+      <Parameter Name="TipoPick" Mode="In" Type="Int32" />
+      <Parameter Name="Msg" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_SurtidoPickingValidaLoc" ReturnType="Collection(BMS2015Model.CalkinsWS_SurtidoPickingValidaLoc_Result)">
+      <Parameter Name="loc" Mode="In" Type="String" />
+      <Parameter Name="estab" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_SurtidoPicking_Refrescar" ReturnType="Collection(BMS2015Model.CalkinsWS_SurtidoPicking_Refrescar_Result)">
+      <Parameter Name="folio" Mode="In" Type="String" />
+      <Parameter Name="trans" Mode="In" Type="String" />
+      <Parameter Name="cod_estab" Mode="In" Type="String" />
+      <Parameter Name="msg" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_BuscarProductos" ReturnType="Collection(BMS2015Model.CalkinsWS_BuscarProductos_Result)">
+      <Parameter Name="Codigo" Mode="In" Type="String" />
+      <Parameter Name="Filtro" Mode="In" Type="String" />
+      <Parameter Name="Estab" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_CheckEscanerProd" ReturnType="Collection(String)">
+      <Parameter Name="CodigoBarras" Mode="In" Type="String" />
+      <Parameter Name="Estab" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_DetalleConteo" ReturnType="Collection(BMS2015Model.CalkinsWS_DetalleConteo_Result)">
+      <Parameter Name="Folio" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_EstabsUsuario" ReturnType="Collection(BMS2015Model.CalkinsWS_EstabsUsuario_Result)">
+      <Parameter Name="Usuario" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_GuardarConteo">
       <Parameter Name="Folio" Mode="In" Type="String" />
       <Parameter Name="CodProd" Mode="In" Type="String" />
       <Parameter Name="Fecha" Mode="In" Type="DateTime" />
@@ -27,67 +423,701 @@
       <Parameter Name="Notas" Mode="In" Type="String" />
       <Parameter Name="Contado" Mode="In" Type="Boolean" />
     </FunctionImport>
-    <FunctionImport Name="MobileBMS_BuscarProductos" ReturnType="Collection(BMS2015Model.MobileBMS_BuscarProductos_Result)">
-      <Parameter Name="Codigo" Mode="In" Type="String" />
-      <Parameter Name="Filtro" Mode="In" Type="String" />
-      <Parameter Name="Estab" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="MobileWS_CheckEscanerProd" ReturnType="Collection(String)">
-      <Parameter Name="CodigoBarras" Mode="In" Type="String" />
-      <Parameter Name="Estab" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="MobileBMS_GuardarNotasConteoProd">
+    <FunctionImport Name="CalkinsWS_GuardarNotasConteoProd">
       <Parameter Name="Folio" Mode="In" Type="String" />
       <Parameter Name="CodProd" Mode="In" Type="String" />
       <Parameter Name="Notas" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="MobileBMS_InventarioProductoFecha" ReturnType="Collection(BMS2015Model.MobileBMS_InventarioProductoFecha_Result)">
+    <FunctionImport Name="CalkinsWS_InfoConteo" ReturnType="Collection(BMS2015Model.CalkinsWS_InfoConteo_Result)">
+      <Parameter Name="Folio" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalkinsWS_InventarioProductoFecha" ReturnType="Collection(BMS2015Model.CalkinsWS_InventarioProductoFecha_Result)">
       <Parameter Name="producto" Mode="In" Type="String" />
       <Parameter Name="estab" Mode="In" Type="String" />
       <Parameter Name="fecha" Mode="In" Type="DateTime" />
     </FunctionImport>
+    <FunctionImport Name="CalkinsWS_Login" ReturnType="Collection(BMS2015Model.CalkinsWS_Login_Result)">
+      <Parameter Name="Usuario" Mode="In" Type="String" />
+      <Parameter Name="Clave" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
-  <ComplexType Name="MobileBMS_Login_Result">
-    <Property Type="String" Name="usuario" Nullable="false" MaxLength="5" />
-    <Property Type="String" Name="nombre" Nullable="false" MaxLength="60" />
+  <ComplexType Name="CalkinsWS_OrdenCompra_Result">
+    <Property Type="String" Name="folio" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Transaccion" Nullable="false" MaxLength="5" />
+    <Property Type="DateTime" Name="fecha" Nullable="false" Precision="16" />
+    <Property Type="Decimal" Name="descuento_porcentual" Nullable="false" Precision="9" Scale="6" />
+    <Property Type="Decimal" Name="importe_descuento" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="importe" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="iva" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="ieps" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="costo" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="unidades" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="piezas" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="peso" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="volumen" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="DateTime" Name="fecha_expiracion" Nullable="false" Precision="16" />
+    <Property Type="Boolean" Name="back_order" Nullable="false" />
+    <Property Type="Boolean" Name="recoge_mercancia" Nullable="false" />
+    <Property Type="String" Name="cond_pago" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="cod_estab" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="numdpc" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="pedido_proveedor" Nullable="false" MaxLength="10" />
+    <Property Type="Int16" Name="plazo" Nullable="false" />
+    <Property Type="String" Name="status_surtido" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="notas" Nullable="true" MaxLength="500" />
     <Property Type="String" Name="status" Nullable="false" MaxLength="5" />
-    <Property Type="String" Name="cod_estab" Nullable="false" MaxLength="5" />
-    <Property Type="String" Name="vendedor_default_ventas" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="razon_social" Nullable="false" MaxLength="80" />
+    <Property Type="String" Name="cod_prv" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="comprador" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="pedimento" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="razon_compra" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="nacionalidad" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="mensaje" Nullable="true" MaxLength="200" />
   </ComplexType>
-  <ComplexType Name="MobileBMS_EstabsUsuario_Result">
-    <Property Type="String" Name="cod_estab" Nullable="false" MaxLength="5" />
-    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="40" />
-    <Property Type="String" Name="cliente_venta_publico" Nullable="false" MaxLength="10" />
-  </ComplexType>
-  <ComplexType Name="MobileBMS_DetalleConteo_Result">
+  <ComplexType Name="CalkinsWS_OrdenCompraDetalle_Result">
+    <Property Type="String" Name="descripcion_completa" Nullable="false" MaxLength="500" />
+    <Property Type="Int32" Name="id" Nullable="false" />
     <Property Type="String" Name="folio" Nullable="false" MaxLength="10" />
-    <Property Type="String" Name="cod_prod" Nullable="true" MaxLength="13" />
+    <Property Type="String" Name="transaccion" Nullable="false" MaxLength="5" />
     <Property Type="DateTime" Name="fecha" Nullable="false" Precision="16" />
-    <Property Type="String" Name="usuario" Nullable="false" MaxLength="5" />
-    <Property Type="Decimal" Name="unidades_compra" Nullable="false" Precision="19" Scale="4" />
-    <Property Type="Decimal" Name="unidades_alternativas" Nullable="false" Precision="19" Scale="4" />
-    <Property Type="Decimal" Name="exist_unidades_compra" Nullable="false" Precision="19" Scale="4" />
-    <Property Type="Decimal" Name="exist_unidades_alternativas" Nullable="false" Precision="19" Scale="4" />
-    <Property Type="String" Name="programacion" Nullable="false" MaxLength="10" />
-    <Property Type="String" Name="descripcion_completa" Nullable="true" MaxLength="500" />
-    <Property Type="String" Name="NombreUC" Nullable="false" MaxLength="30" />
-    <Property Type="String" Name="NombreUA" Nullable="false" MaxLength="30" />
-    <Property Type="String" Name="forma_expresar_inventario" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="cod_prod" Nullable="false" MaxLength="13" />
+    <Property Type="String" Name="unidad" Nullable="false" MaxLength="1" />
+    <Property Type="Decimal" Name="cantidad_pedida" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="cantidad_autorizada" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="cantidad_surtida" Nullable="false" Precision="19" Scale="3" />
+    <Property Type="Decimal" Name="precio_lista" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="descuento_porcentual" Nullable="false" Precision="9" Scale="6" />
+    <Property Type="Decimal" Name="importe_descuento" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="importe" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="costo" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="iva" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="ieps" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="peso" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="volumen" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="Boolean" Name="back_order" Nullable="false" />
+    <Property Type="String" Name="cod_prv" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="cod_estab" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="comprador" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="status" Nullable="false" MaxLength="5" />
     <Property Type="Decimal" Name="contenido" Nullable="false" Precision="19" Scale="8" />
-    <Property Type="String" Name="AbrevUC" Nullable="false" MaxLength="3" />
-    <Property Type="String" Name="AbrevUA" Nullable="false" MaxLength="3" />
-    <Property Type="String" Name="codigo_barras_unidad" Nullable="true" MaxLength="30" />
-    <Property Type="String" Name="codigo_barras_pieza" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="notas" Nullable="false" />
+    <Property Type="Decimal" Name="pvs" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="Int16" Name="caducidad_recepcion" Nullable="false" />
+    <Property Type="Int16" Name="caducidad_venta" Nullable="false" />
+    <Property Type="Decimal" Name="existencia" Nullable="true" Precision="38" Scale="14" />
+    <Property Type="String" Name="abreviatura_unidad" Nullable="false" MaxLength="3" />
+    <Property Type="String" Name="cod_prod_proveedor" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="codigo_barras_unidad" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="codigo_barras_pieza" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="caducidad_orden_compra" Nullable="false" Precision="16" />
+    <Property Type="String" Name="UsaFichaTecProd" Nullable="true" MaxLength="1" />
+    <Property Type="Boolean" Name="control_etiqueta" Nullable="false" />
   </ComplexType>
-  <ComplexType Name="MobileBMS_InfoConteo_Result">
+  <ComplexType Name="CalkinsWS_ProductoEntrada_Result">
+    <Property Type="String" Name="cod_prod" Nullable="false" MaxLength="13" />
+    <Property Type="String" Name="descripcion_completa" Nullable="false" MaxLength="500" />
+    <Property Type="Single" Name="volumen" Nullable="false" />
+    <Property Type="Decimal" Name="peso_total" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="Int16" Name="caducidad_fabricacion" Nullable="false" />
+    <Property Type="Decimal" Name="contenido" Nullable="false" Precision="19" Scale="8" />
+    <Property Type="String" Name="cod_estab" Nullable="false" MaxLength="5" />
+    <Property Type="Int16" Name="caducidad_recepcion" Nullable="false" />
+    <Property Type="Int16" Name="caducidad_venta" Nullable="false" />
+    <Property Type="String" Name="presentacion" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="unidad_compra" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="StatusProd" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="StatusProdEstab" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="StatusProdPrv" Nullable="false" MaxLength="5" />
+    <Property Type="Int32" Name="pallet_prod" Nullable="true" />
+    <Property Type="Int16" Name="cama" Nullable="false" />
+    <Property Type="Int16" Name="altura" Nullable="false" />
+    <Property Type="String" Name="abrevUC" Nullable="true" MaxLength="3" />
+    <Property Type="String" Name="abrevUA" Nullable="true" MaxLength="3" />
+  </ComplexType>
+  <EntityType Name="proveedore">
+    <Key>
+      <PropertyRef Name="cod_prv" />
+    </Key>
+    <Property Name="cod_prv" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="tipo_cuenta_pagar" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="tipo_proveedor" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="razon_social" Type="String" Nullable="false" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="clasificacion_fiscal" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="false" />
+    <Property Name="ap_paterno" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="false" />
+    <Property Name="ap_materno" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="false" />
+    <Property Name="nom_comercial" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="false" />
+    <Property Name="calle" Type="String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="num_exterior" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="num_interior" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="colonia" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="cod_postal" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="false" />
+    <Property Name="delegacion" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="pobmunedo" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="tel1" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
+    <Property Name="tel2" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
+    <Property Name="fax" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
+    <Property Name="rfc" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="clave_iva" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="flexibilidad_precio" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="productos_catalogados" Type="Boolean" Nullable="false" />
+    <Property Name="pago_flete" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="reembolso_flete" Type="Decimal" Nullable="false" Precision="5" Scale="1" />
+    <Property Name="pedido_minimo" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="tipo_minimo" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="codigo_nuestro_proveedor" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="manejo_devoluciones" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="plazo" Type="Int16" Nullable="false" />
+    <Property Name="tolerancia_pago" Type="Byte" Nullable="false" />
+    <Property Name="abono_en_cuenta" Type="Boolean" Nullable="false" />
+    <Property Name="retencion_pago" Type="Boolean" Nullable="false" />
+    <Property Name="back_order" Type="Boolean" Nullable="false" />
+    <Property Name="autorizacion_ordenes_compra" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="pagina_web" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="moneda" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="fecha_alta" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="pais" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="estado" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="municipio" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="poblacion" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="cod_estab" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="linea_fletera" Type="Boolean" Nullable="false" />
+    <Property Name="formato_factura" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="pago_estricto" Type="Boolean" Nullable="false" />
+    <Property Name="status_proveedor" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="e_mail" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ultima_modificacion" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="proveedor_linea_fletera" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="condicion_plazo" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="giro_proveedor" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="curp" Type="String" Nullable="false" MaxLength="18" FixedLength="true" Unicode="false" />
+    <Property Name="entre_calles" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="orientacion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="mapa" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="coordenada_x" Type="Int16" Nullable="false" />
+    <Property Name="coordenada_y" Type="Int16" Nullable="false" />
+    <Property Name="clave_valor_pagar" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="evaluacion_proveedor" Type="Byte" Nullable="false" />
+    <Property Name="notas" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="iva_incluido_precio" Type="Boolean" Nullable="false" />
+    <Property Name="nacionalidad" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="comitente" Type="Boolean" Nullable="false" />
+    <Property Name="condicion_pago" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="cod_cte" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="envio_directo_cliente" Type="Boolean" Nullable="false" />
+    <Property Name="te" Type="Int16" Nullable="false" />
+    <Property Name="comprador" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="limite_credito" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="tolerancia_limite_credito" Type="Byte" Nullable="false" />
+    <Property Name="paqueteria" Type="Boolean" Nullable="false" />
+    <Property Name="afianzadora" Type="Boolean" Nullable="false" />
+    <Property Name="aseguradora" Type="Boolean" Nullable="false" />
+    <Property Name="tipo_documento_venta" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="usuario_ultima_modificacion" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="dias_atencion_oc" Type="Int16" Nullable="false" />
+    <Property Name="exige_orden_compra_anticipos" Type="Boolean" Nullable="false" />
+    <Property Name="geolocalizacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <ComplexType Name="CalkinsWS_DetalleRecepcionTransferencia_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
     <Property Type="String" Name="folio" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="transaccion" Nullable="false" MaxLength="5" />
+    <Property Type="DateTime" Name="fecha" Nullable="false" Precision="16" />
+    <Property Type="String" Name="cod_prod" Nullable="false" MaxLength="13" />
+    <Property Type="String" Name="descripcion_completa" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="unidad" Nullable="false" MaxLength="1" />
+    <Property Type="Decimal" Name="cantidad" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="precio_lista" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="importe" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="iva" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="ieps" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="costo" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="utilidad_bruta" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="peso" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="volumen" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="String" Name="cod_estab" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="abreviatura_unidad" Nullable="false" MaxLength="3" />
+    <Property Type="Decimal" Name="total" Nullable="true" Precision="19" />
+    <Property Type="String" Name="codigo_unidad" Nullable="true" MaxLength="5" />
+    <Property Type="String" Name="NombreUnidad" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="UsaFichaTecProd" Nullable="true" MaxLength="1" />
+    <Property Type="Boolean" Name="inventario_identificado" Nullable="true" />
+    <Property Type="Boolean" Name="control_etiqueta" Nullable="true" />
+    <Property Type="String" Name="nom_talla" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="comentario_venta" Nullable="true" />
+    <Property Type="String" Name="codigo_barras_unidad" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="codigo_barras_pieza" Nullable="true" MaxLength="20" />
+    <Property Type="Decimal" Name="contenido" Nullable="true" Precision="19" Scale="8" />
+    <Property Type="Decimal" Name="costo_promedio" Nullable="true" Precision="19" />
+    <Property Type="String" Name="tipo_precio_venta" Nullable="false" MaxLength="2" />
+    <Property Type="Int16" Name="cama" Nullable="true" />
+    <Property Type="Int16" Name="altura" Nullable="true" />
+    <Property Type="Int16" Name="caducidad_fabricacion" Nullable="true" />
+    <Property Type="String" Name="familia" Nullable="true" MaxLength="5" />
+  </ComplexType>
+  <ComplexType Name="CalkinsWS_InfoTransferencia_Result">
+    <Property Type="String" Name="folio" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="transaccion" Nullable="false" MaxLength="5" />
     <Property Type="DateTime" Name="fecha" Nullable="false" Precision="16" />
     <Property Type="String" Name="cod_estab" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="NombreEstab" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="cod_estab_alterno" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="NombreEstabAlterno" Nullable="true" MaxLength="40" />
+    <Property Type="Decimal" Name="importe" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="iva" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="ieps" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="piezas" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="peso" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="volumen" Nullable="false" Precision="19" Scale="4" />
     <Property Type="String" Name="usuario" Nullable="false" MaxLength="5" />
-    <Property Type="Boolean" Name="registrado" Nullable="false" />
+    <Property Type="String" Name="status" Nullable="false" MaxLength="5" />
+    <Property Type="Boolean" Name="surtido" Nullable="false" />
+    <Property Type="Decimal" Name="total" Nullable="true" Precision="19" />
+    <Property Type="String" Name="status_recepcion" Nullable="false" MaxLength="1" />
+    <Property Type="Decimal" Name="costo" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="unidades" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="String" Name="razon_aod_inventario" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="clave_afectacion_inventario" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="notas" Nullable="false" MaxLength="400" />
   </ComplexType>
-  <ComplexType Name="MobileBMS_BuscarProductos_Result">
+  <ComplexType Name="CalkinsWS_ProductosSurtidos_Result">
+    <Property Type="String" Name="cod_prod" Nullable="false" MaxLength="13" />
+    <Property Type="String" Name="unidad" Nullable="false" MaxLength="1" />
+    <Property Type="Decimal" Name="cantidad" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="Boolean" Name="encontrado" Nullable="true" />
+    <Property Type="String" Name="comentario_venta" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="razones_devoluciones_clientes">
+    <Key>
+      <PropertyRef Name="razon_devoluciones_clientes" />
+    </Key>
+    <Property Name="razon_devoluciones_clientes" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="abreviatura" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="status" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="causante_devoluciones_clientes" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="afecta_comision_ventas" Type="Boolean" Nullable="false" />
+    <Property Name="cargo" Type="Byte" Nullable="false" />
+    <Property Name="cod_prod_cargo" Type="String" Nullable="false" MaxLength="13" FixedLength="true" Unicode="false" />
+    <Property Name="exige_notas" Type="Boolean" Nullable="false" />
+    <Property Name="razon_credito_clientes" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <ComplexType Name="CalkinsWS_DetalleEntradaDevolucion_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="folio" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="transaccion" Nullable="false" MaxLength="5" />
+    <Property Type="DateTime" Name="fecha" Nullable="false" Precision="16" />
+    <Property Type="String" Name="cod_prod" Nullable="false" MaxLength="13" />
+    <Property Type="String" Name="descripcion_completa" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="unidad" Nullable="false" MaxLength="1" />
+    <Property Type="Decimal" Name="cantidad" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="precio_lista" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="importe" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="iva" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="ieps" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="costo" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="utilidad_bruta" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="peso" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="volumen" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="String" Name="cod_estab" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="abreviatura_unidad" Nullable="false" MaxLength="3" />
+    <Property Type="Decimal" Name="total" Nullable="true" Precision="19" />
+    <Property Type="String" Name="codigo_unidad" Nullable="true" MaxLength="5" />
+    <Property Type="String" Name="NombreUnidad" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="UsaFichaTecProd" Nullable="false" MaxLength="1" />
+    <Property Type="Boolean" Name="inventario_identificado" Nullable="true" />
+    <Property Type="Int32" Name="control_etiqueta" Nullable="false" />
+    <Property Type="String" Name="nom_talla" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="comentario_venta" Nullable="true" />
+    <Property Type="String" Name="codigo_barras_unidad" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="codigo_barras_pieza" Nullable="true" MaxLength="20" />
+    <Property Type="Decimal" Name="contenido" Nullable="true" Precision="19" Scale="8" />
+    <Property Type="Decimal" Name="costo_promedio" Nullable="true" Precision="19" />
+    <Property Type="String" Name="tipo_precio_venta" Nullable="false" MaxLength="2" />
+    <Property Type="Int16" Name="cama" Nullable="true" />
+    <Property Type="Int16" Name="altura" Nullable="true" />
+    <Property Type="Int16" Name="caducidad_fabricacion" Nullable="true" />
+    <Property Type="String" Name="familia" Nullable="true" MaxLength="5" />
+  </ComplexType>
+  <ComplexType Name="CalkinsWS_EntradaDEvolucion_Result">
+    <Property Type="String" Name="folio" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="transaccion" Nullable="false" MaxLength="5" />
+    <Property Type="DateTime" Name="fecha" Nullable="false" Precision="23" />
+    <Property Type="String" Name="cod_estab" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="NombreEstab" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="cod_estab_alterno" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="NombreEstabAlterno" Nullable="false" MaxLength="1" />
+    <Property Type="Decimal" Name="importe" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="iva" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="ieps" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="piezas" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="peso" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="volumen" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="String" Name="usuario" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="status" Nullable="false" MaxLength="5" />
+    <Property Type="Int32" Name="surtido" Nullable="false" />
+    <Property Type="Decimal" Name="total" Nullable="true" Precision="19" />
+    <Property Type="String" Name="status_recepcion" Nullable="false" MaxLength="1" />
+    <Property Type="Decimal" Name="costo" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="unidades" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="String" Name="razon_aod_inventario" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="clave_afectacion_inventario" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="notas" Nullable="true" />
+    <Property Type="String" Name="cod_cte" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="razon_social" Nullable="true" MaxLength="125" />
+  </ComplexType>
+  <ComplexType Name="CalkinsWS_ConsultaPallet_Result">
+    <Property Type="String" Name="cod_prod" Nullable="false" MaxLength="13" />
+    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="500" />
+    <Property Type="Decimal" Name="cantidad" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="String" Name="localizacion" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="folio" Nullable="false" MaxLength="20" />
+    <Property Type="DateTime" Name="fecha" Nullable="false" Precision="16" />
+    <Property Type="DateTime" Name="fecha_caducidad" Nullable="false" Precision="16" />
+    <Property Type="String" Name="folio_referencia" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="lote_fabricacion" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="CalkinsWS_EntradasSalidasLoc_Result">
+    <Property Type="String" Name="cod_prod" Nullable="false" MaxLength="13" />
+    <Property Type="Decimal" Name="cantidad" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="String" Name="tipo" Nullable="false" MaxLength="7" />
+    <Property Type="DateTime" Name="fecha" Nullable="false" Precision="16" />
+    <Property Type="String" Name="pallet" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="nombre" Nullable="false" MaxLength="60" />
+    <Property Type="String" Name="localizacion" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="CalkinsWS_RetirarMercanciaLoc_Result">
+    <Property Type="String" Name="cod_prod" Nullable="false" MaxLength="13" />
+    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="500" />
+    <Property Type="Decimal" Name="cantidad" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="String" Name="lote_recepcion" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="folio_referencia" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="localizacion" Nullable="false" MaxLength="10" />
+    <Property Type="Boolean" Name="multiples_productos" Nullable="false" />
+    <Property Type="Boolean" Name="pick_slot" Nullable="false" />
+    <Property Type="Int32" Name="productos" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="CalkinsWS_RetirarMercanciaProd_Result">
+    <Property Type="String" Name="cod_prod" Nullable="false" MaxLength="13" />
+    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="500" />
+    <Property Type="Decimal" Name="cantidad" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="String" Name="lote_recepcion" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="folio_referencia" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="CalkinsWS_ActualizarUbicacionLoc_Result">
+    <Property Type="String" Name="cod_estab" Nullable="false" MaxLength="5" />
+    <Property Type="Boolean" Name="pick_slot" Nullable="false" />
+    <Property Type="Boolean" Name="disponible" Nullable="false" />
+    <Property Type="String" Name="cod_prod" Nullable="false" MaxLength="13" />
+    <Property Type="String" Name="lote" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="CalkinsWS_ActualizarUbicacionLote_Result">
+    <Property Type="String" Name="cod_prod" Nullable="false" MaxLength="13" />
+    <Property Type="String" Name="cod_estab" Nullable="false" MaxLength="5" />
+    <Property Type="Decimal" Name="cantidad" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="String" Name="unidad" Nullable="false" MaxLength="3" />
+    <Property Type="DateTime" Name="fecha_caducidad" Nullable="false" Precision="16" />
+    <Property Type="String" Name="lote_fabricacion" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="CalkinsWS_UbicarDocumento_Result">
+    <Property Type="String" Name="folio" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="cod_estab" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="cod_prod" Nullable="false" MaxLength="13" />
+    <Property Type="String" Name="unidad" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="abreviatura_unidad" Nullable="false" MaxLength="3" />
+    <Property Type="DateTime" Name="fecha" Nullable="false" Precision="16" />
+    <Property Type="String" Name="folio_referencia" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="transaccion_referencia" Nullable="false" MaxLength="5" />
+    <Property Type="DateTime" Name="fecha_caducidad" Nullable="false" Precision="16" />
+    <Property Type="String" Name="lote_fabricacion" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="localizacion" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="localizacion_intercambio" Nullable="false" MaxLength="10" />
+    <Property Type="Boolean" Name="ubicado" Nullable="false" />
+    <Property Type="Int32" Name="prodxpall" Nullable="false" />
+    <Property Type="Int32" Name="picking" Nullable="false" />
+    <Property Type="Int32" Name="cant_ubicada" Nullable="false" />
+    <Property Type="Decimal" Name="cant_pendiente" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="CalkinsWS_UbicarBusqueda_Result">
+    <Property Type="String" Name="folio" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="cod_estab" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="cod_prod" Nullable="false" MaxLength="13" />
+    <Property Type="String" Name="unidad" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="abreviatura_unidad" Nullable="false" MaxLength="3" />
+    <Property Type="DateTime" Name="fecha" Nullable="false" Precision="16" />
+    <Property Type="String" Name="folio_referencia" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="transaccion_referencia" Nullable="false" MaxLength="5" />
+    <Property Type="DateTime" Name="fecha_caducidad" Nullable="false" Precision="16" />
+    <Property Type="String" Name="lote_fabricacion" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="localizacion" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="localizacion_intercambio" Nullable="false" MaxLength="10" />
+    <Property Type="Boolean" Name="ubicado" Nullable="false" />
+    <Property Type="Int32" Name="prodxpall" Nullable="false" />
+    <Property Type="Int32" Name="picking" Nullable="false" />
+    <Property Type="Int32" Name="cant_ubicada" Nullable="false" />
+    <Property Type="Decimal" Name="cant_pendiente" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="500" />
+  </ComplexType>
+  <EntityType Name="establecimiento">
+    <Key>
+      <PropertyRef Name="cod_estab" />
+    </Key>
+    <Property Name="cod_estab" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="tipo_establecimiento" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="false" />
+    <Property Name="calle" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="false" />
+    <Property Name="num_interior" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="num_exterior" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="colonia" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="false" />
+    <Property Name="cod_postal" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="pobmunedo" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="false" />
+    <Property Name="telefono1" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="false" />
+    <Property Name="telefono2" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="false" />
+    <Property Name="rfc" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="area_terreno" Type="Int32" Nullable="false" />
+    <Property Name="area_uso" Type="Int32" Nullable="false" />
+    <Property Name="cajones_estacionamiento" Type="Int32" Nullable="false" />
+    <Property Name="centro_comercial" Type="Boolean" Nullable="false" />
+    <Property Name="aire_acondicionado" Type="Boolean" Nullable="false" />
+    <Property Name="numero_cajas" Type="Byte" Nullable="false" />
+    <Property Name="tipo_arrendamiento" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="frecuencia_pago" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="cantidad_pago" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
+    <Property Name="fecha_ultimo_pago" Type="DateTime" Precision="0" />
+    <Property Name="lista_precios" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="tipo_pallet" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="tolerancia_bascula" Type="Decimal" Nullable="false" Precision="5" Scale="3" />
+    <Property Name="pais" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="estado" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="municipio" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="poblacion" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="region" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="zona" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="sector" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="sucursal" Type="Boolean" Nullable="false" />
+    <Property Name="exige_vendedor" Type="Boolean" Nullable="false" />
+    <Property Name="maximo_descuento" Type="Decimal" Nullable="false" Precision="6" Scale="3" />
+    <Property Name="minimo" Type="Int32" Nullable="false" />
+    <Property Name="tipo_minimo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="dias_para_cargar" Type="Byte" Nullable="false" />
+    <Property Name="fecha_ultimo_corte" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="orden_reparto" Type="Int16" Nullable="false" />
+    <Property Name="ruta_reparto" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="coordenada_x" Type="Int16" Nullable="false" />
+    <Property Name="coordenada_y" Type="Int16" Nullable="false" />
+    <Property Name="serie" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="posicion_serie" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="clave_iva" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="back_order" Type="Boolean" Nullable="false" />
+    <Property Name="metodo_pvs" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="aplica_condiciones_venta" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="aplica_condiciones_financieras" Type="Boolean" Nullable="false" />
+    <Property Name="aplica_grupo_facturacion" Type="Boolean" Nullable="false" />
+    <Property Name="permite_descvta" Type="Boolean" Nullable="false" />
+    <Property Name="cliente_venta_publico" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="margen_minimo" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+    <Property Name="exige_existencia_total" Type="Boolean" Nullable="false" />
+    <Property Name="flexibilidad_precio_cajas" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="msc_libre" Type="Boolean" Nullable="false" />
+    <Property Name="plazo_expiracion" Type="Byte" Nullable="false" />
+    <Property Name="aplica_cv_felab" Type="Boolean" Nullable="false" />
+    <Property Name="autorizacion_pedido" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="BMS" Type="Boolean" Nullable="false" />
+    <Property Name="fecha_inicio_BMS" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="proveedor_gastos_embarque" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="costo_financiero" Type="Decimal" Nullable="false" Precision="9" Scale="4" />
+    <Property Name="costo_mensual_almacenaje" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="fotografia_productos_pos" Type="Boolean" Nullable="false" />
+    <Property Name="incluir_negados_salidas" Type="Boolean" Nullable="false" />
+    <Property Name="surtido_express" Type="Boolean" Nullable="false" />
+    <Property Name="modo_online_pos" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="status" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="id_afectacion_inventario_tickets" Type="Int32" Nullable="false" />
+    <Property Name="afectacion_automatica_inventario_tickets" Type="Boolean" Nullable="false" />
+    <Property Name="mostrar_credito_disponible" Type="Boolean" Nullable="false" />
+    <Property Name="modo_operacion" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="fecha_envio_informacion" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="fecha_recepcion_informacion" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="notas_tickets" Type="Boolean" Nullable="false" />
+    <Property Name="pagos_multiples_clientes" Type="Boolean" Nullable="false" />
+    <Property Name="leyenda_ticket" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="comentario_ventas" Type="Boolean" Nullable="false" />
+    <Property Name="variacion_costo_promedio" Type="Byte" Nullable="false" />
+    <Property Name="razon_social" Type="String" MaxLength="150" FixedLength="true" Unicode="false" />
+    <Property Name="tipo_precio_pos" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="afecta_inventario_pos" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="aplica_condiciones_compra" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="verifica_margen_pos" Type="Boolean" Nullable="false" />
+    <Property Name="ticket_ordenado" Type="Boolean" Nullable="false" />
+    <Property Name="salidas_globales" Type="Boolean" Nullable="false" />
+    <Property Name="mapa" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="minimo_multiplo_pos" Type="Boolean" Nullable="false" />
+    <Property Name="lista_precio_publico_sugerido" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="inventario_precios_busqueda_pos" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="turnos_ventas_mostrador" Type="Boolean" Nullable="false" />
+    <Property Name="transaccion_clasificador_producto_localizaciones" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="manejo_ubicacion_sugerida" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="manejo_recibo_valores" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="orden" Type="Int16" Nullable="false" />
+    <Property Name="volumen" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="capacidad_pallets" Type="Int32" Nullable="false" />
+    <Property Name="comentario_ventas_renglon_aparte" Type="Boolean" Nullable="false" />
+    <Property Name="valor_transferencias" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="afecta_nd_ordenes_carga" Type="Boolean" Nullable="false" />
+    <Property Name="anticipo_cliente_solo_apartados" Type="Boolean" Nullable="false" />
+    <Property Name="pagare_embarques" Type="Boolean" Nullable="false" />
+    <Property Name="cfd_llave_privada" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="cfd_certificado_digital" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="cfd_archivos_xml" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="cfd_contraseña_llave_privada" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="codigo_gln" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ruta_lector_huella" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="grupo_establecimiento" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="abreviatura" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="regimen_fiscal" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="usuario_ultima_modificacion" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="ultima_modificacion" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ruta_xml_proveedores" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="curp" Type="String" Nullable="false" MaxLength="18" FixedLength="true" Unicode="false" />
+    <Property Name="ruta_pdf_proveedores" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="horas_diferencia_servidor" Type="Int16" />
+    <Property Name="geolocalizacion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Colonia_codigo" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="Surtido_Picking" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <ComplexType Name="CalkinsWS_Surtido_Result">
+    <Property Type="String" Name="folio_surtido" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="transaccion_surtido" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="cod_prod" Nullable="false" MaxLength="10" />
+    <Property Type="Int32" Name="id_origen" Nullable="false" />
+    <Property Type="Decimal" Name="cantidad_surtida" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="500" />
+    <Property Type="String" Name="ticket" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="localizacion" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="folio" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="transaccion" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="cod_cte" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="numdpc" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="localizaciones" Nullable="false" MaxLength="1" />
+  </ComplexType>
+  <EntityType Name="inventario_localizacion">
+    <Key>
+      <PropertyRef Name="localizacion" />
+      <PropertyRef Name="cod_estab" />
+      <PropertyRef Name="cod_prod" />
+      <PropertyRef Name="lote" />
+    </Key>
+    <Property Name="localizacion" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="cod_estab" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="cod_prod" Type="String" Nullable="false" MaxLength="13" FixedLength="true" Unicode="false" />
+    <Property Name="lote" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="exist_unidades" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="exist_piezas" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="unidades_no_disponibles" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="piezas_no_disponibles" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="lote_recepcion" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="razones_no_disponible">
+    <Key>
+      <PropertyRef Name="razon_nodisponible" />
+    </Key>
+    <Property Name="razon_nodisponible" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="false" />
+    <Property Name="abreviatura" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="status" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="localizacione">
+    <Key>
+      <PropertyRef Name="localizacion" />
+      <PropertyRef Name="cod_estab" />
+    </Key>
+    <Property Name="localizacion" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="cod_estab" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="pick_slot" Type="Boolean" Nullable="false" />
+    <Property Name="disponible" Type="Boolean" Nullable="false" />
+    <Property Name="ultima_modificacion" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="zona" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="pasillo" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="rack" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="posicion" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="profundidad" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="nivel" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="clasificador_producto" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="multiples_productos" Type="Boolean" Nullable="false" />
+    <Property Name="mercancia_disponible" Type="Boolean" Nullable="false" />
+    <Property Name="minimo" Type="Int16" Nullable="false" />
+    <Property Name="maximo" Type="Int16" Nullable="false" />
+    <Property Name="orden_surtido" Type="Int32" />
+  </EntityType>
+  <ComplexType Name="CalkinsWS_ReubicarProducto_Result">
+    <Property Type="String" Name="cod_prod" Nullable="false" MaxLength="13" />
+    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="500" />
+    <Property Type="String" Name="lote" Nullable="false" MaxLength="20" />
+    <Property Type="Decimal" Name="exist_unidades" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="exist_piezas" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="DateTime" Name="fecha" Nullable="false" Precision="16" />
+    <Property Type="String" Name="lote_recepcion" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="localizacion" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="cod_estab" Nullable="false" MaxLength="5" />
+    <Property Type="Boolean" Name="multiples_productos" Nullable="false" />
+    <Property Type="Boolean" Name="mercancia_disponible" Nullable="false" />
+    <Property Type="Boolean" Name="picking" Nullable="false" />
+    <Property Type="Boolean" Name="mercancia_disponible1" Nullable="false" />
+    <Property Type="Int32" Name="prodxpall" Nullable="true" />
+    <Property Type="Decimal" Name="costo" Nullable="false" Precision="19" />
+    <Property Type="String" Name="unidad_compra" Nullable="false" MaxLength="5" />
+    <Property Type="Single" Name="volumen" Nullable="false" />
+    <Property Type="Decimal" Name="peso" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="ieps" Nullable="false" Precision="19" />
+  </ComplexType>
+  <EntityType Name="solicitudes_surtido_pick_slot">
+    <Key>
+      <PropertyRef Name="folio" />
+    </Key>
+    <Property Name="folio" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="cod_prod" Type="String" Nullable="false" MaxLength="13" FixedLength="true" Unicode="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="fecha_surtido" Type="DateTime" Precision="0" />
+    <Property Name="usuario" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="usuario_surtido" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="status" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="orden_carga" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="localizacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <ComplexType Name="CalkinsWS_SurtidoPickingRefrescar_Result">
+    <Property Type="String" Name="ticket" Nullable="false" MaxLength="10" />
+    <Property Type="Byte" Name="contenedor" Nullable="false" />
+    <Property Type="String" Name="razon_social" Nullable="true" MaxLength="125" />
+    <Property Type="String" Name="cod_cte" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="numdpc" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="CalkinsWS_SurtidoPickingProdTicket_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int16" Name="ticket" Nullable="false" />
+    <Property Type="String" Name="cod_prod" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="descripcion_completa" Nullable="false" MaxLength="500" />
+    <Property Type="String" Name="unidad" Nullable="false" MaxLength="1" />
+    <Property Type="Decimal" Name="cantidad" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="cantidad_surtida" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="String" Name="contenedor" Nullable="true" MaxLength="5" />
+    <Property Type="Decimal" Name="existencia" Nullable="true" Precision="20" Scale="4" />
+  </ComplexType>
+  <ComplexType Name="CalkinsWS_SurtidoPickingValidaLoc_Result">
+    <Property Type="String" Name="localizacion" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="cod_prod" Nullable="false" MaxLength="13" />
+    <Property Type="Decimal" Name="cantidad" Nullable="false" Precision="19" Scale="4" />
+  </ComplexType>
+  <ComplexType Name="CalkinsWS_SurtidoPicking_Refrescar_Result">
+    <Property Type="String" Name="ticket" Nullable="false" MaxLength="10" />
+    <Property Type="Boolean" Name="contenedor" Nullable="true" />
+    <Property Type="String" Name="razon_social" Nullable="false" MaxLength="125" />
+    <Property Type="String" Name="cod_cte" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="numdpc" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="CalkinsWS_BuscarProductos_Result">
     <Property Type="String" Name="cod_prod" Nullable="true" MaxLength="13" />
     <Property Type="String" Name="descripcion_completa" Nullable="true" MaxLength="500" />
     <Property Type="Decimal" Name="contenido" Nullable="false" Precision="19" Scale="8" />
@@ -103,8 +1133,49 @@
     <Property Type="String" Name="codigo_barras_unidad" Nullable="true" MaxLength="30" />
     <Property Type="String" Name="codigo_barras_pieza" Nullable="false" MaxLength="20" />
   </ComplexType>
-  <ComplexType Name="MobileBMS_InventarioProductoFecha_Result">
+  <ComplexType Name="CalkinsWS_DetalleConteo_Result">
+    <Property Type="String" Name="folio" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="cod_prod" Nullable="true" MaxLength="13" />
+    <Property Type="DateTime" Name="fecha" Nullable="false" Precision="16" />
+    <Property Type="String" Name="usuario" Nullable="false" MaxLength="5" />
+    <Property Type="Decimal" Name="unidades_compra" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="unidades_alternativas" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="exist_unidades_compra" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="exist_unidades_alternativas" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="String" Name="programacion" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="notas" Nullable="false" />
+    <Property Type="String" Name="descripcion_completa" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="NombreUC" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="NombreUA" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="forma_expresar_inventario" Nullable="false" MaxLength="1" />
+    <Property Type="Decimal" Name="contenido" Nullable="false" Precision="19" Scale="8" />
+    <Property Type="String" Name="AbrevUC" Nullable="false" MaxLength="3" />
+    <Property Type="String" Name="AbrevUA" Nullable="false" MaxLength="3" />
+    <Property Type="String" Name="codigo_barras_unidad" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="codigo_barras_pieza" Nullable="false" MaxLength="20" />
+    <Property Type="Boolean" Name="contado" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="CalkinsWS_EstabsUsuario_Result">
+    <Property Type="String" Name="cod_estab" Nullable="true" MaxLength="5" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="cliente_venta_publico" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="CalkinsWS_InfoConteo_Result">
+    <Property Type="String" Name="folio" Nullable="false" MaxLength="10" />
+    <Property Type="DateTime" Name="fecha" Nullable="false" Precision="16" />
+    <Property Type="String" Name="cod_estab" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="usuario" Nullable="false" MaxLength="5" />
+    <Property Type="Boolean" Name="registrado" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="CalkinsWS_InventarioProductoFecha_Result">
     <Property Type="Decimal" Name="uc" Nullable="true" Precision="19" Scale="8" />
     <Property Type="Decimal" Name="ua" Nullable="true" Precision="19" Scale="8" />
+  </ComplexType>
+  <ComplexType Name="CalkinsWS_Login_Result">
+    <Property Type="String" Name="usuario" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="nombre" Nullable="false" MaxLength="60" />
+    <Property Type="String" Name="status" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="cod_estab" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="vendedor_default_ventas" Nullable="false" MaxLength="5" />
   </ComplexType>
 </Schema>
