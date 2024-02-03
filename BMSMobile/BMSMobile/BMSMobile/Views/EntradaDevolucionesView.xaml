@@ -27,7 +27,7 @@
         <ToolbarItem x:Name="btnGuardar" Priority="1" Icon="save.png" Command="{Binding GuardarCommand}"/>
     </TabbedPage.ToolbarItems>
 
-    <ContentPage Title="Transferencia" Icon="Transfer.png">
+    <ContentPage Title="Transferencia" IconImageSource="Transfer.png">
         <ContentPage.Content>
             <Grid>
                 <Image Aspect="AspectFill" Source="bg.jpg"/>
@@ -202,7 +202,7 @@
         </ContentPage.Content>
     </ContentPage>
 
-    <ContentPage Title="Productos" Icon="PRODUCTS.png" Padding="10">
+    <ContentPage Title="Productos" IconImageSource="Producto.png" Padding="10">
         <ListView HasUnevenRows="True" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
                   ItemsSource="{Binding ListaProds}" x:Name="listaProductos" >
             <ListView.Header>
@@ -247,7 +247,7 @@
         </ListView>
     </ContentPage>
 
-    <ContentPage Title="Totales" Icon="Sigma.png">
+    <ContentPage Title="Totales" IconImageSource="Sigma.png">
         <ContentPage.Content>
             <Grid>
                 <Image Aspect="AspectFill" Source="bg.jpg"></Image>

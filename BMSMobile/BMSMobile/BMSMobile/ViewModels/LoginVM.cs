@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 using BMSMobile.Services;
+using Xamarin.Essentials;
 
 namespace BMSMobile.ViewModels
 {
@@ -60,6 +61,13 @@ namespace BMSMobile.ViewModels
             set { _entryClave = value; }
         }
 
+        private string _version { get; set; }
+        public string Version
+        {
+            get { return "Versión: " + _version; }
+            set { _version = value; }
+        }
+
         public Command ConfigCommand { get; set; }
         public Command LoginCommand { get; set; }
         public Command CompletedUserCommand { get; set; }
@@ -69,6 +77,7 @@ namespace BMSMobile.ViewModels
         {
             General.urlWS = Settings.urlServidor;
             Navigation = navigation;
+            _version = AppInfo.VersionString;
             MostrarMsg = new Mensajes();
             activityModel = new AIModel();
             colorUser = new ColorsModel();

@@ -214,7 +214,13 @@
     <Compile Include="Models\CalkinsWS_ActualizarUbicacionLote_Result.cs">
       <DependentUpon>BMSModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CalkinsWS_BuscarProductos_Result.cs">
+      <DependentUpon>BMSModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CalkinsWS_ConsultaPallet_Result.cs">
+      <DependentUpon>BMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CalkinsWS_DetalleConteo_Result.cs">
       <DependentUpon>BMSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CalkinsWS_DetalleEntradaDevolucion_Result.cs">
@@ -229,7 +235,19 @@
     <Compile Include="Models\CalkinsWS_EntradasSalidasLoc_Result.cs">
       <DependentUpon>BMSModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CalkinsWS_EstabsUsuario_Result.cs">
+      <DependentUpon>BMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CalkinsWS_InfoConteo_Result.cs">
+      <DependentUpon>BMSModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CalkinsWS_InfoTransferencia_Result.cs">
+      <DependentUpon>BMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CalkinsWS_InventarioProductoFecha_Result.cs">
+      <DependentUpon>BMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CalkinsWS_Login_Result.cs">
       <DependentUpon>BMSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CalkinsWS_OrdenCompraDetalle_Result.cs">
@@ -284,24 +302,6 @@
       <DependentUpon>BMSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\localizacione.cs">
-      <DependentUpon>BMSModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MobileBMS_BuscarProductos_Result.cs">
-      <DependentUpon>BMSModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MobileBMS_DetalleConteo_Result.cs">
-      <DependentUpon>BMSModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MobileBMS_EstabsUsuario_Result.cs">
-      <DependentUpon>BMSModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MobileBMS_InfoConteo_Result.cs">
-      <DependentUpon>BMSModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MobileBMS_InventarioProductoFecha_Result.cs">
-      <DependentUpon>BMSModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MobileBMS_Login_Result.cs">
       <DependentUpon>BMSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\NuevoLoteModel.cs" />

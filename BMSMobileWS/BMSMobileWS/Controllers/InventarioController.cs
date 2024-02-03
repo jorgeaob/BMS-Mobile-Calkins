@@ -25,13 +25,13 @@ namespace BMSMobileWS.Controllers
             {
                 using(BMS2015Entities db = new BMS2015Entities())
                 {
-                    var info = db.MobileBMS_InfoConteo(Folio).SingleOrDefault();
+                    var info = db.CalkinsWS_InfoConteo(Folio).SingleOrDefault();
 
                     if (info == null)
                         return Request.CreateErrorResponse(HttpStatusCode.NotFound, "No se encontro información con el folio");
                     else
                     {
-                        var det = db.MobileBMS_DetalleConteo(Folio).ToList();
+                        var det = db.CalkinsWS_DetalleConteo(Folio).ToList();
 
                         if(det.Count <= 0 || det == null)
                         {
@@ -70,7 +70,7 @@ namespace BMSMobileWS.Controllers
             {
                 using (BMS2015Entities db = new BMS2015Entities())
                 {
-                    var info = db.MobileBMS_BuscarProductos(Codigo,Filtro,Estab).ToList();
+                    var info = db.CalkinsWS_BuscarProductos(Codigo,Filtro,Estab).ToList();
 
                     if (info == null || info.Count <= 0)
                         return Request.CreateErrorResponse(HttpStatusCode.NotFound, "No se encontro información.");
@@ -94,7 +94,7 @@ namespace BMSMobileWS.Controllers
                 {
                     try
                     {
-                        var save = db.MobileBMS_GuardarConteo(conteo.folio, conteo.cod_prod, conteo.fecha, conteo.usuario, conteo.unidades_compra, 
+                        var save = db.CalkinsWS_GuardarConteo(conteo.folio, conteo.cod_prod, conteo.fecha, conteo.usuario, conteo.unidades_compra, 
                             conteo.unidades_alternativas, conteo.exist_unidades_compra, conteo.exist_unidades_alternativas, conteo.programacion, conteo.notas, conteo.contado);
                         dbContextTransaction.Commit();
                         return Request.CreateResponse(HttpStatusCode.OK, new { Resultado = save });
@@ -118,7 +118,7 @@ namespace BMSMobileWS.Controllers
             {
                 using (BMS2015Entities db = new BMS2015Entities())
                 {
-                    var info = db.MobileWS_CheckEscanerProd(CodigoBarras, Estab).SingleOrDefault();
+                    var info = db.CalkinsWS_CheckEscanerProd(CodigoBarras, Estab).SingleOrDefault();
 
                     if (info == null)
                         return Request.CreateErrorResponse(HttpStatusCode.NotFound, "No se encontro información.");
@@ -142,7 +142,7 @@ namespace BMSMobileWS.Controllers
                 {
                     try
                     {
-                        var save = db.MobileBMS_GuardarNotasConteoProd(Folio, CodProd, Notas);
+                        var save = db.CalkinsWS_GuardarNotasConteoProd(Folio, CodProd, Notas);
                         dbContextTransaction.Commit();
                         return Request.CreateResponse(HttpStatusCode.OK, new { Resultado = save });
                     }
@@ -165,7 +165,7 @@ namespace BMSMobileWS.Controllers
 
                 using (BMS2015Entities db = new BMS2015Entities())
                 {
-                    var result = db.MobileBMS_InventarioProductoFecha(CodProd, CodEstab, fechaAux).SingleOrDefault();
+                    var result = db.CalkinsWS_InventarioProductoFecha(CodProd, CodEstab, fechaAux).SingleOrDefault();
                     //var result = db.Database.SqlQuery<Decimal>($"SELECT dbo.inventario_inicial('{CodProd}','{CodEstab}','{Fecha}')").SingleOrDefault();
                     return Request.CreateResponse(HttpStatusCode.OK, result);
                 }
